@@ -1,15 +1,12 @@
 package model;
 
 public class RentalDetail {
-    public int rentalId;
-    public int bikeId;
 
-    public double pricePerDay;
+    private int rentalId;
+    private int bikeId;
+    private double pricePerDay;
 
-    public RentalDetail(int rentalId, int bikeId, double pricePerDay) {
-        this.rentalId = rentalId;
-        this.bikeId = bikeId;
-        this.pricePerDay = pricePerDay;
+    public RentalDetail() {
     }
 
     public int getRentalId() {
@@ -35,7 +32,4 @@ public class RentalDetail {
     public void setPricePerDay(double pricePerDay) {
         this.pricePerDay = pricePerDay;
     }
-    
-    
-    
 }

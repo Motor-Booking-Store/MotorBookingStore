@@ -3,33 +3,28 @@ package model;
 import java.util.Date;
 
 public class User {
-    public int userID;
-    public String userName;
-    public String password;
 
-    public String email;
-    public String citizenId;
+    private int userID;
+    private String userName;
+    private String password;
+    private String email;
+    private String citizenId;
 
-    public String firstName;
-    public String lastName;
+    private String firstName;
+    private String lastName;
 
-    public String phoneNumber;
-    public String licenseNumber;
-
-    public String address;
-
-    public int roleId;
-
-    public Date createdAt;
-    public Date updatedAt;
+    private String phoneNumber;
+    private String licenseNumber;
+    private String address;
 
     private String bankNumber;
-    
-    public User(int userID, String userName, String password, String email) {
-        this.userID = userID;
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
+
+    private int roleId;
+
+    private Date createdAt;
+    private Date updatedAt;
+
+    public User() {
     }
 
     public int getUserID() {
@@ -112,6 +107,14 @@ public class User {
         this.address = address;
     }
 
+    public String getBankNumber() {
+        return bankNumber;
+    }
+
+    public void setBankNumber(String bankNumber) {
+        this.bankNumber = bankNumber;
+    }
+
     public int getRoleId() {
         return roleId;
     }
@@ -135,14 +138,4 @@ public class User {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    public String getBankNumber() {
-        return bankNumber;
-    }
-
-    public void setBankNumber(String bankNumber) {
-        this.bankNumber = bankNumber;
-    }
-    
-    
 }
