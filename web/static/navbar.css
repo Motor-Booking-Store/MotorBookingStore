@@ -1,0 +1,46 @@
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:#1e1e2f;
+    padding:10px 30px;
+}
+
+/* logo */
+
+.nav-logo img{
+    height:40px;
+}
+
+/* menu */
+
+.nav-menu{
+    display:flex;
+    gap:40px;
+}
+
+.nav-menu a{
+    text-decoration:none;
+    color:white;
+    font-size:16px;
+    font-weight:500;
+}
+
+.nav-menu a:hover{
+    color:#00c8ff;
+}
+
+/* avatar */
+
+.nav-user img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+}

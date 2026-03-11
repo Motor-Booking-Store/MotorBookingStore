@@ -3,21 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/model/RentalDetail.java</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/context/DBContext.java</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/model/User.java</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/web/view/MotorbikeList.jsp</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/model/Location.java</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/web/WEB-INF/web.xml</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/Motorbike/MotorbikeListController.java</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/model/Review.java</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/dto/AllMotorbikeDTO.java</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/model/Rental.java</file>
             <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/web/index.html</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/dao/MotorbikeDAO.java</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/model/Role.java</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/web/WEB-INF/ConnectDB.properties</file>
-            <file>file:/D:/FPT/PRJ_301/PRJ_Code/MotorBooking/src/java/model/Motorbike.java</file>
         </group>
     </open-files>
 </project-private>

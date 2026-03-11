@@ -6,27 +6,75 @@
     <head>
         <meta charset="UTF-8">
         <title>Motorbike List</title>
+
+        <link rel="stylesheet" href="static/card.css">
+        <link rel="stylesheet" href="static/search.css">
+        <link rel="stylesheet" href="static/layout.css">
+
     </head>
+
     <body>
 
-        <h1>Motorbike List</h1>
-        
-        <c:forEach var="b" items="${motorbikeList}">
+        <jsp:include page="./component/navbar.jsp" />
 
-            <div style="border:1px solid black; width:300px; padding:10px; margin:10px">
+        <!-- SEARCH BAR -->
+        <div class="search-container">
 
-                <img src="images/${b.image}" width="200"><br><br>
+            <form action="searchMotorbike" method="get" class="search-form">
 
-                Bike Name: ${b.bikeName} <br>
-                Brand: ${b.brand} <br>
-                Model: ${b.model} <br>
-                License Plate: ${b.licensePlate} <br>
-                Price Per Day: ${b.pricePerDay} <br>
-                Status: ${b.status} <br>
+                <input 
+                    type="text"
+                    name="keyword"
+                    placeholder="Search motorbike name..."
+                    class="search-input"
+                    >
+
+                <button type="submit" class="search-btn">
+                    Search
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- MAIN LAYOUT -->
+        <div class="main-layout">
+
+            <!-- SIDEBAR -->
+            <jsp:include page="./component/sidebar.jsp"/>
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <div class="bike-container">
+
+                    <c:forEach var="b" items="${motorbikeList}">
+
+                        <a href="MotorbikeDetail?id=${b.bikeId}" class="bike-link">
+
+                            <div class="bike-card">
+
+                                <img class="bike-img" src="${b.image}">
+
+                                <div class="bike-info">
+                                    <p><b>Bike Name:</b> ${b.bikeName}</p>
+                                    <p><b>Brand:</b> ${b.brand}</p>
+                                    <p><b>Model:</b> ${b.model}</p>
+                                    <p><b>License Plate:</b> ${b.licensePlate}</p>
+                                    <p><b>Price Per Day:</b> ${b.pricePerDay}</p>
+                                    <p><b>Status:</b> ${b.status}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </c:forEach>
+                </div>
 
             </div>
 
-        </c:forEach>
+        </div>
+
+        <jsp:include page="./component/footer.jsp" />
 
     </body>
 </html>

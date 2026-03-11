@@ -1,0 +1,47 @@
+body{
+    font-family: Arial, sans-serif;
+}
+
+.title{
+    text-align: center;
+}
+
+.bike-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cột */
+    gap: 20px;
+    padding: 20px;
+}
+
+.bike-card{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    background: #f9f9f9;
+}
+
+.bike-img{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.bike-info{
+    margin-top: 10px;
+    text-align: left;
+}
+
+.bike-link{
+    text-decoration: none; 
+    color: inherit; 
+    display: block; 
+}
+
+.bike-card{
+    transition: 0.2s;
+}
+
+.bike-link:hover .bike-card{
+    transform: scale(1.03);
+}

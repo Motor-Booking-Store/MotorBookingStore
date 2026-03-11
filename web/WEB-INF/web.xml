@@ -4,8 +4,16 @@
         <servlet-name>MotorbikeListController</servlet-name>
         <servlet-class>Motorbike.MotorbikeListController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MotorbikeDetailController</servlet-name>
+        <servlet-class>controller.MotorbikeDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MotorbikeListController</servlet-name>
         <url-pattern>/MotorbikeList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MotorbikeDetailController</servlet-name>
+        <url-pattern>/MotorbikeDetail</url-pattern>
     </servlet-mapping>
 </web-app>
