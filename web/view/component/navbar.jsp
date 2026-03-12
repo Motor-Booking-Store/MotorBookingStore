@@ -9,8 +9,8 @@
     </div>
 
     <div class="nav-menu">
-        <a href="#">Home</a>
-        <a href="#">Motorbikes</a>
+        <a href="Home">Home</a>
+        <a href="MotorbikeList">Motorbikes</a>
         <a href="#">Contact</a>
         <a href="#">About</a>
     </div>

@@ -8,6 +8,10 @@
         <servlet-name>MotorbikeDetailController</servlet-name>
         <servlet-class>controller.MotorbikeDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>controller.HomeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MotorbikeListController</servlet-name>
         <url-pattern>/MotorbikeList</url-pattern>
@@ -15,5 +19,9 @@
     <servlet-mapping>
         <servlet-name>MotorbikeDetailController</servlet-name>
         <url-pattern>/MotorbikeDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/Home</url-pattern>
     </servlet-mapping>
 </web-app>
