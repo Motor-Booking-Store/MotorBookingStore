@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dao.MotorbikeDAO;
+import dal.MotorbikeDAO;
 import dto.MotorbikeDetailDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
