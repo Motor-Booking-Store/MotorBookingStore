@@ -3,9 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package controllers;
 
 import dao.RentalDAO;
+import dto.PendingRentalDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,7 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import model.Rental;
+import models.Rental;
 
 /**
  *
@@ -61,11 +62,11 @@ public class AdminRentalController extends HttpServlet {
 
         RentalDAO dao = new RentalDAO();
 
-        List<Rental> list = dao.getPendingRentals();
+        List<PendingRentalDTO> list = dao.getPendingRentals();
 
         request.setAttribute("pendingList", list);
 
-        request.getRequestDispatcher("view/pendingRentals.jsp")
+        request.getRequestDispatcher("views/pendingRentals.jsp")
                 .forward(request, response);
     }
 

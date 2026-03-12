@@ -14,13 +14,13 @@
 
             <tr>
                 <th>Rental ID</th>
-                <th>User ID</th>
-                <!--<th>Motorbike ID</th>-->
+                <th>Customer</th>
+                <th>Motorbike</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Total Amount</th>
                 <th>Status</th>
-                <!--<th>Action</th>-->
+                <th>Action</th>
             </tr>
 
             <c:forEach var="r" items="${pendingList}">
@@ -28,10 +28,19 @@
                 <tr>
 
                     <td>${r.rentalId}</td>
-                    <td>${r.userID}</td>
+
+                    <td>
+                        ${r.firstName} ${r.lastName}
+                    </td>
+
+                    <td>${r.bikeName}</td>
+
                     <td>${r.startDate}</td>
+
                     <td>${r.endDate}</td>
+
                     <td>${r.totalAmount}</td>
+
                     <td>${r.status}</td>
 
                     <td>
