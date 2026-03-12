@@ -1,9 +1,9 @@
-package model;
+package models;
 import java.util.Date;
 
 public class Motorbike {
-    private int bikeId;
 
+    private int bikeId;
     private String bikeName;
     private String brand;
     private String model;
@@ -17,21 +17,12 @@ public class Motorbike {
 
     private String status;
 
+    private int locationId;
+
     private Date createdAt;
     private Date updatedAt;
 
-    public Motorbike(int bikeId, String bikeName, String brand, String model, String licensePlate, double pricePerDay, String description, String image, String status, Date createdAt, Date updatedAt) {
-        this.bikeId = bikeId;
-        this.bikeName = bikeName;
-        this.brand = brand;
-        this.model = model;
-        this.licensePlate = licensePlate;
-        this.pricePerDay = pricePerDay;
-        this.description = description;
-        this.image = image;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+    public Motorbike() {
     }
 
     public int getBikeId() {
@@ -106,6 +97,14 @@ public class Motorbike {
         this.status = status;
     }
 
+    public int getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -121,6 +120,4 @@ public class Motorbike {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-    
-    
 }

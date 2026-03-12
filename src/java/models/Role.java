@@ -1,9 +1,13 @@
-package model;
+package models;
 
 public class Role {
-    public int roleId;
-    public String roleName;
-    
+
+    private int roleId;
+    private String roleName;
+
+    public Role() {
+    }
+
     public Role(int roleId, String roleName) {
         this.roleId = roleId;
         this.roleName = roleName;
@@ -24,6 +28,4 @@ public class Role {
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
-    
-    
 }
