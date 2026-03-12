@@ -15,11 +15,12 @@
             <tr>
                 <th>Rental ID</th>
                 <th>User ID</th>
-                <th>Motorbike ID</th>
+                <!--<th>Motorbike ID</th>-->
                 <th>Start Date</th>
                 <th>End Date</th>
+                <th>Total Amount</th>
                 <th>Status</th>
-                <th>Action</th>
+                <!--<th>Action</th>-->
             </tr>
 
             <c:forEach var="r" items="${pendingList}">
