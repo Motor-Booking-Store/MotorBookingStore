@@ -84,7 +84,8 @@ public class SignUp extends HttpServlet {
         String licensenumber = request.getParameter("licensenumber");
         String address = request.getParameter("address");
         String banknumber = request.getParameter("banknumber");
-
+        
+        String error = null;
 // ===== USERNAME =====
         if (username == null || username.trim().isEmpty()) {
             request.setAttribute("error", "Username cannot be empty");
