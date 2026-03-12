@@ -44,9 +44,19 @@
                     <td>${r.status}</td>
 
                     <td>
-                        <a href="ApproveRentalController?id=${r.rentalId}">
-                            Approve
-                        </a>
+                        <form action="update-rental-status" method="post">
+
+                            <input type="hidden" name="id" value="${r.rentalId}">
+
+                            <button type="submit" name="action" value="approve">
+                                Approve
+                            </button>
+
+                            <button type="submit" name="action" value="cancel">
+                                Cancel
+                            </button>
+
+                        </form>
                     </td>
 
                 </tr>

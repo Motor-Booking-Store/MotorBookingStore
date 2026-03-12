@@ -16,12 +16,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import models.Rental;
+import utils.ViewPaths;
 
 /**
  *
  * @author testu
  */
-@WebServlet("/AdminRentalController")
+@WebServlet("/admin/pending-rentals")
 public class AdminRentalController extends HttpServlet {
    
     /** 
@@ -66,7 +67,7 @@ public class AdminRentalController extends HttpServlet {
 
         request.setAttribute("pendingList", list);
 
-        request.getRequestDispatcher("views/pendingRentals.jsp")
+        request.getRequestDispatcher(ViewPaths.PENDING_RENTALS)
                 .forward(request, response);
     }
 

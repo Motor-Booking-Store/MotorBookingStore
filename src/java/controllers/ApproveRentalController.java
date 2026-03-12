@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controllers;
 
 import dao.RentalDAO;
@@ -13,41 +12,45 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.RentalStatus;
 
 /**
  *
  * @author testu
  */
-@WebServlet("/ApproveRentalController")
+@WebServlet("/admin/update-rental-status")
 public class ApproveRentalController extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ApproveRentalController</title>");  
+            out.println("<title>Servlet ApproveRentalController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ApproveRentalController at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ApproveRentalController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -56,18 +59,11 @@ public class ApproveRentalController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        int rentalId = Integer.parseInt(request.getParameter("id"));
-
-        RentalDAO dao = new RentalDAO();
-
-        dao.approveRental(rentalId);
-
-        response.sendRedirect("AdminRentalController");
     }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -75,12 +71,27 @@ public class ApproveRentalController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
+            throws ServletException, IOException {
+//        processRequest(request, response);
+        int rentalId = Integer.parseInt(request.getParameter("id"));
+        String action = request.getParameter("action");
+
+        RentalDAO dao = new RentalDAO();
+
+        if ("approve".equals(action)) {
+            dao.updateRentalStatus(rentalId, RentalStatus.Approved.name());
+        }
+
+        if ("cancel".equals(action)) {
+            dao.updateRentalStatus(rentalId, RentalStatus.Cancelled.name());
+        }
+
+        response.sendRedirect("pending-rentals");
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

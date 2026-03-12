@@ -58,7 +58,7 @@ public class RentalDAO {
         return list;
     }
 
-    public void approveRental(int rentalId) {
+    public void updateRentalStatus(int rentalId, String status) {
 
         String sql = "UPDATE Rentals SET status=? WHERE rentalId=?";
 
@@ -69,7 +69,7 @@ public class RentalDAO {
 
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString(1, RentalStatus.Approved.name());
+            ps.setString(1, status);
             ps.setInt(2, rentalId);
 
             ps.executeUpdate();
