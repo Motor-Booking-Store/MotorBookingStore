@@ -3,32 +3,24 @@ package models;
 import java.util.Date;
 
 public class Rental {
-    public int rentalId;
 
-    public Date rentalDate;
-    public Date startDate;
-    public Date endDate;
+    private int rentalId;
+    private Date rentalDate;
 
-    public String status;
+    private Date startDate;
+    private Date endDate;
 
-    public double totalAmount;
+    private String status;
 
-    public int userID;
+    private double totalAmount;
 
-    public Date createdAt;
+    private boolean isPaid;
 
-    public boolean isPaid;
+    private int userID;
 
-    public Rental(int rentalId, Date rentalDate, Date startDate, Date endDate, String status, double totalAmount, int userID, Date createdAt, boolean isPaid) {
-        this.rentalId = rentalId;
-        this.rentalDate = rentalDate;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.status = status;
-        this.totalAmount = totalAmount;
-        this.userID = userID;
-        this.createdAt = createdAt;
-        this.isPaid = isPaid;
+    private Date createdAt;
+
+    public Rental() {
     }
 
     public int getRentalId() {
@@ -79,6 +71,14 @@ public class Rental {
         this.totalAmount = totalAmount;
     }
 
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean paid) {
+        isPaid = paid;
+    }
+
     public int getUserID() {
         return userID;
     }
@@ -94,14 +94,4 @@ public class Rental {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
-    public boolean isIsPaid() {
-        return isPaid;
-    }
-
-    public void setIsPaid(boolean isPaid) {
-        this.isPaid = isPaid;
-    }
-    
-    
 }

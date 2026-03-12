@@ -1,8 +1,12 @@
-package models;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package dto;
+
 import java.util.Date;
 
-public class Motorbike {
-
+public class MotorbikeDetailDTO {
     private int bikeId;
     private String bikeName;
     private String brand;
@@ -18,11 +22,30 @@ public class Motorbike {
     private String status;
 
     private int locationId;
+    private String locationName;
+    private String address;
 
     private Date createdAt;
     private Date updatedAt;
 
-    public Motorbike() {
+    public MotorbikeDetailDTO() {
+    }
+
+    public MotorbikeDetailDTO(int bikeId, String bikeName, String brand, String model, String licensePlate, double pricePerDay, String description, String image, String status, int locationId, String locationName, String address, Date createdAt, Date updatedAt) {
+        this.bikeId = bikeId;
+        this.bikeName = bikeName;
+        this.brand = brand;
+        this.model = model;
+        this.licensePlate = licensePlate;
+        this.pricePerDay = pricePerDay;
+        this.description = description;
+        this.image = image;
+        this.status = status;
+        this.locationId = locationId;
+        this.locationName = locationName;
+        this.address = address;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getBikeId() {
@@ -105,6 +128,22 @@ public class Motorbike {
         this.locationId = locationId;
     }
 
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -120,4 +159,6 @@ public class Motorbike {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+    
+    
 }

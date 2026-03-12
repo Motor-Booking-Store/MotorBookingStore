@@ -2,4 +2,8 @@ build/
 dist/
 *.class
 *.log
+<<<<<<< HEAD
+
+=======
+>>>>>>> c6bd4a81f705f549dba11a2fcac9be95474ea3c3
 nbproject/private/
