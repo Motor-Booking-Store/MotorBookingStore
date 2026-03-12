@@ -2,23 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Motorbike;
+package controllers;
 
 import dal.MotorbikeDAO;
-import dto.AllMotorbikeDTO;
+import dto.MotorbikeDetailDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+
 
 /**
  *
  * @author nguye
  */
-public class MotorbikeListController extends HttpServlet {
+public class MotorbikeDetailController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -28,10 +28,10 @@ public class MotorbikeListController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MotorbikeListController</title>");
+            out.println("<title>Servlet MotorbikeDetailController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MotorbikeListController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet MotorbikeDetailController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -40,22 +40,23 @@ public class MotorbikeListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
 
         MotorbikeDAO dao = new MotorbikeDAO();
 
-        ArrayList<AllMotorbikeDTO> list = dao.getAllMotorbikes();
+        MotorbikeDetailDTO bike = dao.getMotorbikeDetail(id);
 
-        request.setAttribute("motorbikeList", list);
+        request.setAttribute("bike", bike);
 
-        request.getRequestDispatcher("view/MotorbikeList.jsp").forward(request, response);
+        request.getRequestDispatcher("views/MotorbikeDetail.jsp")
+                .forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request, response);
+        processRequest(request, response);
     }
-
 
     @Override
     public String getServletInfo() {
