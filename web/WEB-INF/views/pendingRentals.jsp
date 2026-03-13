@@ -27,13 +27,19 @@
 
                 <tr>
 
-                    <td>${r.rentalId}</td>
+                    <td><a href="rental-detail?id=${r.rentalId}">
+                            ${r.rentalId}
+                        </a></td>
 
                     <td>
-                        ${r.firstName} ${r.lastName}
+                        <a href="user-profile?id=${r.userId}">
+                            ${r.firstName} ${r.lastName}
+                        </a>
                     </td>
 
-                    <td>${r.bikeName}</td>
+                    <td> <a href="bike-detail?id=${r.bikeId}">
+                            ${r.bikeName}
+                        </a></td>
 
                     <td>${r.startDate}</td>
 

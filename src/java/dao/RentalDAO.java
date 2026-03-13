@@ -17,12 +17,21 @@ public class RentalDAO {
         List<PendingRentalDTO> list = new ArrayList<>();
 
         String sql
-                = "SELECT r.rentalId, u.firstName, u.lastName, m.bikeName, "
-                + "r.startDate, r.endDate, r.totalAmount, r.status "
-                + "FROM Rentals r "
-                + "JOIN Users u ON r.userID = u.userID "
-                + "JOIN RentalDetails rd ON r.rentalId = rd.rentalId "
-                + "JOIN Motorbikes m ON rd.bikeId = m.bikeId "
+                = "SELECT \n"
+                + "    r.rentalId,\n"
+                + "    r.userID,\n"
+                + "    rd.bikeId,\n"
+                + "    u.firstName,\n"
+                + "    u.lastName,\n"
+                + "    m.bikeName,\n"
+                + "    r.startDate,\n"
+                + "    r.endDate,\n"
+                + "    r.totalAmount,\n"
+                + "    r.status\n"
+                + "FROM Rentals r\n"
+                + "JOIN Users u ON r.userID = u.userID\n"
+                + "JOIN RentalDetails rd ON r.rentalId = rd.rentalId\n"
+                + "JOIN Motorbikes m ON rd.bikeId = m.bikeId\n"
                 + "WHERE r.status = ?";
 
         try {
@@ -39,6 +48,8 @@ public class RentalDAO {
             while (rs.next()) {
                 PendingRentalDTO dto = new PendingRentalDTO(
                         rs.getInt("rentalId"),
+                        rs.getInt("userID"),
+                        rs.getInt("bikeId"),
                         rs.getString("firstName"),
                         rs.getString("lastName"),
                         rs.getString("bikeName"),
