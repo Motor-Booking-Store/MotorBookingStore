@@ -1,69 +1,89 @@
-body{
-    margin:0;
+body {
+    margin: 0;
     font-family: Arial, sans-serif;
 }
 
-.navbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    background:#1e1e2f;
-    padding:10px 30px;
+/* navbar chính */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1e1e2f;
+    padding: 10px 30px;
 }
 
 /* logo */
-
-.nav-logo img{
-    height:40px;
+.nav-logo img {
+    height: 50px;
+    border: 3px solid white;      /* viền trắng */
+    border-radius: 50%;           /* làm tròn */
+    padding: 5px;                 /* khoảng cách giữa ảnh và viền */
+    box-sizing: border-box;
 }
 
 /* menu */
-
-.nav-menu{
-    display:flex;
-    gap:40px;
+.nav-menu {
+    display: flex;
+    gap: 40px;
 }
 
-.nav-menu a{
-    text-decoration:none;
-    color:white;
-    font-size:16px;
-    font-weight:500;
+.nav-menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s;
 }
 
-.nav-menu a:hover{
-    color:#00c8ff;
+.nav-menu a:hover {
+    color: #00c8ff;
 }
 
 /* user area */
-
-.nav-user{
-    display:flex;
-    align-items:center;
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* khoảng cách giữa avatar/username/logout */
 }
 
-/* login button */
-
-.login-btn{
-    text-decoration:none;
-    background:#00c8ff;
-    color:white;
-    padding:8px 20px;
-    border-radius:6px;
-    font-size:14px;
-    font-weight:600;
-    transition:0.3s;
-}
-
-.login-btn:hover{
-    background:#009ac7;
+/* avatar */
+.nav-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    vertical-align: middle;
 }
 
 /* username */
+.username {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+}
 
-.username{
-    text-decoration:none;
-    color:white;
-    font-size:15px;
-    font-weight:600;
+/* nút Login & Logout */
+.login-btn,
+.logout-btn {
+    text-decoration: none;
+    background: #00c8ff;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.login-btn:hover,
+.logout-btn:hover {
+    background: #009ac7;
+}
+
+/* avatar + username link */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* khoảng cách giữa avatar và username */
+    text-decoration: none;
 }

@@ -20,6 +20,8 @@ public class User {
 
     public int roleId;
     
+    public String avatar;
+    
     public Date createdAt;
     public Date updatedAt;
 
@@ -40,6 +42,15 @@ public class User {
         this.address = address;
         this.bankNumber = bankNumber;
     }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+    
     
 
     public int getUserID() {
