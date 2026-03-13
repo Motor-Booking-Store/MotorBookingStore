@@ -4,24 +4,34 @@
  */
 package controllers;
 
-import dal.MotorbikeDAO;
-import dal.ReviewDAO;
-import dto.MotorbikeDetailDTO;
-import dto.ReviewListDTO;
+import dal.UserDAO;
+import dto.UserDetailDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
+import jakarta.servlet.http.HttpSession;
+import models.User;
 
 /**
  *
  * @author nguye
  */
-public class MotorbikeDetailController extends HttpServlet {
+@WebServlet("/UserDetail")
+public class UserDetailController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -30,10 +40,10 @@ public class MotorbikeDetailController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MotorbikeDetailController</title>");
+            out.println("<title>Servlet UserDetailController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MotorbikeDetailController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UserDetailController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -42,19 +52,28 @@ public class MotorbikeDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        PrintWriter out = response.getWriter();
 
-        MotorbikeDAO dao = new MotorbikeDAO();
-        MotorbikeDetailDTO bike = dao.getMotorbikeDetail(id);
+        HttpSession session = request.getSession(false);
 
-        // gửi sang JSP
-        request.setAttribute("bike", bike);
-
-        ReviewDAO reviewDAO = new ReviewDAO();
-        List<ReviewListDTO> reviews = reviewDAO.GetAllReviewsBikeId(id);
-        request.setAttribute("reviews", reviews);
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+       
+        UserDAO userDAO = new UserDAO();
+        int userId = user.getUserID();
         
-        request.getRequestDispatcher("views/MotorbikeDetail.jsp").forward(request, response);
+        UserDetailDTO userDetail = userDAO.GetUserDetailById(userId);
+
+        if (userDetail == null) {
+            out.print("User khong ton tai");
+            return;
+        }
+
+        request.setAttribute("userDetail", userDetail);
+        request.getRequestDispatcher("views/UserDetail.jsp").forward(request, response);
     }
 
     @Override
@@ -66,6 +85,6 @@ public class MotorbikeDetailController extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

@@ -5,11 +5,9 @@
 package dal;
 
 import context.DBContext;
+import dto.UserDetailDTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import models.User;
 
 /**
@@ -34,7 +32,8 @@ public class AccountDAO extends DBContext {
                 user.setUserID(rs.getInt("userID"));
                 user.setUserName(rs.getString("userName"));
             }
-
+            rs.close();
+            ps.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,12 +88,15 @@ public class AccountDAO extends DBContext {
                 User user = new User();
 
                 user.userID = rs.getInt("userID");
-                user.userName = rs.getString("username");
+                user.userName = rs.getString("userName");
                 user.email = rs.getString("email");
                 user.roleId = rs.getInt("roleId");
-
+                user.avatar = rs.getString("avatar");
+                
                 return user;
             }
+            rs.close();
+            ps.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,5 +104,4 @@ public class AccountDAO extends DBContext {
 
         return null;
     }
-
 }

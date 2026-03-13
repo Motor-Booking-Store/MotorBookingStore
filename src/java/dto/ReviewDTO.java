@@ -1,27 +1,24 @@
-    package models;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package dto;
 
-import java.util.Date;
-
-public class Review {
-
-    private int reviewId;
+/**
+ *
+ * @author nguye
+ */
+public class ReviewDTO {
     private int userId;
     private int bikeId;
-
     private int rating;
     private String comment;
 
-    private Date createdAt;
-
-    public Review() {
-    }
-
-    public int getReviewId() {
-        return reviewId;
-    }
-
-    public void setReviewId(int reviewId) {
-        this.reviewId = reviewId;
+    public ReviewDTO(int userId, int bikeId, int rating, String comment) {
+        this.userId = userId;
+        this.bikeId = bikeId;
+        this.rating = rating;
+        this.comment = comment;
     }
 
     public int getUserId() {
@@ -55,12 +52,6 @@ public class Review {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+    
+    
 }

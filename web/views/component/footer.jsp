@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="static/footer.css">
 
 <footer class="footer">
-
     <div class="footer-container">
 
         <!-- Shop Info -->
@@ -35,5 +34,4 @@
     <div class="footer-bottom">
         © 2026 Motorbike Rental System | All Rights Reserved
     </div>
-
 </footer>
