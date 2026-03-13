@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Khung profile chính */
+.profile {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    max-width: 900px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* Avatar bên trái */
+.profile-left {
+    flex: 0 0 220px;
+    display: flex;           /* biến profile-left thành flex container */
+    flex-direction: column;  /* xếp avatar và nút theo cột */
+    align-items: center;     /* căn giữa theo chiều ngang */
+}
+
+.profile-avatar {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #00c8ff;
+}
+
+/* Thông tin bên phải */
+.profile-right {
+    flex: 1;
+}
+
+/* Mỗi dòng info */
+.info-row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.label {
+    font-weight: bold;
+    width: 150px;
+    color: #333;
+    font-size: 16px;
+}
+
+.value {
+    color: #555;
+    font-size: 16px;
+    word-break: break-word;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 600px) {
+    .profile {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-left {
+        flex: none;
+    }
+
+    .info-row {
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+    .label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}
+
+/* Nút Thay đổi Thông tin */
+.profile-left .edit-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #00c8ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.2s;
+    text-align: center; /* đảm bảo text ở giữa */
+}
+
+.profile-left .edit-btn:hover {
+    background-color: #009ac7;
+    transform: translateY(-2px);
+}

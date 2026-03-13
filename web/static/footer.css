@@ -1,40 +1,69 @@
-
-.footer{
-    background:#1e1e2f;
-    color:white;
-    margin-top:50px;
+/* ==== BODY & MAIN CONTENT ==== */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-.footer-container{
-    display:grid;
-    grid-template-columns: repeat(3,1fr);
-    gap:40px;
-    padding:40px 60px;
+body {
+    display: flex;
+    flex-direction: column;
 }
 
-.footer-section h3{
-    margin-bottom:15px;
+/* Container cho phần nội dung chính */
+.main-content {
+    flex: 1; /* chiếm không gian còn lại */
 }
 
-.footer-section p{
-    margin:5px 0;
-    font-size:14px;
+/* ==== FOOTER ==== */
+.footer {
+    background: #1e1e2f;
+    color: white;
+    padding: 40px 60px 20px 60px;
 }
 
-.footer-section a{
-    display:block;
-    text-decoration:none;
-    color:white;
-    margin:5px 0;
+/* Container grid 3 cột */
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
 }
 
-.footer-section a:hover{
-    color:#00c8ff;
+/* Footer section */
+.footer-section h3 {
+    margin-bottom: 15px;
 }
 
-.footer-bottom{
-    text-align:center;
-    padding:15px;
-    border-top:1px solid #444;
-    font-size:14px;
+.footer-section p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer-section a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    margin: 5px 0;
+}
+
+.footer-section a:hover {
+    color: #00c8ff;
+}
+
+/* Footer bottom */
+.footer-bottom {
+    text-align: center;
+    padding: 15px 0;
+    border-top: 1px solid #444;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
 }

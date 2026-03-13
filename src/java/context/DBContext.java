@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author nguye
  */
 public class DBContext {
-    public Connection connection;
+    protected Connection connection;
     public DBContext() {
         try {
             Properties properties = new Properties();

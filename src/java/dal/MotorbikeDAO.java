@@ -38,7 +38,8 @@ public class MotorbikeDAO extends DBContext {
 
                 list.add(bike);
             }
-
+            rs.close();
+            stm.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
