@@ -4,7 +4,7 @@
  */
 package controllers;
 
-import dao.RentalDAO;
+import dal.RentalDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.RentalStatus;
+import utils.UrlPaths;
 
 /**
  *
@@ -86,7 +87,7 @@ public class ApproveRentalController extends HttpServlet {
             dao.updateRentalStatus(rentalId, RentalStatus.Cancelled.name());
         }
 
-        response.sendRedirect("pending-rentals");
+        response.sendRedirect(UrlPaths.url(request, UrlPaths.PENDING_RENTALS));
     }
 
     /**

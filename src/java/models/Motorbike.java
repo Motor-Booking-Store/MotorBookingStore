@@ -16,6 +16,8 @@ public class Motorbike {
     private String image;
 
     private String status;
+    
+    private int locationId;
 
     private Date createdAt;
     private Date updatedAt;

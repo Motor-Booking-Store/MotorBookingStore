@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" href="static/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/footer.css">
 
 <footer class="footer">
     <div class="footer-container">

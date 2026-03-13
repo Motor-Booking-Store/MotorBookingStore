@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <title>Motorbike Booking - Home</title>
 
-        <link rel="stylesheet" href="static/home.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/home.css">
 
     </head>
 

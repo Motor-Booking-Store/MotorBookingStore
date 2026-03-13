@@ -1,4 +1,4 @@
-package dao;
+package dal;
 
 import context.DBContext;
 import dto.PendingRentalDTO;
@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import models.Rental;
 import models.RentalStatus;
 
 public class RentalDAO {

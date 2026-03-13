@@ -1,17 +1,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<link rel="stylesheet" href="static/navbar.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/navbar.css">
 
 <div class="navbar">
 
     <div class="nav-logo">
-        <img src="images/logo/logo.png" alt="logo">
+        <img src="${pageContext.request.contextPath}/images/logo/logo.png" alt="logo">
     </div>
 
     <div class="nav-menu">
-        <a href="Home">Home</a>
-        <a href="MotorbikeList">Motorbikes</a>
+        <a href="${pageContext.request.contextPath}/user/Home">Home</a>
+        <a href="${pageContext.request.contextPath}/user/MotorbikeList">Motorbikes</a>
         <a href="#">Contact</a>
         <a href="#">About</a>
     </div>
@@ -20,7 +20,7 @@
 
         <!-- nếu đã login -->
         <c:if test="${sessionScope.user != null}">
-            <a href="Logout" class="logout-btn">Logout</a>
+            <a href="${pageContext.request.contextPath}/user/Logout" class="logout-btn">Logout</a>
             
             <a href="UserDetail" class="user-info">
                 <img src="${sessionScope.user.avatar}" alt="avatar" class="nav-avatar"/>
@@ -30,7 +30,7 @@
 
         <!-- nếu chưa login -->
         <c:if test="${sessionScope.user == null}">
-            <a href="Login" class="login-btn">Login</a>
+            <a href="${pageContext.request.contextPath}/user/Login" class="login-btn">Login</a>
         </c:if>
 
     </div>

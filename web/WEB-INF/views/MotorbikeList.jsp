@@ -7,9 +7,9 @@
         <meta charset="UTF-8">
         <title>Motorbike List</title>
 
-        <link rel="stylesheet" href="static/card.css">
-        <link rel="stylesheet" href="static/search.css">
-        <link rel="stylesheet" href="static/layout.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/card.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/search.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/layout.css">
 
     </head>
 
@@ -51,7 +51,7 @@
 
                     <c:forEach var="b" items="${motorbikeList}">
 
-                        <a href="MotorbikeDetail?id=${b.bikeId}" class="bike-link">
+                        <a href="${pageContext.request.contextPath}/user/MotorbikeDetail?id=${b.bikeId}" class="bike-link">
 
                             <div class="bike-card">
 

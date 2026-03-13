@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controllers;
 
 import dal.MotorbikeDAO;
@@ -11,15 +7,14 @@ import dto.ReviewListDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import utils.ViewPaths;
 
-/**
- *
- * @author nguye
- */
+@WebServlet("/user/MotorbikeDetail")
 public class MotorbikeDetailController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -47,14 +42,13 @@ public class MotorbikeDetailController extends HttpServlet {
         MotorbikeDAO dao = new MotorbikeDAO();
         MotorbikeDetailDTO bike = dao.getMotorbikeDetail(id);
 
-        // gửi sang JSP
         request.setAttribute("bike", bike);
 
         ReviewDAO reviewDAO = new ReviewDAO();
         List<ReviewListDTO> reviews = reviewDAO.GetAllReviewsBikeId(id);
         request.setAttribute("reviews", reviews);
         
-        request.getRequestDispatcher("views/MotorbikeDetail.jsp").forward(request, response);
+        request.getRequestDispatcher(ViewPaths.MOTORBIKE_DETAIL).forward(request, response);
     }
 
     @Override
@@ -66,6 +60,6 @@ public class MotorbikeDetailController extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

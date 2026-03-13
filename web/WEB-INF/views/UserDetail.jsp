@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="static/userDetail.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/userDetail.css">
     </head>
     <body>
         <jsp:include page="./component/navbar.jsp" />

@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" href="static/sidebar.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/sidebar.css">
 
 <div class="sidebar">
 

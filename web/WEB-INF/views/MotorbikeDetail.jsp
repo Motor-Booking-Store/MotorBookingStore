@@ -7,7 +7,7 @@
         <meta charset="UTF-8">
         <title>Motorbike Detail</title>
 
-        <link rel="stylesheet" href="static/detail.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/detail.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
@@ -81,7 +81,7 @@
             <div>
                 <c:if test="${not empty sessionScope.user}">
                     <div class="write-comment">
-                        <form action="addReview" method="post">
+                        <form action="${pageContext.request.contextPath}/user/AddReview" method="post">
                             <input type="hidden" name="bikeId" value="${bike.bikeId}">
 
                             <label>Rating:</label>

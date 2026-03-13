@@ -10,10 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="static/login.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/login.css">
     </head>
     <body>
-        <form action="Login" method="POST">
+        <form action="${pageContext.request.contextPath}/user/Login" method="POST">
             <table>
                 <h2>Login</h2>
                 <tr>

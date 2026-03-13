@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controllers;
 
 import dal.MotorbikeDAO;
@@ -9,22 +5,20 @@ import dto.AllMotorbikeDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import utils.ViewPaths;
 
-/**
- *
- * @author nguye
- */
+@WebServlet("/user/MotorbikeList")
 public class MotorbikeListController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -47,7 +41,7 @@ public class MotorbikeListController extends HttpServlet {
 
         request.setAttribute("motorbikeList", list);
 
-        request.getRequestDispatcher("views/MotorbikeList.jsp").forward(request, response);
+        request.getRequestDispatcher(ViewPaths.MOTORBIKE_LIST).forward(request, response);
     }
 
     @Override
