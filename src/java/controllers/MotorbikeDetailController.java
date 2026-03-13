@@ -5,14 +5,16 @@
 package controllers;
 
 import dal.MotorbikeDAO;
+import dal.ReviewDAO;
 import dto.MotorbikeDetailDTO;
+import dto.ReviewListDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import java.util.List;
 
 /**
  *
@@ -43,13 +45,16 @@ public class MotorbikeDetailController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
 
         MotorbikeDAO dao = new MotorbikeDAO();
-
         MotorbikeDetailDTO bike = dao.getMotorbikeDetail(id);
 
+        // gửi sang JSP
         request.setAttribute("bike", bike);
 
-        request.getRequestDispatcher("views/MotorbikeDetail.jsp")
-                .forward(request, response);
+        ReviewDAO reviewDAO = new ReviewDAO();
+        List<ReviewListDTO> reviews = reviewDAO.GetAllReviewsBikeId(id);
+        request.setAttribute("reviews", reviews);
+        
+        request.getRequestDispatcher("views/MotorbikeDetail.jsp").forward(request, response);
     }
 
     @Override

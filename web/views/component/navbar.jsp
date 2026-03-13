@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <link rel="stylesheet" href="static/navbar.css">
 
@@ -16,7 +17,17 @@
     </div>
 
     <div class="nav-user">
-        <img src="images/avatar.png" alt="avatar">
+
+        <!-- nếu đã login -->
+        <c:if test="${sessionScope.user != null}">
+            <a class="username">${sessionScope.user.userName}</a>
+        </c:if>
+
+        <!-- nếu chưa login -->
+        <c:if test="${sessionScope.user == null}">
+            <a href="Login" class="login-btn">Login</a>
+        </c:if>
+
     </div>
 
 </div>

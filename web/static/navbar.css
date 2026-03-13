@@ -7,7 +7,6 @@ body{
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     background:#1e1e2f;
     padding:10px 30px;
 }
@@ -36,11 +35,35 @@ body{
     color:#00c8ff;
 }
 
-/* avatar */
+/* user area */
 
-.nav-user img{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    object-fit:cover;
+.nav-user{
+    display:flex;
+    align-items:center;
+}
+
+/* login button */
+
+.login-btn{
+    text-decoration:none;
+    background:#00c8ff;
+    color:white;
+    padding:8px 20px;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.login-btn:hover{
+    background:#009ac7;
+}
+
+/* username */
+
+.username{
+    text-decoration:none;
+    color:white;
+    font-size:15px;
+    font-weight:600;
 }

@@ -19,7 +19,7 @@ public class User {
     public String address;
 
     public int roleId;
-
+    
     public Date createdAt;
     public Date updatedAt;
 
