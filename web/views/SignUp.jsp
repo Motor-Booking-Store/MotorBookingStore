@@ -4,78 +4,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="static/signup.css">
 </head>
 
 <body>
 
-    <!-- HIỂN THỊ LỖI -->
-    <c:if test="${not empty error}">
-        <p style="color:red">${error}</p>
-    </c:if>
+<div class="signup-container">
 
-    <form action="SignUp" method="POST">
-        <table>
+    <form action="SignUp" method="POST" class="signup-form">
 
-            <tr>
-                <td>Username:</td>
-                <td><input type="text" name="username" value="${username}"></td>
-            </tr>
+        <h2>Sign Up</h2>
 
-            <tr>
-                <td>Password:</td>
-                <td><input type="password" name="password"></td>
-            </tr>
+        <c:if test="${not empty error}">
+            <p class="error">${error}</p>
+        </c:if>
 
-            <tr>
-                <td>Email:</td>
-                <td><input type="text" name="email" value="${email}"></td>
-            </tr>
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" value="${username}">
+        </div>
 
-            <tr>
-                <td>CCCD/CMT:</td>
-                <td><input type="text" name="citizen_id" value="${citizen_id}"></td>
-            </tr>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password">
+        </div>
 
-            <tr>
-                <td>FirstName:</td>
-                <td><input type="text" name="firstname" value="${firstname}"></td>
-            </tr>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" name="email" value="${email}">
+        </div>
 
-            <tr>
-                <td>LastName:</td>
-                <td><input type="text" name="lastname" value="${lastname}"></td>
-            </tr>
+        <div class="form-group">
+            <label>CCCD/CMT</label>
+            <input type="text" name="citizen_id" value="${citizen_id}">
+        </div>
 
-            <tr>
-                <td>PhoneNumber:</td>
-                <td><input type="text" name="phonenumber" value="${phonenumber}"></td>
-            </tr>
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" name="firstname" value="${firstname}">
+        </div>
 
-            <tr>
-                <td>LicenseNumber:</td>
-                <td><input type="text" name="licensenumber" value="${licensenumber}"></td>
-            </tr>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" name="lastname" value="${lastname}">
+        </div>
 
-            <tr>
-                <td>Address:</td>
-                <td><input type="text" name="address" value="${address}"></td>
-            </tr>
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" name="phonenumber" value="${phonenumber}">
+        </div>
 
-            <tr>
-                <td>BankNumber:</td>
-                <td><input type="text" name="banknumber" value="${banknumber}"></td>
-            </tr>
+        <div class="form-group">
+            <label>License Number</label>
+            <input type="text" name="licensenumber" value="${licensenumber}">
+        </div>
 
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="ENTER">
-                </td>
-            </tr>
+        <div class="form-group">
+            <label>Address</label>
+            <input type="text" name="address" value="${address}">
+        </div>
 
-        </table>
+        <div class="form-group">
+            <label>Bank Number</label>
+            <input type="text" name="banknumber" value="${banknumber}">
+        </div>
+
+        <button type="submit" class="btn-submit">Sign Up</button>
+
     </form>
+
+</div>
 
 </body>
 </html>

@@ -65,7 +65,7 @@ public class Login extends HttpServlet {
         if (user == null) {
             request.setAttribute("error", "Invalid email or password");
             request.setAttribute("email", email);
-            request.getRequestDispatcher("views/login.jsp").forward(request, response);
+            request.getRequestDispatcher("views/Login.jsp").forward(request, response);
             return;
         }
 
@@ -75,7 +75,7 @@ public class Login extends HttpServlet {
 
  
         if (user.roleId == 1) {
-            response.sendRedirect("admin/home");
+            response.sendRedirect("admin/Home");
         } else {
             response.sendRedirect("Home");
         }

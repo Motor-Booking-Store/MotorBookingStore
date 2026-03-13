@@ -4,19 +4,25 @@
  */
 package controllers;
 
+import dao.RentalDAO;
+import dto.PendingRentalDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import models.Rental;
+import utils.ViewPaths;
 
 /**
  *
- * @author nguye
+ * @author testu
  */
-public class HomeController extends HttpServlet {
+@WebServlet("/admin/pending-rentals")
+public class AdminRentalController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +41,10 @@ public class HomeController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HomeController</title>");
+            out.println("<title>Servlet AdminRentalController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HomeController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AdminRentalController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,23 +62,43 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("views/Home.jsp").forward(request, response);
-        HttpSession session = request.getSession(false);
 
-        if (session == null || session.getAttribute("account") == null) {
-            response.sendRedirect("Login");
-            return;
+        RentalDAO dao = new RentalDAO();
+
+        String status = request.getParameter("status");
+
+        if (status == null) {
+            status = "Pending"; // default page
         }
 
-        request.getRequestDispatcher("views/Home.jsp").forward(request, response);
+        List<PendingRentalDTO> list = dao.getRentalsByStatus(status);
+
+        request.setAttribute("pendingList", list);
+        request.setAttribute("currentStatus", status);
+
+        request.getRequestDispatcher(ViewPaths.PENDING_RENTALS)
+                .forward(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
+        processRequest(request, response);
     }
 
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
