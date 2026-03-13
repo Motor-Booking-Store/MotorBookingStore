@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        request.getRequestDispatcher("views/Login.jsp").forward(request, response);
     }
 
     /**
@@ -78,14 +78,14 @@ public class Login extends HttpServlet {
         // ===== VALIDATE =====
         if (email == null || email.trim().isEmpty()) {
             request.setAttribute("error", "Email cannot be empty");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            request.getRequestDispatcher("views/Login.jsp").forward(request, response);
             return;
         }
 
         if (password == null || password.trim().isEmpty()) {
             request.setAttribute("error", "Password cannot be empty");
             request.setAttribute("email", email);
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            request.getRequestDispatcher("views/Login.jsp").forward(request, response);
             return;
         }
 
@@ -96,7 +96,7 @@ public class Login extends HttpServlet {
         if (user == null) {
             request.setAttribute("error", "Invalid email or password");
             request.setAttribute("email", email);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("views/Login.jsp").forward(request, response);
             return;
         }
 
@@ -106,9 +106,9 @@ public class Login extends HttpServlet {
 
         // ===== CHECK ROLE =====
         if (user.roleId == 1) {
-            response.sendRedirect("admin/home");
+            response.sendRedirect("admin/Home");
         } else {
-            response.sendRedirect("home");
+            response.sendRedirect("Home");
         }
     }
 

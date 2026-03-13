@@ -17,6 +17,7 @@
 
     <div class="nav-user">
         <img src="images/avatar.png" alt="avatar">
+        <a href="Logout">Logout</a>
     </div>
 
 </div>
