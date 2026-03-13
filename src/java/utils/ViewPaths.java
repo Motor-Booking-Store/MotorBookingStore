@@ -9,5 +9,7 @@ package utils;
  * @author testu
  */
 public class ViewPaths {
-    public static final String PENDING_RENTALS = "/WEB-INF/views/pendingRentals.jsp";
+    public static final String PENDING_RENTALS = "/WEB-INF/views/pendingRentals.jsp";    
+    public static final String USER_RENTALS_HISTORY = "/WEB-INF/views/rental-history.jsp";
+
 }

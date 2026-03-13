@@ -14,15 +14,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import models.Rental;
 import utils.ViewPaths;
 
 /**
  *
  * @author testu
  */
-@WebServlet("/admin/pending-rentals")
-public class AdminRentalController extends HttpServlet {
+//@WebServlet(name = "UserRentalHistoryController", urlPatterns = {"/UserRentalHistoryController"})
+@WebServlet("/user/rental-history")
+public class UserRentalHistoryController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +41,10 @@ public class AdminRentalController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AdminRentalController</title>");
+            out.println("<title>Servlet UserRentalHistoryController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AdminRentalController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UserRentalHistoryController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,18 +65,19 @@ public class AdminRentalController extends HttpServlet {
 
         RentalDAO dao = new RentalDAO();
 
+        int userId = Integer.parseInt(request.getParameter("userId"));
         String status = request.getParameter("status");
 
         if (status == null) {
-            status = "Pending"; // default page
+            status = "all";
         }
 
-        List<PendingRentalDTO> list = dao.getRentalsByStatus(status);
+        List<PendingRentalDTO> list = dao.getRentalsByUser(userId, status);
 
         request.setAttribute("pendingList", list);
         request.setAttribute("currentStatus", status);
 
-        request.getRequestDispatcher(ViewPaths.PENDING_RENTALS)
+        request.getRequestDispatcher(ViewPaths.USER_RENTALS_HISTORY)
                 .forward(request, response);
     }
 

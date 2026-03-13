@@ -7,8 +7,16 @@
     </head>
 
     <body>
+        <!--<h3>Filter Rentals</h3>-->
 
-        <h2>Pending Rental Requests</h2>
+        <a href="${pageContext.request.contextPath}/admin/pending-rentals?status=all">All</a> |
+        <a href="${pageContext.request.contextPath}/admin/pending-rentals?status=Pending">Pending</a> |
+        <a href="${pageContext.request.contextPath}/admin/pending-rentals?status=Approved">Approved</a> |
+        <a href="${pageContext.request.contextPath}/admin/pending-rentals?status=Completed">Completed</a> |
+        <a href="${pageContext.request.contextPath}/admin/pending-rentals?status=Cancelled">Cancelled</a>
+
+        <br><br>
+        <h2>${currentStatus} Rental Requests</h2>
 
         <table border="1">
 
@@ -50,19 +58,31 @@
                     <td>${r.status}</td>
 
                     <td>
-                        <form action="update-rental-status" method="post">
+                        <c:choose>
 
-                            <input type="hidden" name="id" value="${r.rentalId}">
+                            <c:when test="${r.status == 'Pending'}">
 
-                            <button type="submit" name="action" value="approve">
-                                Approve
-                            </button>
+                                <form action="update-rental-status" method="post">
 
-                            <button type="submit" name="action" value="cancel">
-                                Cancel
-                            </button>
+                                    <input type="hidden" name="id" value="${r.rentalId}">
 
-                        </form>
+                                    <button type="submit" name="action" value="approve">
+                                        Approve
+                                    </button>
+
+                                    <button type="submit" name="action" value="cancel">
+                                        Cancel
+                                    </button>
+
+                                </form>
+
+                            </c:when>
+
+                            <c:otherwise>
+                                <span style="color:gray;">Processed</span>
+                            </c:otherwise>
+
+                        </c:choose>
                     </td>
 
                 </tr>
