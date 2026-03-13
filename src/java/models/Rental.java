@@ -79,6 +79,14 @@ public class Rental {
         this.totalAmount = totalAmount;
     }
 
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean paid) {
+        isPaid = paid;
+    }
+
     public int getUserID() {
         return userID;
     }
@@ -94,14 +102,4 @@ public class Rental {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
-    public boolean isIsPaid() {
-        return isPaid;
-    }
-
-    public void setIsPaid(boolean isPaid) {
-        this.isPaid = isPaid;
-    }
-    
-    
 }

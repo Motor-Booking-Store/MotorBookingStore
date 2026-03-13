@@ -8,7 +8,7 @@ public class User {
     public String password;
 
     public String email;
-    public String citizenId;
+    public String citizen_id;
 
     public String firstName;
     public String lastName;
@@ -24,13 +24,23 @@ public class User {
     public Date updatedAt;
 
     private String bankNumber;
-    
-    public User(int userID, String userName, String password, String email) {
-        this.userID = userID;
+
+    public User() {
+    }
+
+    public User(String userName, String password, String email, String citizen_id, String firstName, String lastName, String phoneNumber, String licenseNumber, String address, String bankNumber) {
         this.userName = userName;
         this.password = password;
         this.email = email;
+        this.citizen_id = citizen_id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.licenseNumber = licenseNumber;
+        this.address = address;
+        this.bankNumber = bankNumber;
     }
+    
 
     public int getUserID() {
         return userID;
@@ -65,11 +75,11 @@ public class User {
     }
 
     public String getCitizenId() {
-        return citizenId;
+        return citizen_id;
     }
 
     public void setCitizenId(String citizenId) {
-        this.citizenId = citizenId;
+        this.citizen_id = citizenId;
     }
 
     public String getFirstName() {

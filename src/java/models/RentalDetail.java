@@ -34,8 +34,5 @@ public class RentalDetail {
 
     public void setPricePerDay(double pricePerDay) {
         this.pricePerDay = pricePerDay;
-    }
-    
-    
-    
+    }    
 }

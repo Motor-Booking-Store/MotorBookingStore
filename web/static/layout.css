@@ -1,0 +1,9 @@
+.main-layout{
+    display:flex;
+    gap:20px;
+    padding:20px;
+}
+
+.content{
+    flex:1;
+}
