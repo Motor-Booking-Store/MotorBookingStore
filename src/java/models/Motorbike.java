@@ -2,8 +2,8 @@ package models;
 import java.util.Date;
 
 public class Motorbike {
-
     private int bikeId;
+
     private String bikeName;
     private String brand;
     private String model;
@@ -17,12 +17,21 @@ public class Motorbike {
 
     private String status;
 
-    private int locationId;
-
     private Date createdAt;
     private Date updatedAt;
 
-    public Motorbike() {
+    public Motorbike(int bikeId, String bikeName, String brand, String model, String licensePlate, double pricePerDay, String description, String image, String status, Date createdAt, Date updatedAt) {
+        this.bikeId = bikeId;
+        this.bikeName = bikeName;
+        this.brand = brand;
+        this.model = model;
+        this.licensePlate = licensePlate;
+        this.pricePerDay = pricePerDay;
+        this.description = description;
+        this.image = image;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getBikeId() {
