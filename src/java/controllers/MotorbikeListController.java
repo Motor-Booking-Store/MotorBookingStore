@@ -1,6 +1,7 @@
 package controllers;
 
 import dal.MotorbikeDAO;
+import dal.RentalDAO;
 import dto.AllMotorbikeDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import models.MotorbikeStatus;
 import utils.ViewPaths;
 
 @WebServlet("/user/MotorbikeList")
@@ -35,11 +37,27 @@ public class MotorbikeListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        RentalDAO rentalDAO = new RentalDAO();
+        rentalDAO.updateExpiredRentalsToCompleted();//for update expired date
+
         MotorbikeDAO dao = new MotorbikeDAO();
 
         ArrayList<AllMotorbikeDTO> list = dao.getAllMotorbikes();
 
+        for (AllMotorbikeDTO bike : list) {
+            if (bike != null && !MotorbikeStatus.Status.Maintenance.name().equalsIgnoreCase(bike.getStatus())) {
+                boolean rentedToday = dao.isBikeRentedToday(bike.getBikeId());
+                bike.setStatus(rentedToday
+                        ? MotorbikeStatus.Status.Rented.name()
+                        : MotorbikeStatus.Status.Available.name());
+            }
+        }
+
         request.setAttribute("motorbikeList", list);
+
+        request.setAttribute("STATUS_AVAILABLE", MotorbikeStatus.Status.Available.name());
+        request.setAttribute("STATUS_RENTED", MotorbikeStatus.Status.Rented.name());
+        request.setAttribute("STATUS_MAINTENANCE", MotorbikeStatus.Status.Maintenance.name());
 
         request.getRequestDispatcher(ViewPaths.MOTORBIKE_LIST).forward(request, response);
     }
@@ -49,7 +67,6 @@ public class MotorbikeListController extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
-
 
     @Override
     public String getServletInfo() {

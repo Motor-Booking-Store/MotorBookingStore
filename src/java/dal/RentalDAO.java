@@ -225,4 +225,29 @@ public class RentalDAO {
         return false;
     }
 
+    public int updateExpiredRentalsToCompleted() {
+
+        String sql = "UPDATE Rentals "
+                + "SET status = ? "
+                + "WHERE status = ? "
+                + "AND endDate < CAST(GETDATE() AS DATE)";
+
+        try {
+
+            DBContext db = new DBContext();
+            Connection con = db.getConnection();
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setString(1, RentalStatus.Completed.name());
+            ps.setString(2, RentalStatus.Approved.name());
+
+            return ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
 }

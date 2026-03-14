@@ -63,17 +63,26 @@
                                     <p><b>Model:</b> ${b.model}</p>
                                     <p><b>License Plate:</b> ${b.licensePlate}</p>
                                     <p><b>Price Per Day:</b> ${b.pricePerDay}</p>
-                                    <p><b>Status:</b> ${b.status}</p>
+                                    <p>
+                                        <b>Status:</b>
+                                        <span style="
+                                              font-weight: bold;
+                                              color:
+                                              ${b.status == STATUS_AVAILABLE ? 'green' :
+                                                (b.status == STATUS_RENTED ? 'red' : 'orange')}">
+                                                  ${b.status}
+                                              </span>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </c:forEach>
+                            </a>
+                        </c:forEach>
+                    </div>
                 </div>
+
             </div>
 
-        </div>
+            <jsp:include page="./component/footer.jsp" />
 
-        <jsp:include page="./component/footer.jsp" />
-
-    </body>
-</html>
+        </body>
+    </html>

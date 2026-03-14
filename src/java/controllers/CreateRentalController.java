@@ -94,16 +94,16 @@ public class CreateRentalController extends HttpServlet {
         MotorbikeDAO bikeDAO = new MotorbikeDAO();
 
         if (!bikeDAO.isBikeAvailable(bikeId)) {
-            request.setAttribute("error", "This bike is not available.");
+            session.setAttribute("error", "This bike is not available.");
         } else if (bikeDAO.hasConflictingRental(
                 bikeId,
                 java.sql.Date.valueOf(startDate),
                 java.sql.Date.valueOf(endDate))) {
-            request.setAttribute("error", "This bike is already booked or has a pending request in the selected dates.");
+            session.setAttribute("error", "This bike is already booked or has a pending request in the selected dates.");
         } else if (bikeDAO.countPendingRentalsByUser(user.getUserID()) >= SettingVar.MAX_RENT_PER_USER) {
-            request.setAttribute("error", "You already have 3 pending rental requests.");
+            session.setAttribute("error", "You already have 3 pending rental requests.");
         } else if (java.sql.Date.valueOf(endDate).before(java.sql.Date.valueOf(startDate))) {
-            request.setAttribute("error", "End date must be after or equal to start date.");
+            session.setAttribute("error", "End date must be after or equal to start date.");
         } else {
 //            request.setAttribute("success", "Rental logic check passed. Ready to create rental.");
             java.sql.Date sqlStartDate = java.sql.Date.valueOf(startDate);
@@ -121,14 +121,14 @@ public class CreateRentalController extends HttpServlet {
             );
 
             if (created) {
-                request.setAttribute("success", "Rental request created successfully. Waiting for admin approval.");
+                session.setAttribute("success", "Rental request created successfully. Waiting for admin approval.");
             } else {
-                request.setAttribute("error", "Failed to create rental request.");
+                session.setAttribute("error", "Failed to create rental request.");
             }
         }
 
-        request.setAttribute("bike", bikeDAO.getMotorbikeDetail(bikeId));
-        request.getRequestDispatcher(ViewPaths.MOTORBIKE_DETAIL).forward(request, response);
+        //request.setAttribute("bike", bikeDAO.getMotorbikeDetail(bikeId));
+        response.sendRedirect(UrlPaths.url(request, UrlPaths.Id_MotorbikeDetail) + bikeId);
     }// </editor-fold>
 
 }

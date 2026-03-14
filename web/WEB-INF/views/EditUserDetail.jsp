@@ -13,7 +13,7 @@
                 <button type="button">Quay về</button>
             </a>
 
-            <form action="${pageContext.request.contextPath}/user/EditUserDetail" method="post">
+            <form action="${pageContext.request.contextPath}/user/EditUserDetail" method="post" enctype="multipart/form-data">
 
                 <label for="userName">Username</label>
                 <input type="text" id="userName" name="userName" value="${user.userName}" required>
@@ -33,8 +33,10 @@
                 <label for="address">Address</label>
                 <input type="text" id="address" name="address" value="${user.address}">
 
-                <label for="avatar">Avatar URL</label>
-                <input type="text" id="avatar" name="avatar" value="${user.avatar}">
+                <!--                <label for="avatar">Avatar URL</label>
+                                <input type="text" id="avatar" name="avatar" value="${user.avatar}">-->
+                <label for="avatar">Upload Avatar</label>
+                <input type="file" id="avatar" name="avatar" accept="image/*">
 
                 <button type="submit">Save Changes</button>
             </form>

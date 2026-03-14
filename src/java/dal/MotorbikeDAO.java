@@ -147,4 +147,27 @@ public class MotorbikeDAO extends DBContext {
         }
         return false;
     }
+
+    public boolean isBikeRentedToday(int bikeId) {
+        String sql = """
+        SELECT 1
+        FROM Rentals r
+        JOIN RentalDetails rd ON r.rentalId = rd.rentalId
+        JOIN Motorbikes m ON m.bikeId = rd.bikeId
+        WHERE rd.bikeId = ?
+          AND m.status != 'Maintenance'
+          AND r.status = 'Approved'
+          AND CAST(GETDATE() AS DATE) BETWEEN r.startDate AND r.endDate
+        """;
+
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, bikeId);
+            rs = stm.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
 }

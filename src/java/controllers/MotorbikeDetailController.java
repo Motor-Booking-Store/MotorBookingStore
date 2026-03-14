@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import utils.ViewPaths;
+import jakarta.servlet.http.HttpSession;
+import models.MotorbikeStatus;
 
 @WebServlet("/user/MotorbikeDetail")
 public class MotorbikeDetailController extends HttpServlet {
@@ -42,12 +44,37 @@ public class MotorbikeDetailController extends HttpServlet {
         MotorbikeDAO dao = new MotorbikeDAO();
         MotorbikeDetailDTO bike = dao.getMotorbikeDetail(id);
 
+        if (bike != null && !MotorbikeStatus.Status.Maintenance.name().equalsIgnoreCase(bike.getStatus())) {
+            boolean rentedToday = dao.isBikeRentedToday(id);
+            bike.setStatus(rentedToday
+                    ? MotorbikeStatus.Status.Rented.name()
+                    : MotorbikeStatus.Status.Available.name());
+        }
+
         request.setAttribute("bike", bike);
 
         ReviewDAO reviewDAO = new ReviewDAO();
         List<ReviewListDTO> reviews = reviewDAO.GetAllReviewsBikeId(id);
         request.setAttribute("reviews", reviews);
-        
+
+        HttpSession session = request.getSession();
+
+        String success = (String) session.getAttribute("success");
+        if (success != null) {
+            request.setAttribute("success", success);
+            session.removeAttribute("success");
+        }
+
+        String error = (String) session.getAttribute("error");
+        if (error != null) {
+            request.setAttribute("error", error);
+            session.removeAttribute("error");
+        }
+
+        request.setAttribute("STATUS_AVAILABLE", MotorbikeStatus.Status.Available.name());
+        request.setAttribute("STATUS_RENTED", MotorbikeStatus.Status.Rented.name());
+        request.setAttribute("STATUS_MAINTENANCE", MotorbikeStatus.Status.Maintenance.name());
+
         request.getRequestDispatcher(ViewPaths.MOTORBIKE_DETAIL).forward(request, response);
     }
 
