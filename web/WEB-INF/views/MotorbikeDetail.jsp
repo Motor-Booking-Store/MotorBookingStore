@@ -151,7 +151,7 @@
 
                 <c:forEach var="r" items="${reviews}">
                     <div class="review-item">
-                        <img src="${r.avatar}" alt="${r.userName}" class="review-avatar">
+                        <img src="${pageContext.request.contextPath}${r.avatar}" alt="${r.userName}" class="review-avatar">
                         <div class="review-content">
                             <strong class="review-username">${r.userName}</strong>
 
