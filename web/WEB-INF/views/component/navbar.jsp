@@ -23,7 +23,7 @@
             <a href="${pageContext.request.contextPath}/user/Logout" class="logout-btn">Logout</a>
             
             <a href="UserDetail" class="user-info">
-                <img src="${sessionScope.user.avatar}" alt="avatar" class="nav-avatar"/>
+                <img src="${pageContext.request.contextPath}${sessionScope.user.avatar}" alt="avatar" class="nav-avatar"/>
                 <span class="username">${sessionScope.user.userName}</span>
             </a>
         </c:if>

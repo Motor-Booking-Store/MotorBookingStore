@@ -9,16 +9,25 @@ import dto.UserDetailDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import java.io.File;
+import java.nio.file.Paths;
 import models.User;
 import utils.UrlPaths;
 import utils.ViewPaths;
 
 @WebServlet("/user/EditUserDetail")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 50 // 50MB
+)
 public class EditUserDetailController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -49,6 +58,15 @@ public class EditUserDetailController extends HttpServlet {
             return;
         }
         
+        UserDAO userDAO = new UserDAO();
+        // Load FULL user detail from DB using DAO method
+        UserDetailDTO editUser = userDAO.GetUserDetailById(user.getUserID());
+        if (editUser == null) {
+            response.sendRedirect(UrlPaths.url(request, UrlPaths.USER_DETAIL));
+            return;
+        }
+        request.setAttribute("user", editUser);
+
         request.getRequestDispatcher(ViewPaths.EDIT_USER).forward(request, response);
 
     }
@@ -72,11 +90,63 @@ public class EditUserDetailController extends HttpServlet {
         String phoneNumber = request.getParameter("phoneNumber");
         String licenseNumber = request.getParameter("licenseNumber");
         String address = request.getParameter("address");
-        String avatar = request.getParameter("avatar");
 
-        UserDetailDTO dto = new UserDetailDTO(userName, null, firstName, lastName, phoneNumber, licenseNumber, address, null, avatar, null);
+        // Keep old avatar if no new file selected
+        String avatar = request.getParameter("oldAvatar");
+
+        // Get uploaded file
+        Part avatarPart = request.getPart("avatar");
+
+        if (avatarPart != null && avatarPart.getSize() > 0) {
+            String originalFileName = Paths.get(avatarPart.getSubmittedFileName()).getFileName().toString();
+
+            // Make unique filename
+            String fileName = System.currentTimeMillis() + "_" + originalFileName;
+
+            // 1. Runtime folder (build/web) -> image visible immediately
+            String runtimePath = getServletContext().getRealPath("/images/avatar");
+
+            if (runtimePath == null) {
+                throw new ServletException("Runtime upload path is null. Cannot save file.");
+            }
+
+            File runtimeDir = new File(runtimePath);
+            if (!runtimeDir.exists()) {
+                runtimeDir.mkdirs();
+            }
+
+            // Save to runtime folder first
+            String runtimeFilePath = runtimePath + File.separator + fileName;
+            avatarPart.write(runtimeFilePath);
+
+            // Save relative URL path into DB
+            avatar = "/images/avatar/" + fileName;
+
+            // Debug logs (optional)
+            System.out.println("Runtime saved: " + runtimeFilePath);
+        }
+
+        UserDetailDTO dto = new UserDetailDTO(
+                userName,
+                null,
+                firstName,
+                lastName,
+                phoneNumber,
+                licenseNumber,
+                address,
+                null,
+                avatar,
+                null
+        );
+
         UserDAO userDAO = new UserDAO();
         userDAO.EditUserDetail(userId, dto);
+
+        // Update session user avatar immediately so navbar/profile shows new image without re-login
+        user.setAvatar(avatar);
+        user.setUserName(userName); // optional if username can change
+        session.setAttribute("user", user);
+
         response.sendRedirect(UrlPaths.url(request, UrlPaths.USER_DETAIL));
     }
 

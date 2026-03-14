@@ -13,7 +13,9 @@
                 <button type="button">Quay về</button>
             </a>
 
-            <form action="${pageContext.request.contextPath}/user/EditUserDetail" method="post" enctype="multipart/form-data">
+            <form action="${pageContext.request.contextPath}/user/EditUserDetail" 
+                  method="post" 
+                  enctype="multipart/form-data">
 
                 <label for="userName">Username</label>
                 <input type="text" id="userName" name="userName" value="${user.userName}" required>
@@ -33,8 +35,16 @@
                 <label for="address">Address</label>
                 <input type="text" id="address" name="address" value="${user.address}">
 
-                <!--                <label for="avatar">Avatar URL</label>
-                                <input type="text" id="avatar" name="avatar" value="${user.avatar}">-->
+                <!-- Keep old avatar if no new upload -->
+                <input type="hidden" name="oldAvatar" value="${user.avatar}">
+
+                <!-- Optional: show current avatar -->
+                <c:if test="${not empty user.avatar}">
+                    <p>Current Avatar:</p>
+                    <img src="${pageContext.request.contextPath}${user.avatar}" alt="Avatar" width="120">
+                    <br><br>
+                </c:if>
+
                 <label for="avatar">Upload Avatar</label>
                 <input type="file" id="avatar" name="avatar" accept="image/*">
 

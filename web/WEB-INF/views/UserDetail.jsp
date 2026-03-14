@@ -16,7 +16,7 @@
         <div class="profile">
             <!-- Bên trái: Avatar -->
             <div class="profile-left">
-                <img src="${userDetail.avatar}" alt="Avatar" class="profile-avatar"/>
+                <img src="${pageContext.request.contextPath}${userDetail.avatar}" alt="Avatar" class="profile-avatar"/>
                 <a href="${pageContext.request.contextPath}/user/EditUserDetail" class="edit-btn">
                     Thay đổi Thông tin
                 </a>

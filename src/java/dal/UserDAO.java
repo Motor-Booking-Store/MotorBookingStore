@@ -11,9 +11,8 @@ public class UserDAO extends DBContext {
     ResultSet rs;
 
     public void EditUserDetail(int userId, UserDetailDTO dto) {
-        String sql = "UPDATE Users SET userName=?, firstName=?, lastName=?, phoneNumber=?, licenseNumber=?, address=?, avatar=? WHERE userID=?";
+        String sql = "UPDATE Users SET userName=?, firstName=?, lastName=?, phoneNumber=?, licenseNumber=?, address=?, avatar=?, updatedAt=GETDATE() WHERE userID=?";
         try {
-            
             stm = connection.prepareStatement(sql);
             stm.setString(1, dto.getUserName());
             stm.setString(2, dto.getFirstName());
