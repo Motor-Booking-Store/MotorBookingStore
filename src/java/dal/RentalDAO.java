@@ -66,7 +66,6 @@ public class RentalDAO {
                         rs.getDouble("totalAmount"),
                         rs.getString("status"),
                         rs.getString("image")
-                     
                 );
 
                 list.add(dto);
@@ -169,4 +168,61 @@ public class RentalDAO {
             e.printStackTrace();
         }
     }
+
+    public boolean createRentalRequest(int userId, int bikeId, java.sql.Date startDate, java.sql.Date endDate, double pricePerDay) {
+        String insertRental = "INSERT INTO Rentals (userID, startDate, endDate, totalAmount, status, isPaid) VALUES (?, ?, ?, ?, 'Pending', 0)";
+        String insertDetail = "INSERT INTO RentalDetails (rentalId, bikeId, pricePerDay) VALUES (?, ?, ?)";
+
+        try {
+            DBContext db = new DBContext();
+            Connection con = db.getConnection();
+            con.setAutoCommit(false);
+
+            long days = java.time.temporal.ChronoUnit.DAYS.between(startDate.toLocalDate(), endDate.toLocalDate()) + 1;
+            double totalAmount = days * pricePerDay;
+
+            PreparedStatement psRental = con.prepareStatement(insertRental, java.sql.Statement.RETURN_GENERATED_KEYS);
+            psRental.setInt(1, userId);
+            psRental.setDate(2, startDate);
+            psRental.setDate(3, endDate);
+            psRental.setDouble(4, totalAmount);
+
+            int rows = psRental.executeUpdate();
+            if (rows == 0) {
+                con.rollback();
+                return false;
+            }
+
+            ResultSet rs = psRental.getGeneratedKeys();
+            int rentalId = 0;
+            if (rs.next()) {
+                rentalId = rs.getInt(1);
+            }
+
+            if (rentalId == 0) {
+                con.rollback();
+                return false;
+            }
+
+            PreparedStatement psDetail = con.prepareStatement(insertDetail);
+            psDetail.setInt(1, rentalId);
+            psDetail.setInt(2, bikeId);
+            psDetail.setDouble(3, pricePerDay);
+
+            int detailRows = psDetail.executeUpdate();
+            if (detailRows == 0) {
+                con.rollback();
+                return false;
+            }
+
+            con.commit();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }

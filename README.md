@@ -1,125 +1,37 @@
-# Project Rules / README
+# ⚠️ KHÔNG MERGE NHÁNH NÀY
 
-## 1. Không sử dụng `web.xml`
+## Mô tả thay đổi
 
-* File `WEB-INF/web.xml` **đã được xóa**.
-* Tất cả servlet phải được khai báo bằng **annotation `@WebServlet`**.
+Khi người dùng nhấn nút **Rent Now**, hệ thống đã được cập nhật để:
 
-Ví dụ:
+* Hiển thị form chọn **ngày bắt đầu** và **ngày kết thúc** trước khi tạo yêu cầu thuê xe.
+* Thực hiện kiểm tra xung đột lịch thuê trước khi tạo rental.
 
-```java
-@WebServlet("/user/Home")
-public class HomeController extends HttpServlet {
-}
-```
+## Logic kiểm tra đã bổ sung
 
----
+Trước khi tạo yêu cầu thuê, hệ thống sẽ kiểm tra xem xe có đang rơi vào một trong các trường hợp sau hay không:
 
-## 2. Quản lý đường dẫn JSP
+* Đã có **đơn thuê đang chờ duyệt (Pending)** trong khoảng thời gian được chọn.
+* Đã có **đơn thuê đã được duyệt (Approved)** trùng với khoảng thời gian được chọn.
 
-Khi muốn truy cập đến file `.jsp`, **không viết trực tiếp đường dẫn trong code**.
+Nếu phát hiện xung đột, hệ thống sẽ hiển thị thông báo:
 
-Hãy khai báo trong file:
+> **Xe này đã được đặt hoặc đang có yêu cầu thuê chờ duyệt trong khoảng thời gian đã chọn.**
 
-```
-utils/ViewPaths.java
-```
+## Mục đích
 
-Ví dụ:
+Cập nhật này nhằm đảm bảo:
 
-```java
-public class ViewPaths {
-    public static final String HOME = "/WEB-INF/views/home.jsp";
-    public static final String LOGIN = "/WEB-INF/views/login.jsp";
-}
-```
+* Tránh nhiều người dùng cùng gửi yêu cầu thuê cho cùng một xe trong cùng khoảng thời gian.
+* Hạn chế xung đột dữ liệu khi admin xử lý duyệt đơn thuê.
+* Cải thiện trải nghiệm người dùng bằng cách kiểm tra tính khả dụng của xe ngay từ bước tạo yêu cầu thuê.
 
-Sau đó sử dụng:
+## Lưu ý
 
-```java
-request.getRequestDispatcher(ViewPaths.HOME).forward(request, response);
-```
+* **Không merge nhánh này ở thời điểm hiện tại.**
+* Nhánh này đang phục vụ cho việc kiểm tra logic rental trước khi hoàn thiện luồng duyệt đơn.
 
 ---
 
-## 3. Quản lý URL
+**Trạng thái:** Chỉ dùng để test / review nội bộ.
 
-Khi cần chuyển hướng (`redirect`) đến một URL khác, hãy khai báo trong:
-
-```
-utils/UrlPaths.java
-```
-
-## 4. Đường dẫn trong JSP
-
-Tất cả các đường dẫn trong `.jsp` **phải có prefix**:
-
-```
-${pageContext.request.contextPath}
-```
-
-Ví dụ:
-
-```html
-<link rel="stylesheet" href="${pageContext.request.contextPath}/static/login.css">
-```
-
-Không được viết:
-
-```html
-/static/login.css
-```
-
----
-
-## 5. Quy ước đặt URL cho Servlet
-
-### Đối với User
-
-```java
-@WebServlet("/user/Home")
-@WebServlet("/user/Profile")
-@WebServlet("/user/Booking")
-```
-
-### Đối với Admin
-
-```java
-@WebServlet("/admin/DeleteMotorbike")
-@WebServlet("/admin/AddMotorbike")
-@WebServlet("/admin/ManageUsers")
-```
-
-Quy tắc:
-
-```
-/user/...   -> chức năng người dùng
-/admin/...  -> chức năng quản trị
-```
-
----
-
-## 6. Vị trí của JSP
-
-Tất cả file `.jsp` được đặt trong:
-
-```
-WEB-INF/views
-```
-
-Ví dụ:
-
-```
-WEB-INF
- └── views
-     ├── home.jsp
-     ├── login.jsp
-     ├── motorbikeDetail.jsp
-```
-
-Lý do:
-
-* Người dùng **không thể truy cập trực tiếp JSP bằng URL**
-* Chỉ có **Servlet mới forward đến JSP**
-
----

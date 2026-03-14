@@ -61,9 +61,45 @@
 
                         </div>
 
-                        <button class="rent-btn">
-                            Rent Now
-                        </button>
+                        <!--rent now button-->       
+                        <c:if test="${not empty sessionScope.user}">
+
+                            <c:if test="${not empty error}">
+                                <p style="color:red; font-weight:bold; margin-top:10px;">${error}</p>
+                            </c:if>
+
+                            <c:if test="${not empty success}">
+                                <p style="color:green; font-weight:bold; margin-top:10px;">${success}</p>
+                            </c:if>
+
+                            <button type="button" class="rent-btn" onclick="toggleRentForm()">
+                                Rent Now
+                            </button>
+
+                            <div id="rentFormContainer" style="display:none; margin-top:20px;">
+                                <form action="${pageContext.request.contextPath}/user/CreateRental" method="post">
+                                    <input type="hidden" name="bikeId" value="${bike.bikeId}">
+
+                                    <div style="margin-bottom:10px;">
+                                        <label for="startDate"><b>Start Date:</b></label><br>
+                                        <input type="date" name="startDate" id="startDate" required>
+                                    </div>
+
+                                    <div style="margin-bottom:10px;">
+                                        <label for="endDate"><b>End Date:</b></label><br>
+                                        <input type="date" name="endDate" id="endDate" required>
+                                    </div>
+
+                                    <button type="submit" class="rent-btn">Confirm Rent</button>
+                                </form>
+                            </div>
+                        </c:if>
+
+                        <c:if test="${empty sessionScope.user}">
+                            <a href="${pageContext.request.contextPath}/user/Login" class="rent-btn" style="display:inline-block; text-decoration:none; text-align:center;">
+                                Login to Rent
+                            </a>
+                        </c:if>
 
                     </div>
 
@@ -128,5 +164,54 @@
 
         <jsp:include page="./component/footer.jsp"/>
 
+
+        <script>
+            function toggleRentForm() {
+                const form = document.getElementById("rentFormContainer");
+                if (form.style.display === "none" || form.style.display === "") {
+                    form.style.display = "block";
+                } else {
+                    form.style.display = "none";
+                }
+            }
+
+            window.addEventListener("DOMContentLoaded", function () {
+                const startInput = document.getElementById("startDate");
+                const endInput = document.getElementById("endDate");
+
+                const today = new Date();
+                const tomorrow = new Date();
+                tomorrow.setDate(today.getDate() + 1);
+
+                function formatDate(date) {
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    return year + "-" + month + "-" + day;
+                }
+
+                const todayStr = formatDate(today);
+                const tomorrowStr = formatDate(tomorrow);
+
+                startInput.min = todayStr;
+                endInput.min = todayStr;
+
+                if (!startInput.value) {
+                    startInput.value = todayStr;
+                }
+
+                if (!endInput.value) {
+                    endInput.value = tomorrowStr;
+                }
+
+                startInput.addEventListener("change", function () {
+                    endInput.min = startInput.value;
+
+                    if (endInput.value < startInput.value) {
+                        endInput.value = startInput.value;
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

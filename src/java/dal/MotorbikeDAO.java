@@ -88,4 +88,63 @@ public class MotorbikeDAO extends DBContext {
         }
         return null;
     }
+
+    public boolean isBikeAvailable(int bikeId) {
+        String sql = "SELECT 1 FROM Motorbikes WHERE bikeId = ? AND status = 'Available'";
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, bikeId);
+            rs = stm.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    public int countPendingRentalsByUser(int userId) {
+        String sql = """
+        SELECT COUNT(*) AS total
+        FROM Rentals
+        WHERE userID = ?
+          AND status = 'Pending'
+        """;
+
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, userId);
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("total");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
+    public boolean hasConflictingRental(int bikeId, java.sql.Date startDate, java.sql.Date endDate) {
+        String sql = """
+        SELECT 1
+        FROM Rentals r
+        JOIN RentalDetails rd ON r.rentalId = rd.rentalId
+        WHERE rd.bikeId = ?
+          AND r.status IN ('Pending', 'Approved')
+          AND r.startDate <= ?
+          AND r.endDate >= ?
+        """;
+
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, bikeId);
+            stm.setDate(2, endDate);
+            stm.setDate(3, startDate);
+            rs = stm.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
 }
