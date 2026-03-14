@@ -22,5 +22,7 @@ public class ViewPaths {
     public static final String MOTORBIKE_LIST = "/WEB-INF/views/MotorbikeList.jsp";
     
     public static final String USER_DETAIL = "/WEB-INF/views/UserDetail.jsp";
+    
+    public static final String EDIT_USER = "/WEB-INF/views/EditUserDetail.jsp";
            
 }

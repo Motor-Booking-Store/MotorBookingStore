@@ -17,11 +17,13 @@ public class PendingRentalDTO {
 
     private double totalAmount;
     private String status;
+    
+    private String image;
 
     public PendingRentalDTO(int rentalId, int userId, int bikeId,
             String firstName, String lastName,
             String bikeName, Date startDate,
-            Date endDate, double totalAmount, String status) {
+            Date endDate, double totalAmount, String status, String image) {
 
         this.rentalId = rentalId;
         this.userId = userId;
@@ -35,6 +37,8 @@ public class PendingRentalDTO {
         this.endDate = endDate;
         this.totalAmount = totalAmount;
         this.status = status;
+        
+        this.image = image;
     }
 
     public int getRentalId() { return rentalId; }
@@ -50,4 +54,9 @@ public class PendingRentalDTO {
 
     public double getTotalAmount() { return totalAmount; }
     public String getStatus() { return status; }
+
+    public String getImage() {
+        return image;
+    }
+
 }

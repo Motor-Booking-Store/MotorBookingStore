@@ -26,7 +26,8 @@ public class RentalDAO {
                 + "r.startDate, "
                 + "r.endDate, "
                 + "r.totalAmount, "
-                + "r.status "
+                + "r.status, "
+                + "m.image "
                 + "FROM Rentals r "
                 + "JOIN Users u ON r.userID = u.userID "
                 + "JOIN RentalDetails rd ON r.rentalId = rd.rentalId "
@@ -63,7 +64,9 @@ public class RentalDAO {
                         rs.getDate("startDate"),
                         rs.getDate("endDate"),
                         rs.getDouble("totalAmount"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getString("image")
+                     
                 );
 
                 list.add(dto);
@@ -91,7 +94,8 @@ public class RentalDAO {
                 + "r.startDate, "
                 + "r.endDate, "
                 + "r.totalAmount, "
-                + "r.status "
+                + "r.status, "
+                + "m.image "
                 + "FROM Rentals r "
                 + "JOIN Users u ON r.userID = u.userID "
                 + "JOIN RentalDetails rd ON r.rentalId = rd.rentalId "
@@ -131,7 +135,8 @@ public class RentalDAO {
                         rs.getDate("startDate"),
                         rs.getDate("endDate"),
                         rs.getDouble("totalAmount"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getString("image")
                 );
 
                 list.add(dto);

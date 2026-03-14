@@ -18,6 +18,9 @@ public class UrlPaths {
     public static final String Id_MotorbikeDetail = "/user/MotorbikeDetail?id=";
     
     public static final String PENDING_RENTALS = "/admin/pending-rentals";
+    
+    public static final String USER_DETAIL = "/user/UserDetail";
+    
     public static String url(HttpServletRequest request, String path) {
         return request.getContextPath() + path;
     }

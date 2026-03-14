@@ -12,7 +12,7 @@
     <div class="nav-menu">
         <a href="${pageContext.request.contextPath}/user/Home">Home</a>
         <a href="${pageContext.request.contextPath}/user/MotorbikeList">Motorbikes</a>
-        <a href="#">Contact</a>
+        <a href="${pageContext.request.contextPath}/user/rental-history?userId=${sessionScope.user.userID}">Rental History</a>
         <a href="#">About</a>
     </div>
 
