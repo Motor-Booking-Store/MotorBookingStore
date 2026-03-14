@@ -36,11 +36,18 @@ public class MotorbikeListController extends HttpServlet {
             throws ServletException, IOException {
 
         MotorbikeDAO dao = new MotorbikeDAO();
+        String keyword = request.getParameter("bikeName"); // từ form tìm kiếm
+        ArrayList<AllMotorbikeDTO> list;
 
-        ArrayList<AllMotorbikeDTO> list = dao.getAllMotorbikes();
+        if (keyword == null || keyword.trim().isEmpty()) {
+            // Không nhập gì -> load tất cả xe
+            list = dao.getAllMotorbikes();
+        } else {
+            // Tìm kiếm theo tên xe, không phân biệt hoa thường
+            list = dao.searchMotorbikesByName(keyword);
+        }
 
         request.setAttribute("motorbikeList", list);
-
         request.getRequestDispatcher(ViewPaths.MOTORBIKE_LIST).forward(request, response);
     }
 
@@ -49,7 +56,6 @@ public class MotorbikeListController extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
-
 
     @Override
     public String getServletInfo() {

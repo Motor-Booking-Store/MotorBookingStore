@@ -20,17 +20,12 @@
         <!-- SEARCH BAR -->
         <div class="search-container">
 
-            <form action="searchMotorbike" method="get" class="search-form">
+            <form action="${pageContext.request.contextPath}/user/MotorbikeList" method="get" class="search-form">
 
-                <input 
-                    type="text"
-                    name="keyword"
-                    placeholder="Search motorbike name..."
-                    class="search-input"
-                    >
+                <input type="text" name="bikeName" placeholder="Nhập tên xe máy ..." class="search-input">
 
                 <button type="submit" class="search-btn">
-                    Search
+                    Tìm kiếm
                 </button>
 
             </form>
@@ -58,12 +53,12 @@
                                 <img class="bike-img" src="${b.image}">
 
                                 <div class="bike-info">
-                                    <p><b>Bike Name:</b> ${b.bikeName}</p>
-                                    <p><b>Brand:</b> ${b.brand}</p>
+                                    <p><b>Tên xe máy:</b> ${b.bikeName}</p>
+                                    <p><b>Hãng xe:</b> ${b.brand}</p>
                                     <p><b>Model:</b> ${b.model}</p>
-                                    <p><b>License Plate:</b> ${b.licensePlate}</p>
-                                    <p><b>Price Per Day:</b> ${b.pricePerDay}</p>
-                                    <p><b>Status:</b> ${b.status}</p>
+                                    <p><b>Biển số:</b> ${b.licensePlate}</p>
+                                    <p><b>Giá thuê mỗi ngày</b> ${b.pricePerDay}</p>
+                                    <p><b>Trạng thái:</b> ${b.status}</p>
                                 </div>
                             </div>
                         </a>

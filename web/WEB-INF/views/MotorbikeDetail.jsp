@@ -6,9 +6,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Motorbike Detail</title>
-
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/detail.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
@@ -84,15 +82,6 @@
                         <form action="${pageContext.request.contextPath}/user/AddReview" method="post">
                             <input type="hidden" name="bikeId" value="${bike.bikeId}">
 
-                            <label>Rating:</label>
-                            <select name="rating" required>
-                                <option value="1">1 sao</option>
-                                <option value="2">2 sao</option>
-                                <option value="3">3 sao</option>
-                                <option value="4">4 sao</option>
-                                <option value="5" selected>5 sao</option>
-                            </select>
-
                             <textarea name="comment" placeholder="Viết bình luận..." required></textarea>
                             <button type="submit">Gửi bình luận</button>
                         </form>
@@ -110,16 +99,6 @@
                     <img src="${r.avatar}" alt="${r.userName}" class="review-avatar">
                     <div class="review-content">
                         <strong class="review-username">${r.userName}</strong>
-
-                        <div class="review-rating">
-                            <c:forEach begin="1" end="${r.rating}" var="i">
-                                <i class="fa fa-star"></i>
-                            </c:forEach>
-                            <c:forEach begin="${r.rating + 1}" end="5" var="i">
-                                <i class="fa fa-star-o"></i>
-                            </c:forEach>
-                        </div>
-
                         <p class="review-comment">${r.comment}</p>
                     </div>
                 </div>

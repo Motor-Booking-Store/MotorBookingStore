@@ -88,4 +88,34 @@ public class MotorbikeDAO extends DBContext {
         }
         return null;
     }
+
+    public ArrayList<AllMotorbikeDTO> searchMotorbikesByName(String keyword) {
+        ArrayList<AllMotorbikeDTO> list = new ArrayList<>();
+        String sql = "SELECT bikeId, bikeName, brand, model, licensePlate, pricePerDay, image, status "
+                + "FROM Motorbikes WHERE LOWER(bikeName) LIKE ?";
+        try {
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, "%" + keyword.toLowerCase() + "%");
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                AllMotorbikeDTO bike = new AllMotorbikeDTO(
+                        rs.getInt("bikeId"),
+                        rs.getString("bikeName"),
+                        rs.getString("brand"),
+                        rs.getString("model"),
+                        rs.getString("licensePlate"),
+                        rs.getDouble("pricePerDay"),
+                        rs.getString("image"),
+                        rs.getString("status")
+                );
+                list.add(bike);
+            }
+            rs.close();
+            stm.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
 }

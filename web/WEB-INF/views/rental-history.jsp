@@ -4,16 +4,13 @@
 <html>
     <head>
         <title>My Rental History</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/main.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/footer.css">
-
-
     </head>
 
     <body>
+        <jsp:include page="./component/navbar.jsp"/>
         <div class="layout-wrappe">
             <div class="layout-top">
-                <jsp:include page="./component/navbar.jsp"/>
+                
             </div>
             <div class="layout-main">
                 <h2>My Rental History</h2>
@@ -103,9 +100,7 @@
                     <p>No rental history found.</p>
                 </c:if>
             </div>
-            <div class="layout-bottom">
-                <jsp:include page="./component/footer.jsp"/>
-            </div>
         </div>
+                <jsp:include page="./component/footer.jsp"/>
     </body>
 </html>
