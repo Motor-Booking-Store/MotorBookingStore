@@ -56,8 +56,8 @@
                                     <p><b>Tên xe máy:</b> ${b.bikeName}</p>
                                     <p><b>Hãng xe:</b> ${b.brand}</p>
                                     <p><b>Model:</b> ${b.model}</p>
-                                    <p><b>License Plate:</b> ${b.licensePlate}</p>
-                                    <p><b>Price Per Day:</b> ${b.pricePerDay}</p>
+                                    <p><b>Biển số:</b> ${b.licensePlate}</p>
+                                    <p><b>Giá thuê mỗi ngày</b> ${b.pricePerDay}</p>
                                     <p>
                                         <b>Status:</b>
                                         <span style="
@@ -69,9 +69,9 @@
                                               </span>
                                         </p>
                                     </div>
-                                    <p><b>Biển số:</b> ${b.licensePlate}</p>
-                                    <p><b>Giá thuê mỗi ngày</b> ${b.pricePerDay}</p>
-                                    <p><b>Trạng thái:</b> ${b.status}</p>
+
+
+
                                 </div>
                             </a>
                         </c:forEach>

@@ -51,10 +51,9 @@ public class AddReviewController extends HttpServlet {
         }
 
         int bikeId = Integer.parseInt(request.getParameter("bikeId"));
-        int rating = Integer.parseInt(request.getParameter("rating"));
         String comment = request.getParameter("comment");
 
-        ReviewDTO review = new ReviewDTO(user.getUserID(), bikeId, rating, comment);
+        ReviewDTO review = new ReviewDTO(user.getUserID(), bikeId, 1, comment);
 
         ReviewDAO dao = new ReviewDAO();
         dao.addReview(review);

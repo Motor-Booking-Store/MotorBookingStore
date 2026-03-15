@@ -124,37 +124,12 @@
             </c:if>
         </div>
 
-        <div class="bike-reviews">
-            <div>
-                <c:if test="${not empty sessionScope.user}">
-                    <div class="write-comment">
-                        <form action="${pageContext.request.contextPath}/user/AddReview" method="post">
-                            <input type="hidden" name="bikeId" value="${bike.bikeId}">
-
-                            <textarea name="comment" placeholder="Viết bình luận..." required></textarea>
-                            <button type="submit">Gửi bình luận</button>
-                        </form>
-                    </div>
->>>>>>> feature/find-motorbike-by-name
-                </c:if>
-            </div>
-
             <div class="bike-reviews">
                 <div>
                     <c:if test="${not empty sessionScope.user}">
                         <div class="write-comment">
                             <form action="${pageContext.request.contextPath}/user/AddReview" method="post">
                                 <input type="hidden" name="bikeId" value="${bike.bikeId}">
-
-                                <label>Rating:</label>
-                                <select name="rating" required>
-                                    <option value="1">1 sao</option>
-                                    <option value="2">2 sao</option>
-                                    <option value="3">3 sao</option>
-                                    <option value="4">4 sao</option>
-                                    <option value="5" selected>5 sao</option>
-                                </select>
-
                                 <textarea name="comment" placeholder="Viết bình luận..." required></textarea>
                                 <button type="submit">Gửi bình luận</button>
                             </form>
