@@ -41,8 +41,16 @@ public class MotorbikeListController extends HttpServlet {
         rentalDAO.updateExpiredRentalsToCompleted();//for update expired date
 
         MotorbikeDAO dao = new MotorbikeDAO();
+        String keyword = request.getParameter("bikeName"); // từ form tìm kiếm
+        ArrayList<AllMotorbikeDTO> list;
 
-        ArrayList<AllMotorbikeDTO> list = dao.getAllMotorbikes();
+        if (keyword == null || keyword.trim().isEmpty()) {
+            // Không nhập gì -> load tất cả xe
+            list = dao.getAllMotorbikes();
+        } else {
+            // Tìm kiếm theo tên xe, không phân biệt hoa thường
+            list = dao.searchMotorbikesByName(keyword);
+        }
 
         for (AllMotorbikeDTO bike : list) {
             if (bike != null && !MotorbikeStatus.Status.Maintenance.name().equalsIgnoreCase(bike.getStatus())) {

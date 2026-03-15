@@ -4,27 +4,15 @@
 
 <div class="sidebar">
 
-    <h2 class="sidebar-title">Filter Motorbikes</h2>
+    <h2 class="sidebar-title">Tìm kiếm xe máy</h2>
 
-    <form action="filterMotorbike" method="get">
-
-        <!-- Rent Date -->
-        <div class="filter-group">
-            <label>Rent Date</label>
-            <input type="date" name="rentDate">
-        </div>
-
-        <!-- Return Date -->
-        <div class="filter-group">
-            <label>Return Date</label>
-            <input type="date" name="returnDate">
-        </div>
+    <form action="${pageContext.request.contextPath}/user/MotorbikeList" method="get">
 
         <!-- Brand -->
         <div class="filter-group">
-            <label>Brand</label>
+            <label>Hãng xe</label>
             <select name="brand">
-                <option value="">All</option>
+                <option value="all">Tất cả</option>
                 <option value="Honda">Honda</option>
                 <option value="Yamaha">Yamaha</option>
                 <option value="Suzuki">Suzuki</option>
@@ -33,26 +21,26 @@
 
         <!-- Price -->
         <div class="filter-group">
-            <label>Price per day</label>
-            <select name="price">
-                <option value="">All</option>
-                <option value="50">Under $50</option>
-                <option value="100">Under $100</option>
-                <option value="200">Under $200</option>
+            <label>Giá theo ngày</label>
+            <select name="priceRange">
+                <option value="all">Tất cả</option>
+                <option value="under10000">Dưới 10000</option>
+                <option value="10000to20000">Từ 10000 - 20000</option>
+                <option value="above20000">Trên 20000</option>
             </select>
         </div>
 
         <!-- Status -->
         <div class="filter-group">
-            <label>Status</label>
+            <label>Trạng thái</label>
             <select name="status">
-                <option value="">All</option>
-                <option value="Available">Available</option>
-                <option value="Rented">Rented</option>
+                <option value="all">Tất cả</option>
+                <option value="Available">Đã thuê</option>
+                <option value="Rented">Chưa thuê</option>
             </select>
         </div>
 
-        <button class="filter-btn" type="submit">Apply Filter</button>
+        <button class="filter-btn" type="submit">Tìm kiếm</button>
 
     </form>
 

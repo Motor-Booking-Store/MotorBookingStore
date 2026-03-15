@@ -25,7 +25,7 @@
             <!-- Bên phải: thông tin user -->
             <div class="profile-right">
                 <div class="info-row">
-                    <span class="label">Username:</span>
+                    <span class="label">Tên:</span>
                     <span class="value">${userDetail.userName}</span>
                 </div>
                 <div class="info-row">

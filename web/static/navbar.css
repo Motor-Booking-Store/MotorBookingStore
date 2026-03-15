@@ -54,13 +54,6 @@ body {
     vertical-align: middle;
 }
 
-/* username */
-.username {
-    text-decoration: none;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-}
 
 /* nút Login & Logout */
 .login-btn,
@@ -78,12 +71,4 @@ body {
 .login-btn:hover,
 .logout-btn:hover {
     background: #009ac7;
-}
-
-/* avatar + username link */
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* khoảng cách giữa avatar và username */
-    text-decoration: none;
 }

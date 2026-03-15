@@ -5,9 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Motorbike Detail</title>
-
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/detail.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
@@ -118,6 +116,26 @@
                 <!-- nếu không có dữ liệu -->
                 <c:if test="${bike == null}">
                     <h2 style="text-align:center;">Motorbike not found</h2>
+            </c:if>
+
+            <!-- nếu không có dữ liệu -->
+            <c:if test="${bike == null}">
+                <h2 style="text-align:center;">Motorbike not found</h2>
+            </c:if>
+        </div>
+
+        <div class="bike-reviews">
+            <div>
+                <c:if test="${not empty sessionScope.user}">
+                    <div class="write-comment">
+                        <form action="${pageContext.request.contextPath}/user/AddReview" method="post">
+                            <input type="hidden" name="bikeId" value="${bike.bikeId}">
+
+                            <textarea name="comment" placeholder="Viết bình luận..." required></textarea>
+                            <button type="submit">Gửi bình luận</button>
+                        </form>
+                    </div>
+>>>>>>> feature/find-motorbike-by-name
                 </c:if>
             </div>
 
