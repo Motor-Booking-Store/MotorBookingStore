@@ -15,23 +15,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.User;
+import utils.UrlPaths;
+import utils.ViewPaths;
 
 /**
  *
  * @author nguye
  */
-@WebServlet("/UserDetail")
+@WebServlet("/user/UserDetail")
 public class UserDetailController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -58,7 +51,7 @@ public class UserDetailController extends HttpServlet {
 
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect(UrlPaths.url(request, UrlPaths.LOGIN));
             return;
         }
        
@@ -73,7 +66,7 @@ public class UserDetailController extends HttpServlet {
         }
 
         request.setAttribute("userDetail", userDetail);
-        request.getRequestDispatcher("views/UserDetail.jsp").forward(request, response);
+        request.getRequestDispatcher(ViewPaths.USER_DETAIL).forward(request, response);
     }
 
     @Override

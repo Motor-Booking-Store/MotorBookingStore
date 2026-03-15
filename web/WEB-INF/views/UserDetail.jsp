@@ -9,15 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="static/userDetail.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/userDetail.css">
     </head>
     <body>
         <jsp:include page="./component/navbar.jsp" />
         <div class="profile">
             <!-- Bên trái: Avatar -->
             <div class="profile-left">
-                <img src="${userDetail.avatar}" alt="Avatar" class="profile-avatar"/>
-                <a href="EditUserDetail" class="edit-btn">
+                <img src="${pageContext.request.contextPath}${userDetail.avatar}" alt="Avatar" class="profile-avatar"/>
+                <a href="${pageContext.request.contextPath}/user/EditUserDetail" class="edit-btn">
                     Thay đổi Thông tin
                 </a>
             </div>
@@ -25,7 +25,7 @@
             <!-- Bên phải: thông tin user -->
             <div class="profile-right">
                 <div class="info-row">
-                    <span class="label">Username:</span>
+                    <span class="label">Tên:</span>
                     <span class="value">${userDetail.userName}</span>
                 </div>
                 <div class="info-row">

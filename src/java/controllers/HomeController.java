@@ -7,26 +7,17 @@ package controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import utils.UrlPaths;
+import utils.ViewPaths;
 
-/**
- *
- * @author nguye
- */
+@WebServlet("/user/Home")
 public class HomeController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,27 +35,18 @@ public class HomeController extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("views/Home.jsp").forward(request, response);
+        request.getRequestDispatcher(ViewPaths.HOME).forward(request, response);
         HttpSession session = request.getSession(false);
 
-        if (session == null || session.getAttribute("account") == null) {
-            response.sendRedirect("Login");
+        if (session == null || session.getAttribute("user") == null) {
+            response.sendRedirect(UrlPaths.url(request, UrlPaths.LOGIN));
             return;
         }
 
-        request.getRequestDispatcher("views/Home.jsp").forward(request, response);
+        request.getRequestDispatcher(ViewPaths.HOME).forward(request, response);
     }
 
     @Override
@@ -76,6 +58,5 @@ public class HomeController extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

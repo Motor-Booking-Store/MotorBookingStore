@@ -8,13 +8,18 @@ import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.User;
+import utils.UrlPaths;
+import utils.ViewPaths;
 
+@WebServlet("/user/Login")
 public class Login extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -35,7 +40,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("views/Login.jsp").forward(request, response);
+        request.getRequestDispatcher(ViewPaths.LOGIN).forward(request, response);
     }
 
     @Override
@@ -47,14 +52,14 @@ public class Login extends HttpServlet {
         // ===== VALIDATE =====
         if (email == null || email.trim().isEmpty()) {
             request.setAttribute("error", "Email cannot be empty");
-            request.getRequestDispatcher("views/Login.jsp").forward(request, response);
+            request.getRequestDispatcher(ViewPaths.LOGIN).forward(request, response);
             return;
         }
 
         if (password == null || password.trim().isEmpty()) {
             request.setAttribute("error", "Password cannot be empty");
             request.setAttribute("email", email);
-            request.getRequestDispatcher("views/Login.jsp").forward(request, response);
+            request.getRequestDispatcher(ViewPaths.LOGIN).forward(request, response);
             return;
         }
 
@@ -65,7 +70,7 @@ public class Login extends HttpServlet {
         if (user == null) {
             request.setAttribute("error", "Invalid email or password");
             request.setAttribute("email", email);
-            request.getRequestDispatcher("views/Login.jsp").forward(request, response);
+            request.getRequestDispatcher(ViewPaths.LOGIN).forward(request, response);
             return;
         }
 
@@ -73,17 +78,16 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
 
- 
         if (user.roleId == 1) {
-            response.sendRedirect("admin/Home");
+            response.sendRedirect(UrlPaths.url(request, UrlPaths.ADMIN_HOME));
         } else {
-            response.sendRedirect("Home");
+            response.sendRedirect(UrlPaths.url(request, UrlPaths.USER_HOME));
         }
     }
 
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

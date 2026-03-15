@@ -11,8 +11,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import models.User;
+import utils.UrlPaths;
 
-@WebServlet("/addReview")
+@WebServlet("/user/AddReview")
 public class AddReviewController extends HttpServlet {
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -45,20 +46,19 @@ public class AddReviewController extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
         if(user == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect(UrlPaths.url(request, UrlPaths.LOGIN));
             return;
         }
 
         int bikeId = Integer.parseInt(request.getParameter("bikeId"));
-        int rating = Integer.parseInt(request.getParameter("rating"));
         String comment = request.getParameter("comment");
 
-        ReviewDTO review = new ReviewDTO(user.getUserID(), bikeId, rating, comment);
+        ReviewDTO review = new ReviewDTO(user.getUserID(), bikeId, 1, comment);
 
         ReviewDAO dao = new ReviewDAO();
         dao.addReview(review);
 
-        response.sendRedirect("MotorbikeDetail?id=" + bikeId);
+        response.sendRedirect(UrlPaths.url(request, UrlPaths.Id_MotorbikeDetail) + bikeId);
     }
 
     @Override

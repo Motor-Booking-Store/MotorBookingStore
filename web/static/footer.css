@@ -1,21 +1,4 @@
-/* ==== BODY & MAIN CONTENT ==== */
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Container cho phần nội dung chính */
-.main-content {
-    flex: 1; /* chiếm không gian còn lại */
-}
-
-/* ==== FOOTER ==== */
+/* ==== FOOTER STYLE ==== */
 .footer {
     background: #1e1e2f;
     color: white;
@@ -59,7 +42,7 @@ body {
     margin-top: 20px;
 }
 
-/* ==== RESPONSIVE ==== */
+/* Responsive */
 @media (max-width: 768px) {
     .footer-container {
         grid-template-columns: 1fr;
