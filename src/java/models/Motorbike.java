@@ -11,7 +11,7 @@ public class Motorbike {
     private String licensePlate;
 
     private double pricePerDay;
-
+    private int locationId;
     private String description;
     private String image;
 
@@ -33,7 +33,15 @@ public class Motorbike {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+    
+    public int getLocationId() {
+        return locationId;
+    }
 
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
+    }
+    
     public int getBikeId() {
         return bikeId;
     }
@@ -104,14 +112,6 @@ public class Motorbike {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
     }
 
     public Date getCreatedAt() {
