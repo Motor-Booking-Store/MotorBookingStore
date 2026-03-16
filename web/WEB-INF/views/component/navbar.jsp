@@ -20,14 +20,14 @@
 
         <!-- nếu đã login -->
         <c:if test="${sessionScope.user != null}">
-            <a href="${pageContext.request.contextPath}/user/Logout" class="logout-btn">Logout</a>
+            <a href="${pageContext.request.contextPath}/Logout" class="logout-btn">Logout</a>
             <img src="${pageContext.request.contextPath}${userDetail.avatar}" alt="avatar" class="nav-avatar"/>
             
         </c:if>
 
         <!-- nếu chưa login -->
         <c:if test="${sessionScope.user == null}">
-            <a href="${pageContext.request.contextPath}/user/Login" class="login-btn">Login</a>
+            <a href="${pageContext.request.contextPath}/Login" class="login-btn">Login</a>
         </c:if>
 
     </div>

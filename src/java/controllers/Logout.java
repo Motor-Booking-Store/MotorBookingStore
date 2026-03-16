@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utils.UrlPaths;
 
-@WebServlet("/user/Logout")
+@WebServlet("/Logout")
 public class Logout extends HttpServlet {
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

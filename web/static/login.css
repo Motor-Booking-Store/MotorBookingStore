@@ -1,0 +1,137 @@
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
+/* full-height layout */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* navbar / content / footer */
+}
+
+/* navbar & footer giữ chiều cao */
+jsp\\:include[src$="navbar.jsp"],
+jsp\\:include[src$="footer.jsp"] {
+    flex: 0 0 auto;
+}
+
+/* content-wrapper chiếm phần còn lại */
+.content-wrapper {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center; /* center ngang */
+    align-items: center;     /* center dọc */
+    padding: 20px;
+    background: #f5f5f5; /* nền sáng nhẹ, không xanh gradient */
+}
+
+/* form container */
+form {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* form heading */
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 28px;
+}
+
+/* form groups */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* labels */
+label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* inputs */
+input[type="text"],
+input[type="password"] {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+/* focus effect */
+input:focus {
+    border-color: #2a5298;
+    outline: none;
+    box-shadow: 0 0 8px rgba(42, 82, 152, 0.3);
+}
+
+/* submit button */
+input[type="submit"] {
+    padding: 12px;
+    border: none;
+    background: #2a5298;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background: #1e3c72;
+    transform: translateY(-2px);
+}
+
+/* error message */
+.error-message {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* responsive */
+@media (max-width: 500px) {
+    form {
+        padding: 30px 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
+
+/* ... giữ nguyên CSS cũ cho login ... */
+
+/* link signup */
+.signup-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: #2a5298;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.signup-link a:hover {
+    color: #1e3c72;
+}

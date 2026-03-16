@@ -24,5 +24,7 @@ public class ViewPaths {
     public static final String USER_DETAIL = "/WEB-INF/views/UserDetail.jsp";
     
     public static final String EDIT_USER = "/WEB-INF/views/EditUserDetail.jsp";
+    
+    public static final String ADD_USER = "/WEB-INF/views/admin/AddUser.jsp";
            
 }

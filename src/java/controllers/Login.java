@@ -17,7 +17,7 @@ import models.User;
 import utils.UrlPaths;
 import utils.ViewPaths;
 
-@WebServlet("/user/Login")
+@WebServlet("/Login")
 public class Login extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

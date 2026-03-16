@@ -7,6 +7,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import utils.UrlPaths;
 /**
  *
  * @author testu
@@ -27,13 +28,13 @@ public class AdminFilter implements Filter {
         HttpSession session = req.getSession(false);
         
 //// uncomment this for deployment
-//        if (session == null || session.getAttribute("user") == null) {
-//
-//            String context = req.getContextPath();
-//
-//            res.sendRedirect(context + "/login.jsp");
-//            return;
-//        }
+        if (session == null || session.getAttribute("user") == null) {
+
+            String context = req.getContextPath();
+
+             res.sendRedirect(UrlPaths.url(req, UrlPaths.LOGIN));
+            return;
+        }
 
         chain.doFilter(request, response);
     }

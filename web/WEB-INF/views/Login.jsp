@@ -10,7 +10,7 @@
         <jsp:include page="./component/navbar.jsp"/>
 
         <div class="content-wrapper">
-            <form action="${pageContext.request.contextPath}/user/Login" method="POST">
+            <form action="${pageContext.request.contextPath}/Login" method="POST">
                 <h2>Login</h2>
 
                 <div class="form-group">

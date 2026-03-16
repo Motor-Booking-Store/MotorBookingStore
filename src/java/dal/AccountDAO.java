@@ -6,6 +6,7 @@ package dal;
 
 import context.DBContext;
 import dto.UserDetailDTO;
+import java.awt.image.BandCombineOp;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import models.User;
@@ -103,5 +104,32 @@ public class AccountDAO extends DBContext {
         }
 
         return null;
+    }
+    
+    public boolean addUser(User user){
+        String sql = "INSERT INTO Users "
+                + "(userName, password, email, citizen_id, firstName, lastName, phoneNumber, licenseNumber, address, roleId, bankNumber) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            
+            ps.setString(1, user.userName);
+            ps.setString(2, user.password);
+            ps.setString(3, user.email);
+            ps.setString(4, user.citizen_id);
+            ps.setString(5, user.firstName);
+            ps.setString(6, user.lastName);
+            ps.setString(7, user.phoneNumber);
+            ps.setString(8, user.licenseNumber);
+            ps.setString(9,user.address);
+            ps.setInt(10, user.roleId);
+            ps.setString(11, user.getBankNumber());
+            
+            return ps.executeUpdate(sql)>0;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }
