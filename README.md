@@ -1,5 +1,3 @@
-Dưới đây là README bằng tiếng Việt, rõ ràng và dùng được luôn cho GitHub 👇
-
 🚀 Tính năng: Hiển thị 3 xe máy mới nhất trên trang Home
 📖 Tổng quan
 
