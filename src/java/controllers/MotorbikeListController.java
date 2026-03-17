@@ -38,20 +38,67 @@ public class MotorbikeListController extends HttpServlet {
             throws ServletException, IOException {
 
         RentalDAO rentalDAO = new RentalDAO();
-        rentalDAO.updateExpiredRentalsToCompleted();//for update expired date
+        rentalDAO.updateExpiredRentalsToCompleted();
 
         MotorbikeDAO dao = new MotorbikeDAO();
-        String keyword = request.getParameter("bikeName"); // từ form tìm kiếm
-        ArrayList<AllMotorbikeDTO> list;
 
-        if (keyword == null || keyword.trim().isEmpty()) {
-            // Không nhập gì -> load tất cả xe
-            list = dao.getAllMotorbikes();
-        } else {
-            // Tìm kiếm theo tên xe, không phân biệt hoa thường
-            list = dao.searchMotorbikesByName(keyword);
+        String bikeName = request.getParameter("bikeName");
+        String brand = request.getParameter("brand");
+        String status = request.getParameter("status");
+
+        String minPriceRaw = request.getParameter("minPrice");
+        String maxPriceRaw = request.getParameter("maxPrice");
+
+        String priceRange = request.getParameter("priceRange");
+
+        Double minPrice = null;
+        Double maxPrice = null;
+
+// If manual min/max from another form
+        try {
+            if (minPriceRaw != null && !minPriceRaw.trim().isEmpty()) {
+                minPrice = Double.valueOf(minPriceRaw.trim());
+            }
+            if (maxPriceRaw != null && !maxPriceRaw.trim().isEmpty()) {
+                maxPrice = Double.valueOf(maxPriceRaw.trim());
+            }
+        } catch (NumberFormatException e) {
+            // ignore invalid input
         }
 
+// If sidebar uses priceRange, override min/max
+        if (priceRange != null && !priceRange.trim().isEmpty()) {
+            switch (priceRange) {
+                case "under150000":
+                    maxPrice = 150000.0;
+                    break;
+                case "150000to200000":
+                    minPrice = 150000.0;
+                    maxPrice = 200000.0;
+                    break;
+                case "above200000":
+                    minPrice = 200000.0;
+                    break;
+            }
+        }
+
+        try {
+            if (minPriceRaw != null && !minPriceRaw.trim().isEmpty()) {
+                minPrice = Double.valueOf(minPriceRaw.trim());
+            }
+            if (maxPriceRaw != null && !maxPriceRaw.trim().isEmpty()) {
+                maxPrice = Double.valueOf(maxPriceRaw.trim());
+            }
+        } catch (NumberFormatException e) {
+            // ignore invalid input
+        }
+        
+        request.setAttribute("priceRange", priceRange);
+
+        // DO NOT filter status in SQL because displayed status is dynamic
+        ArrayList<AllMotorbikeDTO> list = dao.filterMotorbikes(bikeName, brand, minPrice, maxPrice, null);
+
+        // Update dynamic status
         for (AllMotorbikeDTO bike : list) {
             if (bike != null && !MotorbikeStatus.Status.Maintenance.name().equalsIgnoreCase(bike.getStatus())) {
                 boolean rentedToday = dao.isBikeRentedToday(bike.getBikeId());
@@ -60,6 +107,19 @@ public class MotorbikeListController extends HttpServlet {
                         : MotorbikeStatus.Status.Available.name());
             }
         }
+
+        // Filter status AFTER status is recalculated
+        if (status != null && !status.trim().isEmpty()) {
+            list.removeIf(bike -> !bike.getStatus().equalsIgnoreCase(status.trim()));
+        }
+
+        request.setAttribute("brandList", dao.getAllBrands());
+
+        request.setAttribute("bikeName", bikeName);
+        request.setAttribute("brand", brand);
+        request.setAttribute("status", status);
+        request.setAttribute("minPrice", minPriceRaw);
+        request.setAttribute("maxPrice", maxPriceRaw);
 
         request.setAttribute("motorbikeList", list);
 
