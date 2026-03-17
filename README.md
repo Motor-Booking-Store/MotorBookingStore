@@ -1,36 +1,15 @@
-# Cập nhật chức năng lọc xe máy
+🚀 Tính năng: Hiển thị 3 xe máy mới nhất trên trang Home
+📖 Tổng quan
 
-## Mô tả
-Đã bổ sung chức năng **lọc danh sách xe máy** tại trang `MotorbikeList` giúp người dùng tìm xe thuận tiện hơn.
+Tính năng này dùng để hiển thị 3 xe máy mới nhất được thêm vào hệ thống trên trang Home.
+Giúp người dùng nhanh chóng xem các xe mới và tăng trải nghiệm sử dụng.
 
-## Chức năng mới
-Người dùng có thể lọc theo:
+✨ Chức năng
 
-- **Hãng xe**
-- **Giá thuê theo ngày**
-- **Trạng thái xe**
+🔥 Lấy 3 xe máy mới nhất từ database
 
-## Chi tiết cập nhật
-- Thêm bộ lọc tại `component/sidebar.jsp`
-- Hỗ trợ lọc động theo **brand** từ dữ liệu trong database
-- Hỗ trợ lọc theo khoảng giá:
-  - Dưới 150.000 VND
-  - 150.000 - 200.000 VND
-  - Trên 200.000 VND
-- Hỗ trợ lọc theo trạng thái:
-  - `Available` (Chưa thuê)
-  - `Rented` (Đã thuê)
-  - `Maintenance` (Bảo trì)
+🏠 Hiển thị trực tiếp trên trang Home
 
-## Backend thay đổi
-- Cập nhật `MotorbikeListController` để nhận tham số filter:
-  - `brand`
-  - `priceRange`
-  - `status`
-- Cập nhật `MotorbikeDAO`:
-  - Thêm hàm lọc xe máy theo điều kiện
-  - Thêm hàm lấy danh sách hãng xe (`getAllBrands()`)
+⚡ Dữ liệu động (không hardcode)
 
-## Ghi chú
-- Trạng thái `Rented` / `Available` được xử lý động dựa trên dữ liệu thuê xe hiện tại.
-- Bộ lọc trạng thái được áp dụng sau khi cập nhật trạng thái thực tế của xe.
+🎯 Tăng khả năng hiển thị sản phẩm mới
