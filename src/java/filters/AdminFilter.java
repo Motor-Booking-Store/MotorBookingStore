@@ -28,7 +28,7 @@ public class AdminFilter implements Filter {
         HttpSession session = req.getSession(false);
         
 //// uncomment this for deployment
-        if (session == null || session.getAttribute("user") == null) {
+        if (session == null || session.getAttribute("admin") == null) {
 
             String context = req.getContextPath();
 

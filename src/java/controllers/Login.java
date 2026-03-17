@@ -76,11 +76,13 @@ public class Login extends HttpServlet {
 
         // ===== LOGIN SUCCESS =====
         HttpSession session = request.getSession();
-        session.setAttribute("user", user);
+        
 
         if (user.roleId == 1) {
+            session.setAttribute("admin", user);
             response.sendRedirect(UrlPaths.url(request, UrlPaths.ADMIN_HOME));
         } else {
+            session.setAttribute("user", user);
             response.sendRedirect(UrlPaths.url(request, UrlPaths.USER_HOME));
         }
     }
