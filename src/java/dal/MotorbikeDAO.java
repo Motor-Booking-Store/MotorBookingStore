@@ -6,6 +6,8 @@ import dto.MotorbikeDetailDTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
+import models.Motorbike;
 
 public class MotorbikeDAO extends DBContext {
 
@@ -289,5 +291,42 @@ public class MotorbikeDAO extends DBContext {
         }
 
         return brands;
+    }
+
+    public List<Motorbike> getAllNewMotorbike() {
+        List<Motorbike> list = new ArrayList<>();
+
+        String sql = "SELECT TOP 3 * FROM Motorbikes ORDER BY createdAt DESC";
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                Motorbike bike = new Motorbike(
+                        rs.getInt("bikeId"),
+                        rs.getString("bikeName"),
+                        rs.getString("brand"),
+                        rs.getString("model"),
+                        rs.getString("licensePlate"),
+                        rs.getDouble("pricePerDay"),
+                        rs.getInt("locationId"),
+                        rs.getString("description"),
+                        rs.getString("image"),
+                        rs.getString("status"),
+                        rs.getDate("createdAt"),
+                        rs.getDate("updatedAt")
+                );
+
+                list.add(bike);
+            }
+            
+            rs.close();
+            stm.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 }

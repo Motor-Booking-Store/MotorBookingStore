@@ -74,3 +74,19 @@ body{
 .about-box h3{
     margin-bottom:15px;
 }
+
+.newMotorbike{
+    padding:60px 100px;
+}
+
+.newMotorbike h2{
+    text-align:center;
+    font-size:32px;
+    margin-bottom:40px;
+}
+
+.section-divider{
+    height:2px;
+    background:#ddd;
+    margin:20px 100px;
+}
