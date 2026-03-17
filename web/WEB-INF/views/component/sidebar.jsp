@@ -44,7 +44,7 @@
 
         <button class="filter-btn" type="submit">Tìm kiếm</button>
 
-        <a href="${pageContext.request.contextPath}/user/MotorbikeList" class="filter-btn reset-btn">
+        <a href="${pageContext.request.contextPath}/user/MotorbikeList" class="reset-btn">
             Đặt lại
         </a>
 

@@ -102,7 +102,7 @@
                             </c:if>
 
                             <c:if test="${empty sessionScope.user}">
-                                <a href="${pageContext.request.contextPath}/user/Login" class="rent-btn" style="display:inline-block; text-decoration:none; text-align:center;">
+                                <a href="${pageContext.request.contextPath}/Login" class="rent-btn" style="display:inline-block; text-decoration:none; text-align:center;">
                                     Login to Rent
                                 </a>
                             </c:if>

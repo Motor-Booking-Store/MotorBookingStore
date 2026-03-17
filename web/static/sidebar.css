@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .sidebar{
     width:250px;
     background:#f5f5f5;
@@ -36,8 +40,28 @@
     font-weight:bold;
     border-radius:5px;
     cursor:pointer;
+    margin-bottom: 10px;
 }
 
 .filter-btn:hover{
+    background:#009acd;
+}
+
+.reset-btn {
+    display: block;   
+    width:100%;
+    padding:8px;
+    background:#00bfff;
+    border:none;
+    color:white;
+    font-weight:bold;
+    border-radius:5px;
+    cursor:pointer;
+    text-align: center; 
+    text-decoration: none; 
+}
+
+
+.reset-btn:hover{
     background:#009acd;
 }

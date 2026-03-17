@@ -19,15 +19,15 @@
 
             <div class="hero-content">
 
-                <h1>Rent Your Perfect Motorbike</h1>
+                <h1>Thuê Xe Máy Phù Hợp Với Bạn</h1>
 
                 <p>
-                    Discover the best motorbikes for your journey.
-                    Fast booking, affordable prices, and reliable service.
+                    Khám phá những chiếc xe máy tốt nhất cho hành trình của bạn.
+                    Đặt xe nhanh chóng, giá cả hợp lý và dịch vụ đáng tin cậy.
                 </p>
 
                 <a href="MotorbikeList" class="hero-btn">
-                    Browse Motorbikes
+                    Xem danh sách xe
                 </a>
 
             </div>
@@ -37,23 +37,23 @@
         <!-- ABOUT SECTION -->
         <section class="about">
 
-            <h2>Why Choose Us</h2>
+            <h2>Tại Sao Chọn Chúng Tôi</h2>
 
             <div class="about-container">
 
                 <div class="about-box">
-                    <h3>Affordable Price</h3>
-                    <p>We offer competitive rental prices for all types of motorbikes.</p>
+                    <h3>Giá Cả Hợp Lý</h3>
+                    <p>Chúng tôi cung cấp giá thuê cạnh tranh cho nhiều loại xe máy.</p>
                 </div>
 
                 <div class="about-box">
-                    <h3>Easy Booking</h3>
-                    <p>Book your favorite motorbike quickly with just a few clicks.</p>
+                    <h3>Đặt Xe Dễ Dàng</h3>
+                    <p>Đặt xe yêu thích của bạn nhanh chóng chỉ với vài thao tác.</p>
                 </div>
 
                 <div class="about-box">
-                    <h3>Trusted Service</h3>
-                    <p>Reliable motorbikes and professional customer support.</p>
+                    <h3>Dịch Vụ Uy Tín</h3>
+                    <p>Xe máy chất lượng và hỗ trợ khách hàng chuyên nghiệp.</p>
                 </div>
 
             </div>
