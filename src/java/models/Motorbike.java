@@ -20,6 +20,9 @@ public class Motorbike {
     private Date createdAt;
     private Date updatedAt;
 
+    public Motorbike() {
+    }
+
     public Motorbike(int bikeId, String bikeName, String brand, String model, String licensePlate, double pricePerDay, String description, String image, String status, Date createdAt, Date updatedAt) {
         this.bikeId = bikeId;
         this.bikeName = bikeName;
