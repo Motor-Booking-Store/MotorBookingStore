@@ -6,6 +6,7 @@ import dto.MotorbikeDetailDTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import models.Motorbike;
 
 public class MotorbikeDAO extends DBContext {
 
@@ -289,5 +290,62 @@ public class MotorbikeDAO extends DBContext {
         }
 
         return brands;
+    public boolean addMotorbike(Motorbike motor) {
+        String sql = "INSERT INTO Motorbikes\n"
+                + "(bikeName, brand, model, licensePlate, pricePerDay, locationId, description, image, status)\n"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+
+            stm.setString(1, motor.getBikeName());
+            stm.setString(2, motor.getBrand());
+            stm.setString(3, motor.getModel());
+            stm.setString(4, motor.getLicensePlate());
+            stm.setDouble(5, motor.getPricePerDay());
+            stm.setInt(6, motor.getLocationId());
+            stm.setString(7, motor.getDescription());
+            stm.setString(8, motor.getImage());
+            stm.setString(9, motor.getStatus());
+
+            return stm.executeUpdate(sql) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean isLicensePlateExist(String licensePlate) {
+        String sql = "SELECT 1 FROM Motorbikes WHERE licensePlate = ?";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, licensePlate);
+
+            ResultSet rs = ps.executeQuery();
+
+            return rs.next();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    
+    public boolean deleteMotorbike(int bikeId) {
+        String sql = "DELETE FROM Motorbikes WHERE bikeId = ?";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, bikeId);
+
+            return ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }

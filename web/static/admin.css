@@ -1,0 +1,97 @@
+body{
+    margin:0;
+    font-family: Arial;
+    background:#f4f6f9;
+}
+
+/* LAYOUT */
+
+.container{
+    display:flex;
+    height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:240px;
+    background:#2c3e50;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+/* PROFILE */
+
+.profile{
+    text-align:center;
+    padding:25px 10px;
+}
+
+.profile img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    border:3px solid white;
+}
+
+.role{
+    margin-top:10px;
+    font-weight:bold;
+}
+
+/* MENU */
+
+.menu{
+    margin-top:30px;
+}
+
+.menu a{
+    display:block;
+    padding:12px 20px;
+    color:white;
+    text-decoration:none;
+}
+
+.menu a:hover{
+    background:#34495e;
+}
+
+/* LOGOUT */
+
+.logout{
+    padding:20px;
+}
+
+.logout a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* MAIN CONTENT */
+
+.main{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+/* LOGO */
+
+.logo{
+    font-size:40px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+/* SLOGAN */
+
+.slogan{
+    color:gray;
+    font-size:18px;
+    text-align:center;
+}
