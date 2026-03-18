@@ -291,6 +291,8 @@ public class MotorbikeDAO extends DBContext {
         }
 
         return brands;
+    }
+    
     public boolean addMotorbike(Motorbike motor) {
         String sql = "INSERT INTO Motorbikes\n"
                 + "(bikeName, brand, model, licensePlate, pricePerDay, locationId, description, image, status)\n"

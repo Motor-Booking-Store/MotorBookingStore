@@ -33,6 +33,7 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Total Amount</th>
+                        <th>Address</th>
                         <th>Status</th>
                     </tr>
 
@@ -47,9 +48,7 @@
                             </td>
 
                             <td>
-
                                 <img src="${r.image}" alt="error"/>
-
                             </td>
 
                             <td>${r.startDate}</td>
@@ -58,6 +57,8 @@
 
                             <td>${r.totalAmount}</td>
 
+                            <<td>${r.address}</td>
+                            
                             <td>
                                 <c:choose>
 

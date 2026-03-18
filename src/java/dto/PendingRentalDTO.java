@@ -24,7 +24,7 @@ public class PendingRentalDTO {
     public PendingRentalDTO(int rentalId, int userId, int bikeId,
             String firstName, String lastName,
             String bikeName, Date startDate,
-            Date endDate, double totalAmount, String status, String image) {
+            Date endDate, double totalAmount, String status, String image, String address) {
 
         this.rentalId = rentalId;
         this.userId = userId;
@@ -40,7 +40,7 @@ public class PendingRentalDTO {
         this.status = status;
         
         this.image = image;
-        // this.address = address;
+        this.address = address;
     }
 
     public int getRentalId() { return rentalId; }

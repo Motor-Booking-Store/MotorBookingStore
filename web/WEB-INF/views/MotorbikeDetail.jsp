@@ -98,6 +98,7 @@
 
                                         <button type="submit" class="rent-btn">Xác nhận thuê</button>
                                     </form>
+                                    <div id="rentSummary" style="margin-top: 20px; display: none;"></div>
                                 </div>
                             </c:if>
 
@@ -116,13 +117,13 @@
                 <!-- nếu không có dữ liệu -->
                 <c:if test="${bike == null}">
                     <h2 style="text-align:center;">Motorbike not found</h2>
-            </c:if>
+                </c:if>
 
-            <!-- nếu không có dữ liệu -->
-            <c:if test="${bike == null}">
-                <h2 style="text-align:center;">Motorbike not found</h2>
-            </c:if>
-        </div>
+                <!-- nếu không có dữ liệu -->
+                <c:if test="${bike == null}">
+                    <h2 style="text-align:center;">Motorbike not found</h2>
+                </c:if>
+            </div>
 
             <div class="bike-reviews">
                 <div>
@@ -165,54 +166,48 @@
 
             <jsp:include page="./component/footer.jsp"/>
 
-
-            <script>
-                function toggleRentForm() {
-                    const form = document.getElementById("rentFormContainer");
-                    if (form.style.display === "none" || form.style.display === "") {
-                        form.style.display = "block";
-                    } else {
-                        form.style.display = "none";
-                    }
-                }
-
-                window.addEventListener("DOMContentLoaded", function () {
-                    const startInput = document.getElementById("startDate");
-                    const endInput = document.getElementById("endDate");
-
-                    const today = new Date();
-                    const tomorrow = new Date();
-                    tomorrow.setDate(today.getDate() + 1);
-
+            <script> 
+                function toggleRentForm() { 
+                    const form = document.getElementById("rentFormContainer"); 
+                    if (form.style.display === "none" || form.style.display === "") { 
+                        form.style.display = "block"; } 
+                    else { 
+                        form.style.display = "none"; 
+                    } 
+                } 
+                window.addEventListener("DOMContentLoaded", function () { 
+                    const startInput = document.getElementById("startDate"); 
+                    const endInput = document.getElementById("endDate"); 
+                    const today = new Date(); 
+                    const tomorrow = new Date(); 
+                    tomorrow.setDate(today.getDate() + 1); 
+                    
                     function formatDate(date) {
-                        const year = date.getFullYear();
-                        const month = String(date.getMonth() + 1).padStart(2, '0');
-                        const day = String(date.getDate()).padStart(2, '0');
-                        return year + "-" + month + "-" + day;
-                    }
-
-                    const todayStr = formatDate(today);
-                    const tomorrowStr = formatDate(tomorrow);
-
-                    startInput.min = todayStr;
-                    endInput.min = todayStr;
-
-                    if (!startInput.value) {
-                        startInput.value = todayStr;
-                    }
-
-                    if (!endInput.value) {
-                        endInput.value = tomorrowStr;
-                    }
-
-                    startInput.addEventListener("change", function () {
-                        endInput.min = startInput.value;
-
-                        if (endInput.value < startInput.value) {
-                            endInput.value = startInput.value;
-                        }
+                        const year = date.getFullYear(); 
+                        const month = String(date.getMonth() + 1).padStart(2, '0'); 
+                        const day = String(date.getDate()).padStart(2, '0'); 
+                        return year + "-" + month + "-" + day; 
+                    } 
+                    const todayStr = formatDate(today); 
+                    const tomorrowStr = formatDate(tomorrow); 
+                    startInput.min = todayStr; 
+                    endInput.min = todayStr; 
+                    
+                    if (!startInput.value) { 
+                        startInput.value = todayStr; 
+                    } 
+                    
+                    if (!endInput.value) { 
+                        endInput.value = tomorrowStr; 
+                    } 
+                    startInput.addEventListener("change", function () { 
+                        endInput.min = startInput.value; 
+                        if (endInput.value < startInput.value) { 
+                            endInput.value = startInput.value; 
+                        } 
                     });
                 });
+                        
             </script>
         </body>
     </html>

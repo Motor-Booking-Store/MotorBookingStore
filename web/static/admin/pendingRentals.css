@@ -1,0 +1,117 @@
+/* Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.filter-links {
+    margin-bottom: 15px;
+}
+
+.filter-link {
+    text-decoration: none;
+    color: #1d4ed8;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.filter-link:hover {
+    text-decoration: underline;
+}
+
+.page-title {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #111827;
+}
+
+.rental-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.rental-table th, .rental-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.rental-table th {
+    background-color: #1f2937;
+    color: #fff;
+}
+
+.rental-table tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.rental-table img {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.actions .btn {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 500;
+    width: 6rem;
+}
+
+.approve-btn {
+    background-color: #10b981;
+}
+
+.approve-btn:hover {
+    background-color: #059669;
+}
+
+.cancel-btn {
+    background-color: #ef4444;
+}
+
+.cancel-btn:hover {
+    background-color: #b91c1c;
+}
+
+.processed {
+    color: gray;
+    font-style: italic;
+}
+
+/* Responsive nhỏ */
+@media screen and (max-width: 768px) {
+    .rental-table th, .rental-table td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    .rental-table img {
+        width: 50px;
+        height: 30px;
+    }
+
+    .page-title {
+        font-size: 1.4em;
+    }
+}

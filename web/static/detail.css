@@ -278,37 +278,5 @@
     line-height: 1.5;
 }
 
-input[type="date"] {
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-    transition: all 0.3s ease;
-    font-family: inherit;
-}
-
-/* Khi focus */
-input[type="date"]:focus {
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
-}
-
-/* Hover nhẹ */
-input[type="date"]:hover {
-    border-color: #888;
-}
-
-/* Icon calendar (Chrome) */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    opacity: 0.7;
-    transition: 0.2s;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator:hover {
-    opacity: 1;
-}
 
 

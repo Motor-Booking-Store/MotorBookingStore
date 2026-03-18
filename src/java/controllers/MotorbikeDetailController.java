@@ -16,7 +16,7 @@ import utils.ViewPaths;
 import jakarta.servlet.http.HttpSession;
 import models.MotorbikeStatus;
 
-@WebServlet("/user/MotorbikeDetail")
+@WebServlet("/MotorbikeDetail")
 public class MotorbikeDetailController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -46,9 +46,7 @@ public class MotorbikeDetailController extends HttpServlet {
 
         if (bike != null && !MotorbikeStatus.Status.Maintenance.name().equalsIgnoreCase(bike.getStatus())) {
             boolean rentedToday = dao.isBikeRentedToday(id);
-            bike.setStatus(rentedToday
-                    ? MotorbikeStatus.Status.Rented.name()
-                    : MotorbikeStatus.Status.Available.name());
+            bike.setStatus(rentedToday ? MotorbikeStatus.Status.Rented.name() : MotorbikeStatus.Status.Available.name());
         }
 
         request.setAttribute("bike", bike);
@@ -74,7 +72,7 @@ public class MotorbikeDetailController extends HttpServlet {
         request.setAttribute("STATUS_AVAILABLE", MotorbikeStatus.Status.Available.name());
         request.setAttribute("STATUS_RENTED", MotorbikeStatus.Status.Rented.name());
         request.setAttribute("STATUS_MAINTENANCE", MotorbikeStatus.Status.Maintenance.name());
-
+        
         request.getRequestDispatcher(ViewPaths.MOTORBIKE_DETAIL).forward(request, response);
     }
 

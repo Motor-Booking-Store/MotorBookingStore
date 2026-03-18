@@ -15,7 +15,7 @@ public class UrlPaths {
     public static final String ADMIN_HOME = "/admin/Home";
     public static final String LOGIN = "/Login";
     
-    public static final String Id_MotorbikeDetail = "/user/MotorbikeDetail?id=";
+    public static final String Id_MotorbikeDetail = "/MotorbikeDetail?id=";
     
     public static final String PENDING_RENTALS = "/admin/pending-rentals";
     public static final String ADD_USER = "/admin/adduser";

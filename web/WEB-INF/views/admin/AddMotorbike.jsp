@@ -3,97 +3,97 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Add Motorbike</title>
-</head>
-<body>
+    <head>
+        <title>Add Motorbike</title>
+    </head>
+    <body>
 
-<h2>Add Motorbike</h2>
+        <h2>Add Motorbike</h2>
 
-<!-- Hiển thị lỗi -->
-<c:if test="${not empty error}">
-    <p style="color:red">${error}</p>
-</c:if>
+        <!-- Hiển thị lỗi -->
+        <c:if test="${not empty error}">
+            <p style="color:red">${error}</p>
+        </c:if>
 
-<form action="${pageContext.request.contextPath}/admin/AddMotorbike" method="post">
+        <form action="${pageContext.request.contextPath}/admin/AddMotorbike" method="post">
 
-    <table>
+            <table>
 
-        <tr>
-            <td>Bike Name:</td>
-            <td>
-                <input type="text" name="bikeName" value="${bikeName}">
-            </td>
-        </tr>
+                <tr>
+                    <td>Bike Name:</td>
+                    <td>
+                        <input type="text" name="bikeName" value="${bikeName}">
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Brand:</td>
-            <td>
-                <input type="text" name="brand" value="${brand}">
-            </td>
-        </tr>
+                <tr>
+                    <td>Brand:</td>
+                    <td>
+                        <input type="text" name="brand" value="${brand}">
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Model:</td>
-            <td>
-                <input type="text" name="model" value="${model}">
-            </td>
-        </tr>
+                <tr>
+                    <td>Model:</td>
+                    <td>
+                        <input type="text" name="model" value="${model}">
+                    </td>
+                </tr>
 
-        <tr>
-            <td>License Plate:</td>
-            <td>
-                <input type="text" name="licensePlate" value="${licensePlate}">
-            </td>
-        </tr>
+                <tr>
+                    <td>License Plate:</td>
+                    <td>
+                        <input type="text" name="licensePlate" value="${licensePlate}">
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Price Per Day:</td>
-            <td>
-                <input type="text" name="pricePerDay" value="${pricePerDay}">
-            </td>
-        </tr>
+                <tr>
+                    <td>Price Per Day:</td>
+                    <td>
+                        <input type="text" name="pricePerDay" value="${pricePerDay}">
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Location ID:</td>
-            <td>
-                <input type="text" name="locationId" value="${locationId}">
-            </td>
-        </tr>
+                <tr>
+                    <td>Location ID:</td>
+                    <td>
+                        <input type="text" name="locationId" value="${locationId}">
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Description:</td>
-            <td>
-                <textarea name="description">${description}</textarea>
-            </td>
-        </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td>
+                        <textarea name="description">${description}</textarea>
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Image URL:</td>
-            <td>
-                <input type="text" name="image" value="${image}">
-            </td>
-        </tr>
+                <tr>
+                    <td>Image URL:</td>
+                    <td>
+                        <input type="text" name="image" value="${image}">
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Status:</td>
-            <td>
-                <select name="status">
-                    <option value="Available" ${status == 'Available' ? 'selected' : ''}>Available</option>
-                    <option value="Rented" ${status == 'Rented' ? 'selected' : ''}>Rented</option>
-                </select>
-            </td>
-        </tr>
+                <tr>
+                    <td>Status:</td>
+                    <td>
+                        <select name="status">
+                            <option value="Available" ${status == 'Available' ? 'selected' : ''}>Available</option>
+                            <option value="Rented" ${status == 'Rented' ? 'selected' : ''}>Rented</option>
+                        </select>
+                    </td>
+                </tr>
 
-        <tr>
-            <td colspan="2">
-                <button type="submit">Add Motorbike</button>
-            </td>
-        </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Add Motorbike</button>
+                    </td>
+                </tr>
 
-    </table>
+            </table>
 
-</form>
+        </form>
 
-</body>
+    </body>
 </html>
