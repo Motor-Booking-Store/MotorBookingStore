@@ -99,11 +99,11 @@ public class CreateRentalController extends HttpServlet {
                 bikeId,
                 java.sql.Date.valueOf(startDate),
                 java.sql.Date.valueOf(endDate))) {
-            session.setAttribute("error", "This bike is already booked or has a pending request in the selected dates.");
+            session.setAttribute("error", "Xe này đã được đặt hoặc đang có yêu cầu chờ trong khoảng thời gian bạn chọn.");
         } else if (bikeDAO.countPendingRentalsByUser(user.getUserID()) >= SettingVar.MAX_RENT_PER_USER) {
-            session.setAttribute("error", "You already have 3 pending rental requests.");
+            session.setAttribute("error", "Bạn đã có 3 yêu cầu thuê xe đang chờ xử lý.");
         } else if (java.sql.Date.valueOf(endDate).before(java.sql.Date.valueOf(startDate))) {
-            session.setAttribute("error", "End date must be after or equal to start date.");
+            session.setAttribute("error", "Ngày trả phải sau hoặc bằng ngày thuê.");
         } else {
 //            request.setAttribute("success", "Rental logic check passed. Ready to create rental.");
             java.sql.Date sqlStartDate = java.sql.Date.valueOf(startDate);
@@ -121,9 +121,9 @@ public class CreateRentalController extends HttpServlet {
             );
 
             if (created) {
-                session.setAttribute("success", "Rental request created successfully. Waiting for admin approval.");
+                session.setAttribute("success", "Yêu cầu thuê xe đã được tạo thành công. Vui lòng chờ quản trị viên phê duyệt.");
             } else {
-                session.setAttribute("error", "Failed to create rental request.");
+                session.setAttribute("error", "Không thể tạo yêu cầu thuê xe.");
             }
         }
 

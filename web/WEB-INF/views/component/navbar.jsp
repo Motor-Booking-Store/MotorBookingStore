@@ -21,7 +21,7 @@
         <!-- nếu đã login -->
         <c:if test="${sessionScope.user != null}">
             <a href="${pageContext.request.contextPath}/Logout" class="logout-btn">Logout</a>
-            <img src="${pageContext.request.contextPath}${userDetail.avatar}" alt="avatar" class="nav-avatar"/>
+            <img src="${pageContext.request.contextPath}${sessionScope.user.avatar}" alt="avatar" class="nav-avatar"/>
             
         </c:if>
 

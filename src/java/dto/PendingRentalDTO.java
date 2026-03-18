@@ -19,6 +19,7 @@ public class PendingRentalDTO {
     private String status;
     
     private String image;
+    private String address;
 
     public PendingRentalDTO(int rentalId, int userId, int bikeId,
             String firstName, String lastName,
@@ -39,6 +40,7 @@ public class PendingRentalDTO {
         this.status = status;
         
         this.image = image;
+        // this.address = address;
     }
 
     public int getRentalId() { return rentalId; }
@@ -57,6 +59,14 @@ public class PendingRentalDTO {
 
     public String getImage() {
         return image;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }

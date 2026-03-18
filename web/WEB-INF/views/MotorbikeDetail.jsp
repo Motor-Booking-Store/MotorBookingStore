@@ -34,12 +34,12 @@
                         <h1 class="bike-title">${bike.bikeName}</h1>
 
                         <div class="bike-meta">
-                            <p><b>Brand:</b> ${bike.brand}</p>
-                            <p><b>Model:</b> ${bike.model}</p>
-                            <p><b>License Plate:</b> ${bike.licensePlate}</p>
-                            <p><b>Price Per Day:</b> ${bike.pricePerDay} VND</p>
+                            <p><b>Hãng:</b> ${bike.brand}</p>
+                            <p><b>Dòng xe:</b> ${bike.model}</p>
+                            <p><b>Biển số:</b> ${bike.licensePlate}</p>
+                            <p><b>Giá thuê/ngày:</b> ${bike.pricePerDay} VND</p>
                             <p>
-                                <b>Status:</b>
+                                <b>Trạng thái:</b>
                                 <span style="
                                       font-weight: bold;
                                       color:
@@ -52,16 +52,16 @@
 
                             <div class="bike-location">
 
-                                <h3>Location</h3>
+                                <h3>Địa điểm</h3>
 
-                                <p><b>Store:</b> ${bike.locationName}</p>
-                                <p><b>Address:</b> ${bike.address}</p>
+                                <p><b>Cửa hàng:</b> ${bike.locationName}</p>
+                                <p><b>Địa chỉ:</b> ${bike.address}</p>
 
                             </div>
 
                             <div class="bike-description">
 
-                                <h3>Description</h3>
+                                <h3>Mô tả</h3>
 
                                 <p>${bike.description}</p>
 
@@ -79,7 +79,7 @@
                                 </c:if>
 
                                 <button type="button" class="rent-btn" onclick="toggleRentForm()">
-                                    Rent Now
+                                    Thuê ngay
                                 </button>
 
                                 <div id="rentFormContainer" style="display:none; margin-top:20px;">
@@ -87,23 +87,23 @@
                                         <input type="hidden" name="bikeId" value="${bike.bikeId}">
 
                                         <div style="margin-bottom:10px;">
-                                            <label for="startDate"><b>Start Date:</b></label><br>
+                                            <label for="startDate"><b>Ngày thuê:</b></label><br>
                                             <input type="date" name="startDate" id="startDate" required>
                                         </div>
 
                                         <div style="margin-bottom:10px;">
-                                            <label for="endDate"><b>End Date:</b></label><br>
+                                            <label for="endDate"><b>Ngày trả:</b></label><br>
                                             <input type="date" name="endDate" id="endDate" required>
                                         </div>
 
-                                        <button type="submit" class="rent-btn">Confirm Rent</button>
+                                        <button type="submit" class="rent-btn">Xác nhận thuê</button>
                                     </form>
                                 </div>
                             </c:if>
 
                             <c:if test="${empty sessionScope.user}">
                                 <a href="${pageContext.request.contextPath}/Login" class="rent-btn" style="display:inline-block; text-decoration:none; text-align:center;">
-                                    Login to Rent
+                                    Đăng nhập để thuê xe
                                 </a>
                             </c:if>
 
