@@ -23,19 +23,22 @@ public class Motorbike {
     public Motorbike() {
     }
 
-    public Motorbike(int bikeId, String bikeName, String brand, String model, String licensePlate, double pricePerDay, String description, String image, String status, Date createdAt, Date updatedAt) {
+    public Motorbike(int bikeId, String bikeName, String brand, String model, String licensePlate, double pricePerDay, int locationId, String description, String image, String status, Date createdAt, Date updatedAt) {
         this.bikeId = bikeId;
         this.bikeName = bikeName;
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
         this.pricePerDay = pricePerDay;
+        this.locationId = locationId;
         this.description = description;
         this.image = image;
         this.status = status;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
+    
     
     public int getLocationId() {
         return locationId;

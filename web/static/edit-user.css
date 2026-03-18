@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+}
+
+/* Container */
+.container {
+    width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Back button */
+.back-btn {
+    margin-bottom: 20px;
+}
+
+.back-btn button {
+    padding: 8px 14px;
+    border: none;
+    background: #6c757d;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Grid 2 cột */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 25px;
+}
+
+/* Group input */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+/* Label */
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Input */
+.form-group input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Avatar */
+.avatar-preview {
+    text-align: center;
+}
+
+.avatar-preview img {
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    margin-top: 10px;
+}
+
+/* Button */
+.submit-btn {
+    grid-column: span 2;
+    text-align: center;
+}
+
+.submit-btn button {
+    padding: 12px 30px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-btn button:hover {
+    background: #0056b3;
+}

@@ -5,51 +5,81 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Edit User Detail</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/edit-user.css">
     </head>
     <body>
         <div>
+            <jsp:include page="./component/navbar.jsp"/>
+        </div>
+        <div class="container">
             <h2>Edit Your Profile</h2>
-            <a href="${pageContext.request.contextPath}/user/UserDetail">
-                <button type="button">Quay về</button>
-            </a>
-
+            <div class="back-btn">
+                <a href="${pageContext.request.contextPath}/user/UserDetail">
+                    <button type="button">Quay về</button>
+                </a>
+            </div>
             <form action="${pageContext.request.contextPath}/user/EditUserDetail" 
                   method="post" 
                   enctype="multipart/form-data">
 
-                <label for="userName">Username</label>
-                <input type="text" id="userName" name="userName" value="${user.userName}" required>
+                <div class="form-grid">
 
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" value="${user.firstName}">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="userName" value="${user.userName}" required>
+                    </div>
 
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" value="${user.lastName}">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" name="phoneNumber" value="${user.phoneNumber}">
+                    </div>
 
-                <label for="phoneNumber">Phone Number</label>
-                <input type="text" id="phoneNumber" name="phoneNumber" value="${user.phoneNumber}">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="firstName" value="${user.firstName}">
+                    </div>
 
-                <label for="licenseNumber">License Number</label>
-                <input type="text" id="licenseNumber" name="licenseNumber" value="${user.licenseNumber}">
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="lastName" value="${user.lastName}">
+                    </div>
 
-                <label for="address">Address</label>
-                <input type="text" id="address" name="address" value="${user.address}">
+                    <div class="form-group">
+                        <label>License Number</label>
+                        <input type="text" name="licenseNumber" value="${user.licenseNumber}">
+                    </div>
 
-                <!-- Keep old avatar if no new upload -->
-                <input type="hidden" name="oldAvatar" value="${user.avatar}">
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" name="address" value="${user.address}">
+                    </div>
 
-                <!-- Optional: show current avatar -->
-                <c:if test="${not empty user.avatar}">
-                    <p>Current Avatar:</p>
-                    <img src="${pageContext.request.contextPath}${user.avatar}" alt="Avatar" width="120">
-                    <br><br>
-                </c:if>
+                    <!-- Avatar full width -->
+                    <input type="hidden" name="oldAvatar" value="${user.avatar}">
 
-                <label for="avatar">Upload Avatar</label>
-                <input type="file" id="avatar" name="avatar" accept="image/*">
+                    <div class="form-group full">
+                        <c:if test="${not empty user.avatar}">
+                            <div class="avatar-preview">
+                                <p>Current Avatar:</p>
+                                <img src="${pageContext.request.contextPath}${user.avatar}" width="120">
+                            </div>
+                        </c:if>
+                    </div>
 
-                <button type="submit">Save Changes</button>
+                    <div class="form-group full">
+                        <label>Upload Avatar</label>
+                        <input type="file" name="avatar" accept="image/*">
+                    </div>
+
+                    <div class="submit-btn">
+                        <button type="submit">Save Changes</button>
+                    </div>
+
+                </div>
             </form>
+        </div>
+        <div>
+            <jsp:include page="./component/footer.jsp"/>
         </div>
     </body>
 </html>

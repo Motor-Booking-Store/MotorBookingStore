@@ -34,6 +34,14 @@
 
         </section>
 
+        <section class="newMotorbike">
+            <h2>Xe máy mới cập nhật</h2>
+            <jsp:include page="./component/NewMotorbike.jsp"/>
+        </section>
+        
+        <div class="section-divider"></div>
+
+
         <!-- ABOUT SECTION -->
         <section class="about">
 
@@ -61,6 +69,5 @@
         </section>
 
         <jsp:include page="./component/footer.jsp"/>
-
     </body>
 </html>
