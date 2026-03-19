@@ -4,30 +4,27 @@
 <html>
     <head>
         <title>My Rental History</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/rental-history.css">
     </head>
 
     <body>
         <jsp:include page="./component/navbar.jsp"/>
         <div class="layout-wrappe">
-            <div class="layout-top">
-                
-            </div>
             <div class="layout-main">
                 <h2>My Rental History</h2>
 
-                <!-- Status Filter -->
 
-                <a href="${pageContext.request.contextPath}/user/rental-history?status=all">All</a> |
-                <a href="${pageContext.request.contextPath}/user/rental-history?status=Pending">Pending</a> |
-                <a href="${pageContext.request.contextPath}/user/rental-history?status=Approved">Approved</a> |
-                <a href="${pageContext.request.contextPath}/user/rental-history?status=Completed">Completed</a> |
-                <a href="${pageContext.request.contextPath}/user/rental-history?status=Cancelled">Cancelled</a>
-
-                <br><br>
+                <div class="filter-bar">
+                    <a href="?status=all&userId=${sessionScope.user.userID}">All</a>
+                    <a href="?status=Pending&userId=${sessionScope.user.userID}">Pending</a>
+                    <a href="?status=Approved&userId=${sessionScope.user.userID}">Approved</a>
+                    <a href="?status=Completed&userId=${sessionScope.user.userID}">Completed</a>
+                    <a href="?status=Cancelled&userId=${sessionScope.user.userID}">Cancelled</a>
+                </div>
 
                 <h3>${currentStatus} Rentals</h3>
 
-                <table border="1">
+                <table border="1" class="rental-table">
 
                     <tr>
                         <th>Rental ID</th>
@@ -36,29 +33,22 @@
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Total Amount</th>
+                        <th>Address</th>
                         <th>Status</th>
                     </tr>
 
                     <c:forEach var="r" items="${pendingList}">
-
                         <tr>
-
                             <td>
-                                <a href="bike-detail?id=${r.rentalId}">
-                                    ${r.rentalId}
-                                </a>
+                                ${r.rentalId}
                             </td>
 
                             <td>
-                                <a href="bike-detail?id=${r.bikeId}">
-                                    ${r.bikeName}
-                                </a>
+                                ${r.bikeName}
                             </td>
 
                             <td>
-                                <a href="bike-detail?id=${r.bikeId}">
-                                    ${r.image}
-                                </a>
+                                <img src="${r.image}" alt="error"/>
                             </td>
 
                             <td>${r.startDate}</td>
@@ -67,8 +57,9 @@
 
                             <td>${r.totalAmount}</td>
 
+                            <<td>${r.address}</td>
+                            
                             <td>
-
                                 <c:choose>
 
                                     <c:when test="${r.status == 'Pending'}">
@@ -90,9 +81,7 @@
                                 </c:choose>
 
                             </td>
-
                         </tr>
-
                     </c:forEach>
 
                 </table>
@@ -101,6 +90,6 @@
                 </c:if>
             </div>
         </div>
-                <jsp:include page="./component/footer.jsp"/>
+        <jsp:include page="./component/footer.jsp"/>
     </body>
 </html>

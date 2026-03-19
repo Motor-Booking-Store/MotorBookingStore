@@ -20,7 +20,7 @@
         <!-- SEARCH BAR -->
         <div class="search-container">
 
-            <form action="${pageContext.request.contextPath}/user/MotorbikeList" method="get" class="search-form">
+            <form action="${pageContext.request.contextPath}/MotorbikeList" method="get" class="search-form">
 
                 <input type="text" name="bikeName" placeholder="Nhập tên xe máy ..." class="search-input">
 
@@ -46,7 +46,7 @@
 
                     <c:forEach var="b" items="${motorbikeList}">
 
-                        <a href="${pageContext.request.contextPath}/user/MotorbikeDetail?id=${b.bikeId}" class="bike-link">
+                        <a href="${pageContext.request.contextPath}/MotorbikeDetail?id=${b.bikeId}" class="bike-link">
 
                             <div class="bike-card">
 

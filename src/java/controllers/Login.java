@@ -74,15 +74,20 @@ public class Login extends HttpServlet {
             return;
         }
 
-        // ===== LOGIN SUCCESS =====
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
+        // ===== LOGIN SUCCESS (QUAN TRỌNG) =====
+        HttpSession oldSession = request.getSession(false);
+        if (oldSession != null) {
+            oldSession.invalidate(); // xoá session cũ
+        }
+        
+        HttpSession session = request.getSession(true); // tạo session mới
 
+        session.setAttribute("user", user);
+        session.setMaxInactiveInterval(30 * 60);
+        
         if (user.roleId == 1) {
-            session.setAttribute("admin", user);
             response.sendRedirect(UrlPaths.url(request, UrlPaths.ADMIN_HOME));
         } else {
-            session.setAttribute("user", user);
             response.sendRedirect(UrlPaths.url(request, UrlPaths.USER_HOME));
         }
     }

@@ -18,10 +18,6 @@ import models.User;
 import utils.UrlPaths;
 import utils.ViewPaths;
 
-/**
- *
- * @author nguye
- */
 @WebServlet("/user/UserDetail")
 public class UserDetailController extends HttpServlet {
 

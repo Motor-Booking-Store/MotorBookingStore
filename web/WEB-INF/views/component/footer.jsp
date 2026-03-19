@@ -5,33 +5,33 @@
 <footer class="footer">
     <div class="footer-container">
 
-        <!-- Shop Info -->
+        <!-- Thông tin cửa hàng -->
         <div class="footer-section">
-            <h3>Motorbike Rental</h3>
-            <p>High quality motorbike rental service.</p>
-            <p>Safe - Affordable - Convenient</p>
+            <h3>Thuê Xe Máy</h3>
+            <p>Dịch vụ cho thuê xe máy chất lượng cao.</p>
+            <p>An toàn - Giá tốt - Tiện lợi</p>
         </div>
 
-        <!-- Contact -->
+        <!-- Liên hệ -->
         <div class="footer-section">
-            <h3>Contact</h3>
-            <p>📍 Address: Ha Noi, Viet Nam</p>
-            <p>📞 Phone: 0123 456 789</p>
+            <h3>Liên hệ</h3>
+            <p>📍 Địa chỉ: Hà Nội, Việt Nam</p>
+            <p>📞 Điện thoại: 0123 456 789</p>
             <p>✉ Email: motorbike@gmail.com</p>
         </div>
 
-        <!-- Quick Links -->
+        <!-- Liên kết nhanh -->
         <div class="footer-section">
-            <h3>Quick Links</h3>
-            <a href="#">Home</a>
-            <a href="#">Motorbikes</a>
-            <a href="#">Contact</a>
-            <a href="#">About</a>
+            <h3>Liên kết nhanh</h3>
+            <a href="#">Trang chủ</a>
+            <a href="#">Xe máy</a>
+            <a href="#">Liên hệ</a>
+            <a href="#">Giới thiệu</a>
         </div>
 
     </div>
 
     <div class="footer-bottom">
-        © 2026 Motorbike Rental System | All Rights Reserved
+        © 2026 Hệ thống thuê xe máy | Bảo lưu mọi quyền
     </div>
 </footer>

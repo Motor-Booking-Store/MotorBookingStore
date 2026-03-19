@@ -4,6 +4,7 @@
  */
 package controllers;
 
+import dal.MotorbikeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,8 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import utils.UrlPaths;
+import java.util.List;
+import models.Motorbike;
 import utils.ViewPaths;
 
 @WebServlet("/user/Home")
@@ -38,13 +39,16 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        HttpSession session = request.getSession(false);
+//
+//        if (session == null || session.getAttribute("user") == null) {
+//            response.sendRedirect(UrlPaths.url(request, UrlPaths.LOGIN));
+//            return;
+//        }
+        MotorbikeDAO dao = new MotorbikeDAO();
+        List<Motorbike> list = dao.getAllNewMotorbike();
 
-        HttpSession session = request.getSession(false);
-
-        if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect(UrlPaths.url(request, UrlPaths.LOGIN));
-            return;
-        }
+        request.setAttribute("newBikes", list);
 
         request.getRequestDispatcher(ViewPaths.HOME).forward(request, response);
     }

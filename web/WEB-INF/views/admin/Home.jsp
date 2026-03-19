@@ -7,85 +7,57 @@
         <meta charset="UTF-8">
         <title>Admin Dashboard</title>
 
-        <link rel="stylesheet" 
-              href="${pageContext.request.contextPath}/static/admin.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/adminHome.css">
 
     </head>
 
     <body>
+        <jsp:include page="./component/adminNavbar.jsp"/>
 
-        <div class="container">
+        <div>
+            <!-- HERO SECTION -->
+            <section class="hero">
 
-            <!-- SIDEBAR -->
-            <div class="sidebar">
+                <div class="hero-content">
 
-                <div>
+                    <h1>Chào Mừng Quản Trị viên</h1>
+                    <p>Quản lý hệ thống xe máy, tài khoản người dùng và đơn thuê một cách dễ dàng và hiệu quả.</p>
 
-                    <div class="profile">
-
-                        <img src="${pageContext.request.contextPath}/images/avatar.png">
-
-                        <div>${sessionScope.account.userName}</div>
-
-                        <div class="role">
-                            <c:choose>
-                                <c:when test="${sessionScope.account.roleId == 1}">
-                                    Admin
-                                </c:when>
-                                <c:otherwise>
-                                    Customer
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-
-                    </div>
-
-                    <div class="menu">
-
-                        <a href="${pageContext.request.contextPath}/admin/UserManagement">
-                            Account Management
-                        </a>
-
-                        <a href="${pageContext.request.contextPath}/admin/MotorbikeManagement">
-                            Motorbike Management
-                        </a>
-
-                        <a href="${pageContext.request.contextPath}/admin/pending-rentals">
-                            Rental Management
-                        </a>
-
-                    </div>
-
-                </div>
-
-                <!-- LOGOUT -->
-
-                <div class="logout">
-
-                    <a href="${pageContext.request.contextPath}/Logout">
-                        Logout
+                    <a href="MotorbikeList" class="hero-btn">
+                        Xem danh sách xe
                     </a>
 
                 </div>
 
-            </div>
+            </section>
 
-            <!-- MAIN CONTENT -->
+            <!-- ABOUT SECTION -->
+            <section class="about">
 
-            <div class="main">
+                <h2>Các chức năng của admin</h2>
 
-                <div class="logo">
-                    Motorbike Rental
+                <div class="about-container">
+
+                    <div class="about-box">
+                        <h3>Quản lý tài khoản</h3>
+                        <p>Thêm, sửa, xóa và xem thông tin người dùng để đảm bảo hệ thống an toàn.</p>
+                    </div>
+
+                    <div class="about-box">
+                        <h3>Quản lý xe máy</h3>
+                        <p>Thêm xe mới, cập nhật thông tin xe và theo dõi tình trạng thuê của từng xe.</p>
+                    </div>
+
+                    <div class="about-box">
+                        <h3>Quản lý đơn thuê xe</h3>
+                         <p>Xem, phê duyệt hoặc từ chối các đơn thuê để đảm bảo trải nghiệm tốt cho khách hàng.</p>
+                    </div>
+
                 </div>
 
-                <div class="slogan">
-                    High quality motorbike rental service <br>
-                    Safe - Affordable - Convenient
-                </div>
-
-            </div>
-
+            </section>
         </div>
 
+        <jsp:include page="../component/footer.jsp"/>
     </body>
 </html>

@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="signup-link">
-                    <p>Already have an account? <a href="${pageContext.request.contextPath}/user/Login">Login</a></p>
+                    <p>Already have an account? <a href="${pageContext.request.contextPath}/Login">Login</a></p>
                 </div>
             </form>
         </div>

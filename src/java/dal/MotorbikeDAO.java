@@ -6,6 +6,7 @@ import dto.MotorbikeDetailDTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import models.Motorbike;
 
 public class MotorbikeDAO extends DBContext {
@@ -202,6 +203,96 @@ public class MotorbikeDAO extends DBContext {
         return list;
     }
 
+    public ArrayList<AllMotorbikeDTO> filterMotorbikes(String bikeName, String brand, Double minPrice, Double maxPrice, String status) {
+        ArrayList<AllMotorbikeDTO> list = new ArrayList<>();
+
+        StringBuilder sql = new StringBuilder("""
+        SELECT bikeId, bikeName, brand, model, licensePlate, pricePerDay, image, status
+        FROM Motorbikes
+        WHERE 1=1
+    """);
+
+        ArrayList<Object> params = new ArrayList<>();
+
+        if (bikeName != null && !bikeName.trim().isEmpty()) {
+            sql.append(" AND LOWER(bikeName) LIKE ?");
+            params.add("%" + bikeName.trim().toLowerCase() + "%");
+        }
+
+        if (brand != null && !brand.trim().isEmpty()) {
+            sql.append(" AND brand = ?");
+            params.add(brand.trim());
+        }
+
+        if (minPrice != null) {
+            sql.append(" AND pricePerDay >= ?");
+            params.add(minPrice);
+        }
+
+        if (maxPrice != null) {
+            sql.append(" AND pricePerDay <= ?");
+            params.add(maxPrice);
+        }
+
+        if (status != null && !status.trim().isEmpty()) {
+            sql.append(" AND status = ?");
+            params.add(status.trim());
+        }
+
+        try {
+            stm = connection.prepareStatement(sql.toString());
+
+            for (int i = 0; i < params.size(); i++) {
+                stm.setObject(i + 1, params.get(i));
+            }
+
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                AllMotorbikeDTO bike = new AllMotorbikeDTO(
+                        rs.getInt("bikeId"),
+                        rs.getString("bikeName"),
+                        rs.getString("brand"),
+                        rs.getString("model"),
+                        rs.getString("licensePlate"),
+                        rs.getDouble("pricePerDay"),
+                        rs.getString("image"),
+                        rs.getString("status")
+                );
+                list.add(bike);
+            }
+
+            rs.close();
+            stm.close();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return list;
+    }
+
+    public ArrayList<String> getAllBrands() {
+        ArrayList<String> brands = new ArrayList<>();
+        String sql = "SELECT DISTINCT brand FROM Motorbikes WHERE brand IS NOT NULL ORDER BY brand";
+
+        try {
+            stm = connection.prepareStatement(sql);
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                brands.add(rs.getString("brand"));
+            }
+
+            rs.close();
+            stm.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return brands;
+    }
+    
     public boolean addMotorbike(Motorbike motor) {
         String sql = "INSERT INTO Motorbikes\n"
                 + "(bikeName, brand, model, licensePlate, pricePerDay, locationId, description, image, status)\n"
@@ -319,5 +410,40 @@ public class MotorbikeDAO extends DBContext {
             e.printStackTrace();
         }
         return false;
+    public List<Motorbike> getAllNewMotorbike() {
+        List<Motorbike> list = new ArrayList<>();
+
+        String sql = "SELECT TOP 3 * FROM Motorbikes ORDER BY createdAt DESC";
+
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                Motorbike bike = new Motorbike(
+                        rs.getInt("bikeId"),
+                        rs.getString("bikeName"),
+                        rs.getString("brand"),
+                        rs.getString("model"),
+                        rs.getString("licensePlate"),
+                        rs.getDouble("pricePerDay"),
+                        rs.getInt("locationId"),
+                        rs.getString("description"),
+                        rs.getString("image"),
+                        rs.getString("status"),
+                        rs.getDate("createdAt"),
+                        rs.getDate("updatedAt")
+                );
+
+                list.add(bike);
+            }
+            
+            rs.close();
+            stm.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 }

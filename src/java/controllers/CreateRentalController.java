@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controllers;
 
 import dal.MotorbikeDAO;
@@ -16,25 +12,11 @@ import jakarta.servlet.http.HttpSession;
 import models.User;
 import utils.SettingVar;
 import utils.UrlPaths;
-import utils.ViewPaths;
 import dal.RentalDAO;
 
-/**
- *
- * @author testu
- */
 @WebServlet(name = "CreateRentalController", urlPatterns = {"/user/CreateRental"})
 public class CreateRentalController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -52,29 +34,12 @@ public class CreateRentalController extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -99,11 +64,11 @@ public class CreateRentalController extends HttpServlet {
                 bikeId,
                 java.sql.Date.valueOf(startDate),
                 java.sql.Date.valueOf(endDate))) {
-            session.setAttribute("error", "This bike is already booked or has a pending request in the selected dates.");
+            session.setAttribute("error", "Xe này đã được đặt hoặc đang có yêu cầu chờ trong khoảng thời gian bạn chọn.");
         } else if (bikeDAO.countPendingRentalsByUser(user.getUserID()) >= SettingVar.MAX_RENT_PER_USER) {
-            session.setAttribute("error", "You already have 3 pending rental requests.");
+            session.setAttribute("error", "Bạn đã có 3 yêu cầu thuê xe đang chờ xử lý.");
         } else if (java.sql.Date.valueOf(endDate).before(java.sql.Date.valueOf(startDate))) {
-            session.setAttribute("error", "End date must be after or equal to start date.");
+            session.setAttribute("error", "Ngày trả phải sau hoặc bằng ngày thuê.");
         } else {
 //            request.setAttribute("success", "Rental logic check passed. Ready to create rental.");
             java.sql.Date sqlStartDate = java.sql.Date.valueOf(startDate);
@@ -112,23 +77,16 @@ public class CreateRentalController extends HttpServlet {
             double pricePerDay = bikeDAO.getMotorbikeDetail(bikeId).getPricePerDay();
 
             RentalDAO rentalDAO = new RentalDAO();
-            boolean created = rentalDAO.createRentalRequest(
-                    user.getUserID(),
-                    bikeId,
-                    sqlStartDate,
-                    sqlEndDate,
-                    pricePerDay
-            );
-
+            boolean created = rentalDAO.createRentalRequest( user.getUserID(), bikeId, sqlStartDate, sqlEndDate, pricePerDay );
             if (created) {
-                session.setAttribute("success", "Rental request created successfully. Waiting for admin approval.");
+                session.setAttribute("success", "Yêu cầu thuê xe đã được tạo thành công. Vui lòng chờ quản trị viên phê duyệt.");
             } else {
-                session.setAttribute("error", "Failed to create rental request.");
+                session.setAttribute("error", "Không thể tạo yêu cầu thuê xe.");
             }
         }
 
-        //request.setAttribute("bike", bikeDAO.getMotorbikeDetail(bikeId));
+        
         response.sendRedirect(UrlPaths.url(request, UrlPaths.Id_MotorbikeDetail) + bikeId);
-    }// </editor-fold>
+    }
 
 }

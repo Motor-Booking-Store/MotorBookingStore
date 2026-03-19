@@ -27,11 +27,13 @@ public class RentalDAO {
                 + "r.endDate, "
                 + "r.totalAmount, "
                 + "r.status, "
-                + "m.image "
+                + "m.image, "
+                + "l.address "
                 + "FROM Rentals r "
                 + "JOIN Users u ON r.userID = u.userID "
                 + "JOIN RentalDetails rd ON r.rentalId = rd.rentalId "
-                + "JOIN Motorbikes m ON rd.bikeId = m.bikeId ";
+                + "JOIN Motorbikes m ON rd.bikeId = m.bikeId "
+                + "JOIN Locations AS l ON l.locationId = m.locationId ";
 
         if (status != null && !status.equalsIgnoreCase("all")) {
             sql += " WHERE r.status = ?";
@@ -65,7 +67,8 @@ public class RentalDAO {
                         rs.getDate("endDate"),
                         rs.getDouble("totalAmount"),
                         rs.getString("status"),
-                        rs.getString("image")
+                        rs.getString("image"),
+                        rs.getString("address")
                 );
 
                 list.add(dto);
@@ -94,11 +97,13 @@ public class RentalDAO {
                 + "r.endDate, "
                 + "r.totalAmount, "
                 + "r.status, "
-                + "m.image "
+                + "m.image, "
+                + "l.address "
                 + "FROM Rentals r "
                 + "JOIN Users u ON r.userID = u.userID "
                 + "JOIN RentalDetails rd ON r.rentalId = rd.rentalId "
                 + "JOIN Motorbikes m ON rd.bikeId = m.bikeId "
+                + "INNER JOIN Locations AS l ON l.locationId = m.locationId "
                 + "WHERE r.userID = ? ";
 
         if (status != null && !status.equalsIgnoreCase("all")) {
@@ -135,7 +140,8 @@ public class RentalDAO {
                         rs.getDate("endDate"),
                         rs.getDouble("totalAmount"),
                         rs.getString("status"),
-                        rs.getString("image")
+                        rs.getString("image"),
+                        rs.getString("address")
                 );
 
                 list.add(dto);

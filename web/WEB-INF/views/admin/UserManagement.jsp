@@ -6,108 +6,112 @@
     <head>
         <meta charset="UTF-8">
         <title>User Management</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/listUser.css">
+
     </head>
 
     <body>
+        <jsp:include page="./component/adminNavbar.jsp"/>
+        <div>
+            <h2>User Management</h2>
 
-        <h2>User Management</h2>
+            <!-- MESSAGE (nếu có) -->
+            <c:if test="${not empty message}">
+                <p style="color: green;">${message}</p>
+            </c:if>
+            <c:if test="${not empty error}">
+                <p style="color: red;">${error}</p>
+            </c:if>
 
-        <!-- MESSAGE (nếu có) -->
-        <c:if test="${not empty message}">
-            <p style="color: green;">${message}</p>
-        </c:if>
-        <c:if test="${not empty error}">
-            <p style="color: red;">${error}</p>
-        </c:if>
+            <!-- ADD USER -->
+            <a href="${pageContext.request.contextPath}/admin/adduser">
+                <button>Add New User</button>
+            </a>
 
-        <!-- ADD USER -->
-        <a href="${pageContext.request.contextPath}/admin/adduser">
-            <button>Add New User</button>
-        </a>
+            <br><br>
 
-        <br><br>
+            <!-- TABLE -->
+            <table border="1" cellpadding="10" cellspacing="0" width="100%">
 
-        <!-- TABLE -->
-        <table border="1" cellpadding="10" cellspacing="0" width="100%">
-
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Citizen ID</th>
-                    <th>Phone</th>
-                    <th>Role</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <!-- Nếu list rỗng -->
-                <c:if test="${empty accountList}">
+                <thead>
                     <tr>
-                        <td colspan="7" style="text-align:center;">
-                            No users found
-                        </td>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Citizen ID</th>
+                        <th>Phone</th>
+                        <th>Role</th>
+                        <th>Action</th>
                     </tr>
-                </c:if>
+                </thead>
 
-                <!-- Loop user -->
-                <c:forEach var="u" items="${accountList}">
-                    <tr>
+                <tbody>
 
-                        <td>${u.userID}</td>
+                    <!-- Nếu list rỗng -->
+                    <c:if test="${empty accountList}">
+                        <tr>
+                            <td colspan="7" style="text-align:center;">
+                                No users found
+                            </td>
+                        </tr>
+                    </c:if>
 
-                        <td>${u.userName}</td>
+                    <!-- Loop user -->
+                    <c:forEach var="u" items="${accountList}">
+                        <tr>
 
-                        <td>${u.email}</td>
+                            <td>${u.userID}</td>
 
-                        <td>${u.citizenId}</td>
+                            <td>${u.userName}</td>
 
-                        <td>${u.phoneNumber}</td>
+                            <td>${u.email}</td>
 
-                        <!-- ROLE -->
-                        <td>
-                            <c:choose>
-                                <c:when test="${u.roleId == 1}">
-                                    Admin
-                                </c:when>
-                                <c:otherwise>
-                                    Customer
-                                </c:otherwise>
-                            </c:choose>
-                        </td>
+                            <td>${u.citizenId}</td>
 
-                        <!-- ACTION -->
-                        <td>
+                            <td>${u.phoneNumber}</td>
 
-                            <!-- EDIT -->
-                            <a href="${pageContext.request.contextPath}/admin/EditUser?id=${u.userID}">
-                                <button>Edit</button>
-                            </a>
+                            <!-- ROLE -->
+                            <td>
+                                <c:choose>
+                                    <c:when test="${u.roleId == 1}">
+                                        Admin
+                                    </c:when>
+                                    <c:otherwise>
+                                        Customer
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
 
-                            <!-- DELETE -->
-                            <c:if test="${u.roleId != 1}">
-                                <a href="${pageContext.request.contextPath}/admin/DeleteUser?id=${u.userID}"
-                                   onclick="return confirm('Are you sure to delete this user?');">
-                                    <button>Delete</button>
+                            <!-- ACTION -->
+                            <td>
+
+                                <!-- EDIT -->
+                                <a href="${pageContext.request.contextPath}/admin/EditUser?id=${u.userID}">
+                                    <button>Edit</button>
                                 </a>
-                            </c:if>
 
-                            <!-- nếu là admin thì disable delete -->
-                            <c:if test="${u.roleId == 1}">
-                                <button disabled>Delete</button>
-                            </c:if>
+                                <!-- DELETE -->
+                                <c:if test="${u.roleId != 1}">
+                                    <a href="${pageContext.request.contextPath}/admin/DeleteUser?id=${u.userID}"
+                                       onclick="return confirm('Are you sure to delete this user?');">
+                                        <button>Delete</button>
+                                    </a>
+                                </c:if>
 
-                        </td>
+                                <!-- nếu là admin thì disable delete -->
+                                <c:if test="${u.roleId == 1}">
+                                    <button disabled>Delete</button>
+                                </c:if>
 
-                    </tr>
-                </c:forEach>
+                            </td>
 
-            </tbody>
+                        </tr>
+                    </c:forEach>
 
-        </table>
+                </tbody>
 
+            </table>
+        </div>
+        <jsp:include page="../component/footer.jsp"/>
     </body>
 </html>

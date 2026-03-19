@@ -1,0 +1,87 @@
+/* adminNavbar.css */
+
+/* Toàn bộ navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1f2937; /* màu xám đậm */
+    padding: 0 20px;
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Logo bên trái */
+.navbar-left .navbar-logo {
+    height: 40px;           /* giữ chiều cao 40px */
+    width: 40px;            /* cho logo thành hình vuông bo tròn */
+    border-radius: 50%;     /* bo tròn logo */
+    padding: 5px;           /* khoảng cách bên trong nếu muốn */
+    background-color: #fff; /* khung nền trắng xung quanh logo */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* đổ bóng nổi bật */
+    cursor: pointer;
+    object-fit: cover;      /* logo không bị méo */
+}
+
+/* Phần giữa: các link */
+.navbar-center {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-center .nav-link {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s, border-bottom 0.3s;
+    padding: 5px 0;
+}
+
+.navbar-center .nav-link:hover {
+    color: #3b82f6; /* màu xanh khi hover */
+    border-bottom: 2px solid #3b82f6;
+}
+
+/* Phần bên phải: avatar + login/logout */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Login/Logout link */
+.navbar-right .nav-action {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-right .nav-action:hover {
+    background-color: #3b82f6;
+    color: #fff;
+}
+
+/* Responsive: thu gọn menu nếu màn hình nhỏ */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 10px 20px;
+    }
+
+    .navbar-center {
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 10px 0;
+    }
+
+    .navbar-right {
+        gap: 10px;
+    }
+}
