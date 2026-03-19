@@ -205,16 +205,45 @@ public class AccountDAO extends DBContext {
     }
 
     public boolean deleteUser(int userID) {
-        String sql = "DELETE FROM Users WHERE userID = ?";
+        String deleteReviews = "DELETE FROM Reviews WHERE userId = ?";
+        String deleteRentalDetails = "DELETE FROM RentalDetails WHERE rentalId IN (SELECT rentalId FROM Rentals WHERE userID = ?)";
+        String deleteRentals = "DELETE FROM Rentals WHERE userID = ?";
+        String deleteUser = "DELETE FROM Users WHERE userID = ?";
 
         try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, userID);
+            connection.setAutoCommit(false);
 
-            return ps.executeUpdate() > 0;
+            try (
+                    PreparedStatement ps1 = connection.prepareStatement(deleteReviews); PreparedStatement ps2 = connection.prepareStatement(deleteRentalDetails); PreparedStatement ps3 = connection.prepareStatement(deleteRentals); PreparedStatement ps4 = connection.prepareStatement(deleteUser)) {
+                ps1.setInt(1, userID);
+                ps1.executeUpdate();
+
+                ps2.setInt(1, userID);
+                ps2.executeUpdate();
+
+                ps3.setInt(1, userID);
+                ps3.executeUpdate();
+
+                ps4.setInt(1, userID);
+                int rows = ps4.executeUpdate();
+
+                connection.commit();
+                return rows > 0;
+            }
 
         } catch (Exception e) {
+            try {
+                connection.rollback();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return false;
@@ -250,5 +279,5 @@ public class AccountDAO extends DBContext {
         }
 
         return false;
-    }   
+    }
 }
