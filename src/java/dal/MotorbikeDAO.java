@@ -220,7 +220,7 @@ public class MotorbikeDAO extends DBContext {
             stm.setString(8, motor.getImage());
             stm.setString(9, motor.getStatus());
 
-            return stm.executeUpdate(sql) > 0;
+            return stm.executeUpdate() > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -244,7 +244,7 @@ public class MotorbikeDAO extends DBContext {
 
         return false;
     }
-    
+
     public boolean deleteMotorbike(int bikeId) {
         String sql = "DELETE FROM Motorbikes WHERE bikeId = ?";
 
@@ -258,6 +258,66 @@ public class MotorbikeDAO extends DBContext {
             e.printStackTrace();
         }
 
+        return false;
+    }
+
+    public Motorbike getMotorbikeById(int id) {
+        String sql = "SELECT * FROM Motorbikes WHERE bikeId = ?";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Motorbike bike = new Motorbike();
+
+                bike.setBikeId(rs.getInt("bikeId"));
+                bike.setBikeName(rs.getString("bikeName"));
+                bike.setBrand(rs.getString("brand"));
+                bike.setModel(rs.getString("model"));
+                bike.setLicensePlate(rs.getString("licensePlate"));
+                bike.setPricePerDay(rs.getDouble("pricePerDay"));
+                bike.setLocationId(rs.getInt("locationId"));
+                bike.setDescription(rs.getString("description"));
+                bike.setImage(rs.getString("image"));
+                bike.setStatus(rs.getString("status"));
+
+                return bike;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean updateMotorbike(Motorbike bike) {
+        String sql = "UPDATE Motorbikes SET "
+                + "bikeName=?, brand=?, model=?, licensePlate=?, pricePerDay=?, "
+                + "locationId=?, description=?, image=?, status=? "
+                + "WHERE bikeId=?";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, bike.getBikeName());
+            ps.setString(2, bike.getBrand());
+            ps.setString(3, bike.getModel());
+            ps.setString(4, bike.getLicensePlate());
+            ps.setDouble(5, bike.getPricePerDay());
+            ps.setInt(6, bike.getLocationId());
+            ps.setString(7, bike.getDescription());
+            ps.setString(8, bike.getImage());
+            ps.setString(9, bike.getStatus());
+            ps.setInt(10, bike.getBikeId());
+
+            return ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 }

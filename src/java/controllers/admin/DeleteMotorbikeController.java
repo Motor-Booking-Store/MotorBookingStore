@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author pc
  */
-@WebServlet(name="DeleteMotorbikeController", urlPatterns={"/DeleteMotorbike"})
+@WebServlet("/admin/DeleteMotorbike")
 public class DeleteMotorbikeController extends HttpServlet {
    
     /** 
