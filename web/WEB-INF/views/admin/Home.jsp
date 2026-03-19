@@ -23,7 +23,7 @@
                     <h1>Chào Mừng Quản Trị viên</h1>
                     <p>Quản lý hệ thống xe máy, tài khoản người dùng và đơn thuê một cách dễ dàng và hiệu quả.</p>
 
-                    <a href="MotorbikeList" class="hero-btn">
+                    <a href="MotorbikeManagement" class="hero-btn">
                         Xem danh sách xe
                     </a>
 
