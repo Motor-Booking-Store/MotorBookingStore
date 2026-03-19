@@ -292,7 +292,7 @@ public class MotorbikeDAO extends DBContext {
 
         return brands;
     }
-    
+
     public boolean addMotorbike(Motorbike motor) {
         String sql = "INSERT INTO Motorbikes\n"
                 + "(bikeName, brand, model, licensePlate, pricePerDay, locationId, description, image, status)\n"
@@ -337,16 +337,41 @@ public class MotorbikeDAO extends DBContext {
     }
 
     public boolean deleteMotorbike(int bikeId) {
-        String sql = "DELETE FROM Motorbikes WHERE bikeId = ?";
+        String deleteReviews = "DELETE FROM Reviews WHERE bikeId = ?";
+        String deleteRentalDetails = "DELETE FROM RentalDetails WHERE bikeId = ?";
+        String deleteBike = "DELETE FROM Motorbikes WHERE bikeId = ?";
 
         try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, bikeId);
+            connection.setAutoCommit(false);
 
-            return ps.executeUpdate() > 0;
+            try (
+                    PreparedStatement ps1 = connection.prepareStatement(deleteReviews); PreparedStatement ps2 = connection.prepareStatement(deleteRentalDetails); PreparedStatement ps3 = connection.prepareStatement(deleteBike)) {
+                ps1.setInt(1, bikeId);
+                ps1.executeUpdate();
+
+                ps2.setInt(1, bikeId);
+                ps2.executeUpdate();
+
+                ps3.setInt(1, bikeId);
+                int rows = ps3.executeUpdate();
+
+                connection.commit();
+                return rows > 0;
+            }
 
         } catch (Exception e) {
+            try {
+                connection.rollback();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         return false;
@@ -439,7 +464,7 @@ public class MotorbikeDAO extends DBContext {
 
                 list.add(bike);
             }
-            
+
             rs.close();
             stm.close();
         } catch (Exception e) {
