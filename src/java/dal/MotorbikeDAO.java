@@ -410,6 +410,8 @@ public class MotorbikeDAO extends DBContext {
             e.printStackTrace();
         }
         return false;
+    }
+    
     public List<Motorbike> getAllNewMotorbike() {
         List<Motorbike> list = new ArrayList<>();
 
