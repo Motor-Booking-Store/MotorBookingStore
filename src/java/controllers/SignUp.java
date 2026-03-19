@@ -13,7 +13,7 @@ import models.User;
 import utils.UrlPaths;
 import utils.ViewPaths;
 
-@WebServlet("/user/SignUp")
+@WebServlet("/SignUp")
 public class SignUp extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

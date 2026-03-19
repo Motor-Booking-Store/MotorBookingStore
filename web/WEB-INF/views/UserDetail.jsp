@@ -49,7 +49,7 @@
                     <span class="value">${userDetail.roleName}</span>
                 </div>
                 <div class="info-row">
-                    <span class="label">Số bằng lái:</span>
+                    <span class="label">Bằng lái xe:</span>
                     <span class="value">${userDetail.licenseNumber}</span>
                 </div>
                 <div class="info-row">

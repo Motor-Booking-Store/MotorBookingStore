@@ -10,24 +10,23 @@
     </div>
 
     <div class="nav-menu">
-        <a href="${pageContext.request.contextPath}/user/Home">Trang chủ</a>
-        <a href="${pageContext.request.contextPath}/MotorbikeList">Danh sách xe máy</a>
-        <a href="${pageContext.request.contextPath}/user/rental-history?userId=${sessionScope.user.userID}">Lịch sử thuê xe</a>
-        <a href="${pageContext.request.contextPath}/user/UserDetail">Thông tin tài khoản</a>
+        <a href="${pageContext.request.contextPath}/user/Home">Trang Chủ</a>
+        <a href="${pageContext.request.contextPath}/MotorbikeList">Danh Sách Xe Máy</a>
+        <a href="${pageContext.request.contextPath}/user/rental-history?userId=${sessionScope.user.userID}">Lịch Sử Thuê Xe</a>
+        <a href="${pageContext.request.contextPath}/user/UserDetail">Thông Tin Tài Khoản</a>
     </div>
 
     <div class="nav-user">
 
-        <!-- nếu đã login -->
+        <!-- Nếu đã đăng nhập -->
         <c:if test="${sessionScope.user != null}">
-            <a href="${pageContext.request.contextPath}/Logout" class="logout-btn">Logout</a>
+            <a href="${pageContext.request.contextPath}/Logout" class="logout-btn">Đăng Xuất</a>
             <img src="${pageContext.request.contextPath}${sessionScope.user.avatar}" alt="avatar" class="nav-avatar"/>
-            
         </c:if>
 
-        <!-- nếu chưa login -->
+        <!-- Nếu chưa đăng nhập -->
         <c:if test="${sessionScope.user == null}">
-            <a href="${pageContext.request.contextPath}/Login" class="login-btn">Login</a>
+            <a href="${pageContext.request.contextPath}/Login" class="login-btn">Đăng Nhập</a>
         </c:if>
 
     </div>

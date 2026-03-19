@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit User Detail</title>
+        <title>Chỉnh Sửa Thông Tin Người Dùng</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/edit-user.css">
     </head>
     <body>
@@ -12,10 +12,10 @@
             <jsp:include page="./component/navbar.jsp"/>
         </div>
         <div class="container">
-            <h2>Edit Your Profile</h2>
+            <h2>Chỉnh Sửa Thông Tin Cá Nhân</h2>
             <div class="back-btn">
                 <a href="${pageContext.request.contextPath}/user/UserDetail">
-                    <button type="button">Quay về</button>
+                    <button type="button">Quay Về</button>
                 </a>
             </div>
             <form action="${pageContext.request.contextPath}/user/EditUserDetail" 
@@ -25,32 +25,32 @@
                 <div class="form-grid">
 
                     <div class="form-group">
-                        <label>Username</label>
+                        <label>Tên Đăng Nhập</label>
                         <input type="text" name="userName" value="${user.userName}" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Phone Number</label>
+                        <label>Số Điện Thoại</label>
                         <input type="text" name="phoneNumber" value="${user.phoneNumber}">
                     </div>
 
                     <div class="form-group">
-                        <label>First Name</label>
+                        <label>Tên</label>
                         <input type="text" name="firstName" value="${user.firstName}">
                     </div>
 
                     <div class="form-group">
-                        <label>Last Name</label>
+                        <label>Họ</label>
                         <input type="text" name="lastName" value="${user.lastName}">
                     </div>
 
                     <div class="form-group">
-                        <label>License Number</label>
+                        <label>Bằng Lái Xe</label>
                         <input type="text" name="licenseNumber" value="${user.licenseNumber}">
                     </div>
 
                     <div class="form-group">
-                        <label>Address</label>
+                        <label>Địa Chỉ</label>
                         <input type="text" name="address" value="${user.address}">
                     </div>
 
@@ -60,19 +60,19 @@
                     <div class="form-group full">
                         <c:if test="${not empty user.avatar}">
                             <div class="avatar-preview">
-                                <p>Current Avatar:</p>
+                                <p>Avatar Hiện Tại:</p>
                                 <img src="${pageContext.request.contextPath}${user.avatar}" width="120">
                             </div>
                         </c:if>
                     </div>
 
                     <div class="form-group full">
-                        <label>Upload Avatar</label>
+                        <label>Tải Lên Ảnh Đại Diện</label>
                         <input type="file" name="avatar" accept="image/*">
                     </div>
 
                     <div class="submit-btn">
-                        <button type="submit">Save Changes</button>
+                        <button type="submit">Lưu Thay Đổi</button>
                     </div>
 
                 </div>
