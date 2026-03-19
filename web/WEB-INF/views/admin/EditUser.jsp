@@ -3,36 +3,11 @@
 <html>
     <head>
         <title>Edit User</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/editUser.css">
     </head>
     <body>
+        <jsp:include page="./component/adminNavbar.jsp"/>
         <div class="container">
-
-            <!-- SIDEBAR -->
-            <div class="sidebar">
-                <div class="profile">
-                    <img src="https://via.placeholder.com/80" alt="avatar">
-                    <h3>${sessionScope.account.userName}</h3>
-                    <p>
-                    <c:choose>
-                        <c:when test="${sessionScope.account.roleId == 1}">
-                            Admin
-                        </c:when>
-                        <c:otherwise>
-                            Customer
-                        </c:otherwise>
-                    </c:choose>
-                    </p>
-                </div>
-
-                <ul class="menu">
-                    <li><a href="${pageContext.request.contextPath}/admin/Home">Dashboard</a></li>
-                    <li><a href="${pageContext.request.contextPath}/admin/UserManagement">User Management</a></li>
-                </ul>
-
-                <div class="logout">
-                    <a href="${pageContext.request.contextPath}/Logout">Logout</a>
-                </div>
-            </div>
 
             <!-- MAIN CONTENT -->
             <div class="main-content">
@@ -96,7 +71,7 @@
                         <label>Role</label>
                         <select name="roleId">
                             <option value="1" ${user.roleId == 1 ? "selected" : ""}>Admin</option>
-                            <option value="3" ${user.roleId == 2 ? "selected" : ""}>Customer</option>
+                            <option value="3" ${user.roleId == 3 ? "selected" : ""}>Customer</option>
                         </select>
                     </div>
 
@@ -110,7 +85,7 @@
                 </form>
             </div>
 
-        </div>
-
+        </div>  
+        <jsp:include page="../component/footer.jsp"/>
     </body>
 </html>

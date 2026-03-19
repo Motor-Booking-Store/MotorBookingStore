@@ -5,9 +5,10 @@
 <html>
     <head>
         <title>Motorbike Management</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/listMotorbike.css">
     </head>
     <body>
-
+        <jsp:include page="./component/adminNavbar.jsp"/>
         <h2>Motorbike Management</h2>
 
         <!-- Nút Add -->
@@ -57,6 +58,6 @@
             </c:forEach>
 
         </table>
-
+        <jsp:include page="../component/footer.jsp"/>
     </body>
 </html>

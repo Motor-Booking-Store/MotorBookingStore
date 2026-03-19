@@ -25,7 +25,7 @@
 
             <!-- ADD USER -->
             <a href="${pageContext.request.contextPath}/admin/adduser">
-                <button>Add New User</button>
+                <button class="btn-add">Add New User</button>
             </a>
 
             <br><br>
@@ -87,14 +87,14 @@
 
                                 <!-- EDIT -->
                                 <a href="${pageContext.request.contextPath}/admin/EditUser?id=${u.userID}">
-                                    <button>Edit</button>
+                                    <button class="btn-edit">Edit</button>
                                 </a>
 
                                 <!-- DELETE -->
                                 <c:if test="${u.roleId != 1}">
                                     <a href="${pageContext.request.contextPath}/admin/DeleteUser?id=${u.userID}"
                                        onclick="return confirm('Are you sure to delete this user?');">
-                                        <button>Delete</button>
+                                        <button class="btn-delete">Delete</button>
                                     </a>
                                 </c:if>
 

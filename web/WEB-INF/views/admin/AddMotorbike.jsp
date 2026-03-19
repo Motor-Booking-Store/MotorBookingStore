@@ -5,9 +5,10 @@
 <html>
     <head>
         <title>Add Motorbike</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/addMotorbike.css">
     </head>
     <body>
-
+        <jsp:include page="./component/adminNavbar.jsp"/>
         <h2>Add Motorbike</h2>
 
         <!-- Hiển thị lỗi -->
@@ -98,6 +99,6 @@
             </table>
 
         </form>
-
+    <jsp:include page="../component/footer.jsp"/>
     </body>
 </html>

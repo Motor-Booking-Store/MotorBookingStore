@@ -1,0 +1,105 @@
+body {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f6fa;
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    margin: 30px 0 20px;
+    color: #333;
+}
+
+/* Error */
+p[style*="color:red"] {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* Form container */
+form {
+    width: 500px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Table layout */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Label column */
+td:first-child {
+    font-weight: 600;
+    color: #555;
+    padding: 10px 0;
+    width: 40%;
+}
+
+/* Input column */
+td:last-child {
+    padding: 8px 0;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* Focus effect */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+/* Textarea resize */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* File input label */
+label[for="image"] {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover */
+button[type="submit"]:hover {
+    background: #0056b3;
+}

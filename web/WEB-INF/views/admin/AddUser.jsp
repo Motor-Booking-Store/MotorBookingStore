@@ -1,115 +1,91 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Add User</title>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/addUser.css">
     </head>
 
     <body>
+        <jsp:include page="./component/adminNavbar.jsp"/>
 
-        <h2>Add New User</h2>
+        <div class="container">
+            <div class="form-card">
+                <h2>Add New User</h2>
 
-        <!-- HIỂN THỊ LỖI -->
-        <c:if test="${not empty error}">
-            <p style="color:red">${error}</p>
-        </c:if>
+                <!-- HIỂN THỊ LỖI -->
+                <c:if test="${not empty error}">
+                    <p class="error">${error}</p>
+                </c:if>
 
-        <form action="adduser" method="POST">
+                <form action="adduser" method="POST">
 
-            <table border="1" cellpadding="5">
-
-                <tr>
-                    <td>Username</td>
-                    <td>
+                    <div class="form-group">
+                        <label>Username</label>
                         <input type="text" name="username" value="${username}">
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td>Password</td>
-                    <td>
+                    <div class="form-group">
+                        <label>Password</label>
                         <input type="password" name="password">
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td>Email</td>
-                    <td>
+                    <div class="form-group">
+                        <label>Email</label>
                         <input type="text" name="email" value="${email}">
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td>Citizen ID</td>
-                    <td>
+                    <div class="form-group">
+                        <label>Citizen ID</label>
                         <input type="text" name="citizen_id" value="${citizen_id}">
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td>First Name</td>
-                    <td>
+                    <div class="form-group">
+                        <label>First Name</label>
                         <input type="text" name="firstname" value="${firstname}">
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td>Last Name</td>
-                    <td>
+                    <div class="form-group">
+                        <label>Last Name</label>
                         <input type="text" name="lastname" value="${lastname}">
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td>Phone Number</td>
-                    <td>
+                    <div class="form-group">
+                        <label>Phone Number</label>
                         <input type="text" name="phonenumber" value="${phonenumber}">
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td>License Number</td>
-                    <td>
+                    <div class="form-group">
+                        <label>License Number</label>
                         <input type="text" name="licensenumber" value="${licensenumber}">
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td>Address</td>
-                    <td>
+                    <div class="form-group">
+                        <label>Address</label>
                         <input type="text" name="address" value="${address}">
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td>Bank Number</td>
-                    <td>
+                    <div class="form-group">
+                        <label>Bank Number</label>
                         <input type="text" name="banknumber" value="${banknumber}">
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td>Role</td>
-                    <td>
+                    <div class="form-group">
+                        <label>Role</label>
                         <select name="roleId">
                             <option value="1">Admin</option>
                             <option value="3">Customer</option>
                         </select>
-                    </td>
-                </tr>
+                    </div>
 
-                <tr>
-                    <td colspan="2" align="center">
-                        <input type="submit" value="Add User">
-                    </td>
-                </tr>
+                    <button type="submit" class="btn-submit">Add User</button>
+                </form>
+            </div>
+        </div>
 
-            </table>
-
-        </form>
-
+        <jsp:include page="../component/footer.jsp"/>
     </body>
 </html>

@@ -5,28 +5,10 @@
 <html>
     <head>
         <title>Edit Motorbike</title>
-        <style>
-            body {
-                font-family: Arial;
-            }
-            table {
-                border-spacing: 10px;
-            }
-            input, textarea, select {
-                width: 250px;
-                padding: 5px;
-            }
-            img {
-                margin-top: 10px;
-                border: 1px solid #ccc;
-            }
-            .error {
-                color: red;
-            }
-        </style>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/editMotorbike.css">
     </head>
     <body>
-
+        <jsp:include page="./component/adminNavbar.jsp"/>
         <h2>Edit Motorbike</h2>
 
         <!-- ERROR -->
@@ -134,6 +116,6 @@
             </table>
 
         </form>
-
+    <jsp:include page="../component/footer.jsp"/>
     </body>
 </html>
