@@ -1,77 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-
 package controllers.admin;
 
 import dal.MotorbikeDAO;
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 import models.Motorbike;
 import utils.ViewPaths;
 
-/**
- *
- * @author pc
- */
-@WebServlet("/admin/AddMotorbike")
-public class AddMotorbikeController extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddMotorbikeController</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddMotorbikeController at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    } 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+@WebServlet("/admin/AddMotorbike")
+@MultipartConfig
+public class AddMotorbikeController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        request.getRequestDispatcher(ViewPaths.ADD_MOTORBIKE).forward(request, response);
-    } 
+            throws ServletException, IOException {
 
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+        request.getRequestDispatcher(ViewPaths.ADD_MOTORBIKE).forward(request, response);
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // ===== 1. GET DATA =====
         String bikeName = request.getParameter("bikeName");
         String brand = request.getParameter("brand");
         String model = request.getParameter("model");
@@ -79,13 +35,12 @@ public class AddMotorbikeController extends HttpServlet {
         String priceStr = request.getParameter("pricePerDay");
         String locationStr = request.getParameter("locationId");
         String description = request.getParameter("description");
-        String image = request.getParameter("image");
         String status = request.getParameter("status");
 
         MotorbikeDAO dao = new MotorbikeDAO();
-
         String error = null;
 
+        // ===== 2. VALIDATE =====
         if (bikeName == null || bikeName.trim().isEmpty()) {
             error = "Bike name is required";
         } else if (brand == null || brand.trim().isEmpty()) {
@@ -103,6 +58,7 @@ public class AddMotorbikeController extends HttpServlet {
 
         try {
             pricePerDay = Double.parseDouble(priceStr);
+            if (pricePerDay <= 0) error = "Price must be > 0";
         } catch (Exception e) {
             error = "Invalid price";
         }
@@ -117,6 +73,35 @@ public class AddMotorbikeController extends HttpServlet {
             error = "License plate already exists";
         }
 
+        // ===== 3. HANDLE IMAGE =====
+        String image = null;
+
+        try {
+            Part imagePart = request.getPart("imageUpload");
+
+            if (imagePart != null && imagePart.getSize() > 0) {
+
+                String originalFileName = Paths.get(imagePart.getSubmittedFileName())
+                        .getFileName().toString();
+
+                String fileName = System.currentTimeMillis() + "_" + originalFileName;
+
+                String uploadPath = getServletContext().getRealPath("/images/motorbike");
+
+                File dir = new File(uploadPath);
+                if (!dir.exists()) dir.mkdirs();
+
+                imagePart.write(uploadPath + File.separator + fileName);
+
+                image = "/images/motorbike/" + fileName;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            error = "Upload image failed";
+        }
+
+        // ===== 4. IF ERROR → BACK TO FORM =====
         if (error != null) {
 
             request.setAttribute("error", error);
@@ -128,13 +113,14 @@ public class AddMotorbikeController extends HttpServlet {
             request.setAttribute("pricePerDay", priceStr);
             request.setAttribute("locationId", locationStr);
             request.setAttribute("description", description);
-            request.setAttribute("image", image);
             request.setAttribute("status", status);
+            request.setAttribute("image", image);
 
             request.getRequestDispatcher(ViewPaths.ADD_MOTORBIKE).forward(request, response);
             return;
         }
 
+        // ===== 5. INSERT DB =====
         Motorbike bike = new Motorbike();
 
         bike.setBikeName(bikeName);
@@ -149,16 +135,7 @@ public class AddMotorbikeController extends HttpServlet {
 
         dao.addMotorbike(bike);
 
+        // ===== 6. REDIRECT =====
         response.sendRedirect("MotorbikeManagement");
     }
-
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

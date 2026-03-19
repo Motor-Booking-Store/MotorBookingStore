@@ -15,7 +15,9 @@
             <p style="color:red">${error}</p>
         </c:if>
 
-        <form action="${pageContext.request.contextPath}/admin/AddMotorbike" method="post">
+        <form action="${pageContext.request.contextPath}/admin/AddMotorbike" 
+              method="post" 
+              enctype="multipart/form-data">
 
             <table>
 
@@ -71,7 +73,9 @@
                 <tr>
                     <td>Image URL:</td>
                     <td>
-                        <input type="text" name="image" value="${image}">
+                        <input type="hidden" name="image" value="${motorbike.image}">
+                        <label for="image">Upload Image</label>
+                        <input type="file" id="image" name="imageUpload" accept="image/*">
                     </td>
                 </tr>
 
