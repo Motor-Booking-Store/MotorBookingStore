@@ -11,6 +11,7 @@ import utils.ViewPaths;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import dal.LocationDAO;
 
 @WebServlet("/admin/AddMotorbike")
 @MultipartConfig
@@ -19,7 +20,9 @@ public class AddMotorbikeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        LocationDAO locationDAO = new LocationDAO();
+        
+        request.setAttribute("locationList", locationDAO.getAllLocations());
         request.getRequestDispatcher(ViewPaths.ADD_MOTORBIKE).forward(request, response);
     }
 

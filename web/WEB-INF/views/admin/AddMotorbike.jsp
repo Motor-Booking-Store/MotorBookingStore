@@ -58,9 +58,13 @@
                 </tr>
 
                 <tr>
-                    <td>Location ID:</td>
+                    <td>Location:</td>
                     <td>
-                        <input type="text" name="locationId" value="${locationId}">
+                        <select name="locationId">
+                            <c:forEach var="l" items="${locationList}">
+                                <option value="${l.locationId}">${l.locationName}</option>
+                            </c:forEach>
+                        </select>
                     </td>
                 </tr>
 

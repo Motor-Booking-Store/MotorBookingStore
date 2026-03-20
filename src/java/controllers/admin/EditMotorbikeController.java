@@ -1,5 +1,6 @@
 package controllers.admin;
 
+import dal.LocationDAO;
 import dal.MotorbikeDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -20,12 +21,18 @@ public class EditMotorbikeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int bikeId = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("id"));
 
-        MotorbikeDAO dao = new MotorbikeDAO();
-        Motorbike bike = dao.getMotorbikeById(bikeId);
+        MotorbikeDAO bikeDAO = new MotorbikeDAO();
+        LocationDAO locationDAO = new LocationDAO();
 
+        // lấy bike detail
+        Motorbike bike = bikeDAO.getMotorbikeById(id);
+
+        // lấy list location
         request.setAttribute("bike", bike);
+        request.setAttribute("locationList", locationDAO.getAllLocations());
+
         request.getRequestDispatcher(ViewPaths.EDIT_MOTORBIKE).forward(request, response);
     }
 
@@ -81,7 +88,9 @@ public class EditMotorbikeController extends HttpServlet {
             String uploadPath = getServletContext().getRealPath("/images/motorbike");
 
             File dir = new File(uploadPath);
-            if (!dir.exists()) dir.mkdirs();
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
 
             imagePart.write(uploadPath + File.separator + fileName);
 

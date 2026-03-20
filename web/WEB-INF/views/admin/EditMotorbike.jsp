@@ -62,9 +62,13 @@
                 </tr>
 
                 <tr>
-                    <td>Location ID:</td>
+                    <td>Location:</td>
                     <td>
-                        <input type="number" name="locationId" value="${bike.locationId}" required>
+                        <select name="locationId">
+                            <c:forEach var="l" items="${locationList}">
+                                <option value="${l.locationId}">${l.locationName}</option>
+                            </c:forEach>
+                        </select>
                     </td>
                 </tr>
 
@@ -116,6 +120,6 @@
             </table>
 
         </form>
-    <jsp:include page="../component/footer.jsp"/>
+        <jsp:include page="../component/footer.jsp"/>
     </body>
 </html>
