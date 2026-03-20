@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import models.MotorbikeStatus;
 import utils.ViewPaths;
 
-@WebServlet("/MotorbikeList")
+@WebServlet("/user/MotorbikeList")
 public class MotorbikeListController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
