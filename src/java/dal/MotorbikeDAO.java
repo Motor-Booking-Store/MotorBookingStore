@@ -13,6 +13,23 @@ public class MotorbikeDAO extends DBContext {
 
     PreparedStatement stm;
     ResultSet rs;
+    
+    public void updateMotorbikeStatus(int bikeId, String status) {
+        String sql = "UPDATE Motorbikes SET status = ? WHERE bikeId = ?";
+
+        try {
+            // Sử dụng connection kế thừa từ DBContext
+            stm = connection.prepareStatement(sql);
+            stm.setString(1, status);
+            stm.setInt(2, bikeId);
+
+            stm.executeUpdate(); // thực hiện update
+
+            stm.close(); // đóng PreparedStatement
+        } catch (Exception e) {
+            System.out.println("Error in updateMotorbikeStatus: " + e.getMessage());
+        }
+    }
 
     public ArrayList<AllMotorbikeDTO> getAllMotorbikes() {
 

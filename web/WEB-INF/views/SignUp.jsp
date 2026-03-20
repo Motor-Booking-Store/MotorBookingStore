@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Sign Up</title>
+        <title>Đăng Ký</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/signup.css">
     </head>
     <body>
@@ -13,7 +13,7 @@
 
         <div class="content-wrapper">
             <form action="${pageContext.request.contextPath}/user/SignUp" method="POST" class="signup-form">
-                <h2>Sign Up</h2>
+                <h2>Đăng Ký</h2>
 
                 <c:if test="${not empty error}">
                     <div class="error-message">${error}</div>
@@ -22,11 +22,11 @@
                 <!-- Row 1 -->
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Username</label>
+                        <label>Tên Đăng Nhập</label>
                         <input type="text" name="username" value="${username}" required>
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
+                        <label>Mật Khẩu</label>
                         <input type="password" name="password" required>
                     </div>
                 </div>
@@ -46,11 +46,11 @@
                 <!-- Row 3 -->
                 <div class="form-row">
                     <div class="form-group">
-                        <label>First Name</label>
+                        <label>Tên</label>
                         <input type="text" name="firstname" value="${firstname}" required>
                     </div>
                     <div class="form-group">
-                        <label>Last Name</label>
+                        <label>Họ</label>
                         <input type="text" name="lastname" value="${lastname}" required>
                     </div>
                 </div>
@@ -58,31 +58,31 @@
                 <!-- Row 4 -->
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Phone Number</label>
+                        <label>Số Điện Thoại</label>
                         <input type="text" name="phonenumber" value="${phonenumber}" required>
                     </div>
                     <div class="form-group">
-                        <label>License Number</label>
+                        <label>Bằng Lái Xe</label>
                         <input type="text" name="licensenumber" value="${licensenumber}" required>
                     </div>
                 </div>
 
                 <!-- Row 5: full width -->
                 <div class="form-group">
-                    <label>Address</label>
+                    <label>Địa Chỉ</label>
                     <input type="text" name="address" value="${address}" required>
                 </div>
                 <div class="form-group">
-                    <label>Bank Number</label>
+                    <label>Số Tài Khoản Ngân Hàng</label>
                     <input type="text" name="banknumber" value="${banknumber}" required>
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Sign Up">
+                    <input type="submit" value="Đăng Ký">
                 </div>
 
                 <div class="signup-link">
-                    <p>Already have an account? <a href="${pageContext.request.contextPath}/Login">Login</a></p>
+                    <p>Đã có tài khoản? <a href="${pageContext.request.contextPath}/Login">Đăng Nhập</a></p>
                 </div>
             </form>
         </div>

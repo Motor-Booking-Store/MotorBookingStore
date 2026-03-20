@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import models.Rental;
 import models.RentalStatus;
 
 public class RentalDAO {
@@ -255,5 +256,90 @@ public class RentalDAO {
         }
 
         return 0;
+    }
+
+    public Rental getRentalById(int rentalId) {
+        String sql = "SELECT * FROM Rentals WHERE rentalId = ?";
+
+        try {
+            DBContext db = new DBContext();
+            Connection con = db.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, rentalId); // set parameter
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                Rental rental = new Rental(
+                        rs.getInt("rentalId"),
+                        rs.getDate("rentalDate"),
+                        rs.getDate("startDate"),
+                        rs.getDate("endDate"),
+                        rs.getString("status"),
+                        rs.getDouble("totalAmount"),
+                        rs.getInt("userID"),
+                        rs.getDate("createdAt"),
+                        rs.getBoolean("isPaid")
+                );
+
+                return rental;
+            }
+
+            rs.close();
+            ps.close();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void updateStatus(int rentalId, String status) {
+        String sql = "UPDATE Rentals SET status = ? WHERE rentalId = ?";
+
+        try {
+            DBContext db = new DBContext();
+            Connection con = db.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, status);
+            ps.setInt(2, rentalId);
+
+            ps.executeUpdate(); // thực hiện update
+            ps.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Integer> getBikeIdsByRentalId(int rentalId) {
+        List<Integer> bikeIds = new ArrayList<>();
+        String sql = "SELECT bikeId FROM RentalDetails WHERE rentalId = ?";
+
+        try {
+            DBContext db = new DBContext();
+            Connection con = db.getConnection();
+
+            PreparedStatement stm = con.prepareStatement(sql); // tạo PreparedStatement
+            stm.setInt(1, rentalId); // set parameter
+
+            ResultSet rs = stm.executeQuery(); // thực hiện query và lấy ResultSet
+
+            while (rs.next()) {
+                bikeIds.add(rs.getInt("bikeId")); // đọc dữ liệu từ ResultSet
+            }
+
+            // đóng resources
+            rs.close();
+            stm.close();
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println("Error in getBikeIdsByRentalId: " + e.getMessage());
+        }
+
+        return bikeIds;
     }
 }
