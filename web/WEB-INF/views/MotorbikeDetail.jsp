@@ -21,10 +21,7 @@
 
                     <!-- LEFT IMAGE -->
                     <div class="detail-image">
-
-                        <img src="${bike.image}" 
-                             alt="${bike.bikeName}">
-
+                        <img src="${pageContext.request.contextPath}/${bike.image}" alt="${bike.bikeName}">
                     </div>
 
 
