@@ -76,7 +76,6 @@ public class MotorbikeDAO extends DBContext {
                 bike.setImage(rs.getString("image"));
                 bike.setStatus(rs.getString("status"));
 
-                bike.setLocationId(rs.getInt("locationId"));
                 bike.setLocationName(rs.getString("locationName"));
                 bike.setAddress(rs.getString("address"));
 
@@ -436,7 +435,7 @@ public class MotorbikeDAO extends DBContext {
         }
         return false;
     }
-    
+
     public List<Motorbike> getAllNewMotorbike() {
         List<Motorbike> list = new ArrayList<>();
 
@@ -467,6 +466,47 @@ public class MotorbikeDAO extends DBContext {
 
             rs.close();
             stm.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public ArrayList<MotorbikeDetailDTO> getDetailMotorbikes() {
+        ArrayList<MotorbikeDetailDTO> list = new ArrayList<>();
+
+        String sql = "SELECT b.bikeId, b.bikeName, b.brand, b.model, "
+                + "b.licensePlate, b.pricePerDay, b.description, b.image, b.status, "
+                + "l.locationName, l.address, "
+                + "b.createdAt, b.updatedAt "
+                + "FROM Motorbikes b "
+                + "LEFT JOIN Locations l ON b.locationId = l.locationId";
+
+        try {
+            stm = connection.prepareStatement(sql);
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                MotorbikeDetailDTO bike = new MotorbikeDetailDTO(
+                        rs.getInt("bikeId"),
+                        rs.getString("bikeName"),
+                        rs.getString("brand"),
+                        rs.getString("model"),
+                        rs.getString("licensePlate"),
+                        rs.getDouble("pricePerDay"),
+                        rs.getString("description"),
+                        rs.getString("image"),
+                        rs.getString("status"),
+                        rs.getString("locationName"),
+                        rs.getString("address"),
+                        rs.getDate("createdAt"),
+                        rs.getDate("updatedAt")
+                );
+
+                list.add(bike);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

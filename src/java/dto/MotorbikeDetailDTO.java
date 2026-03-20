@@ -21,7 +21,6 @@ public class MotorbikeDetailDTO {
 
     private String status;
 
-    private int locationId;
     private String locationName;
     private String address;
 
@@ -31,7 +30,7 @@ public class MotorbikeDetailDTO {
     public MotorbikeDetailDTO() {
     }
 
-    public MotorbikeDetailDTO(int bikeId, String bikeName, String brand, String model, String licensePlate, double pricePerDay, String description, String image, String status, int locationId, String locationName, String address, Date createdAt, Date updatedAt) {
+    public MotorbikeDetailDTO(int bikeId, String bikeName, String brand, String model, String licensePlate, double pricePerDay, String description, String image, String status, String locationName, String address, Date createdAt, Date updatedAt) {
         this.bikeId = bikeId;
         this.bikeName = bikeName;
         this.brand = brand;
@@ -41,7 +40,6 @@ public class MotorbikeDetailDTO {
         this.description = description;
         this.image = image;
         this.status = status;
-        this.locationId = locationId;
         this.locationName = locationName;
         this.address = address;
         this.createdAt = createdAt;
@@ -118,14 +116,6 @@ public class MotorbikeDetailDTO {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
     }
 
     public String getLocationName() {

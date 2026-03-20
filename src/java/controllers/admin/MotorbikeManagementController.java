@@ -7,6 +7,7 @@ package controllers.admin;
 
 import dal.MotorbikeDAO;
 import dto.AllMotorbikeDTO;
+import dto.MotorbikeDetailDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -60,7 +61,7 @@ public class MotorbikeManagementController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         MotorbikeDAO dao = new MotorbikeDAO();
-        List<AllMotorbikeDTO> motorbikeList = dao.getAllMotorbikes();
+        List<MotorbikeDetailDTO> motorbikeList = dao.getDetailMotorbikes();
         request.setAttribute("motorbikeList", motorbikeList);
         request.getRequestDispatcher(ViewPaths.MOTORBIKE_MANAGEMENT).forward(request, response);
     } 

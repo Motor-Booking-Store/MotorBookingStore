@@ -19,7 +19,7 @@
 
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" name="username" value="${user.userName}">
+                        <input type="text" name="username" value="${user.userName}" readonly>
                     </div>
 
                     <div class="form-group">
@@ -34,7 +34,7 @@
 
                     <div class="form-group">
                         <label>Citizen ID</label>
-                        <input type="text" name="citizen_id" value="${user.citizenId}">
+                        <input type="text" name="citizen_id" value="${user.citizenId}" readonly>
                     </div>
 
                     <div class="form-group">
@@ -49,12 +49,12 @@
 
                     <div class="form-group">
                         <label>Phone</label>
-                        <input type="text" name="phonenumber" value="${user.phoneNumber}">
+                        <input type="text" name="phonenumber" value="${user.phoneNumber}" readonly>
                     </div>
 
                     <div class="form-group">
                         <label>License</label>
-                        <input type="text" name="licensenumber" value="${user.licenseNumber}">
+                        <input type="text" name="licensenumber" value="${user.licenseNumber}" readonly>
                     </div>
 
                     <div class="form-group">
@@ -64,7 +64,7 @@
 
                     <div class="form-group">
                         <label>Bank</label>
-                        <input type="text" name="banknumber" value="${user.bankNumber}">
+                        <input type="text" name="banknumber" value="${user.bankNumber}" readonly>
                     </div>
 
                     <div class="form-group">
