@@ -54,6 +54,11 @@
                         <input type="text" name="address" value="${user.address}">
                     </div>
 
+                    <div class="form-group">
+                        <label>CCCD</label>
+                        <input type="text" name="citizen" value="${user.citizen_id}" readonly>
+                    </div>
+                    
                     <!-- Avatar full width -->
                     <input type="hidden" name="oldAvatar" value="${user.avatar}">
 

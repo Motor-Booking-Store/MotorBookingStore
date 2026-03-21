@@ -90,7 +90,7 @@ public class EditUserDetailController extends HttpServlet {
         String phoneNumber = request.getParameter("phoneNumber");
         String licenseNumber = request.getParameter("licenseNumber");
         String address = request.getParameter("address");
-
+        String citizenId = request.getParameter("citizen");
         // Keep old avatar if no new file selected
         String avatar = request.getParameter("oldAvatar");
 
@@ -136,7 +136,8 @@ public class EditUserDetailController extends HttpServlet {
                 address,
                 null,
                 avatar,
-                null
+                null,
+                citizenId
         );
 
         UserDAO userDAO = new UserDAO();

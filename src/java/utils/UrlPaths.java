@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
  */
 public class UrlPaths {
 
-    public static final String USER_HOME = "/user/Home";
+    public static final String USER_HOME = "/Home";
     public static final String ADMIN_HOME = "/admin/Home";
     public static final String LOGIN = "/Login";
 

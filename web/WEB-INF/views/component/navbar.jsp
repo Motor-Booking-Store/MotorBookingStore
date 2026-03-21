@@ -10,7 +10,7 @@
     </div>
 
     <div class="nav-menu">
-        <a href="${pageContext.request.contextPath}/user/Home">Trang Chủ</a>
+        <a href="${pageContext.request.contextPath}/Home">Trang Chủ</a>
         <a href="${pageContext.request.contextPath}/MotorbikeList">Danh Sách Xe Máy</a>
         <a href="${pageContext.request.contextPath}/user/rental-history?userId=${sessionScope.user.userID}">Lịch Sử Thuê Xe</a>
         <a href="${pageContext.request.contextPath}/user/UserDetail">Thông Tin Tài Khoản</a>

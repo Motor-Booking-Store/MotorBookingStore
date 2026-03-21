@@ -31,7 +31,7 @@ public class UserDAO extends DBContext {
 
     public UserDetailDTO GetUserDetailById(int userId) {
         String sql = "SELECT u.userName, u.email, u.firstName, u.lastName, "
-                + "u.phoneNumber, u.licenseNumber, u.address, u.bankNumber, u.avatar, r.roleName "
+                + "u.phoneNumber, u.licenseNumber, u.address, u.bankNumber, u.avatar, r.roleName, u.citizen_id "
                 + "FROM Users u "
                 + "JOIN Roles r ON u.roleId = r.roleId "
                 + "WHERE u.userID = ?";
@@ -53,7 +53,8 @@ public class UserDAO extends DBContext {
                         rs.getString("address"),
                         rs.getString("bankNumber"),
                         rs.getString("avatar"),
-                        rs.getString("roleName")
+                        rs.getString("roleName"),
+                        rs.getString("citizen_id")
                 );
             }
         } catch (Exception e) {
