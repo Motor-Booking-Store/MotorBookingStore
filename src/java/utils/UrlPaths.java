@@ -11,18 +11,27 @@ import jakarta.servlet.http.HttpServletRequest;
  * @author nguye
  */
 public class UrlPaths {
+
     public static final String USER_HOME = "/user/Home";
     public static final String ADMIN_HOME = "/admin/Home";
     public static final String LOGIN = "/Login";
-    
+
     public static final String Id_MotorbikeDetail = "/MotorbikeDetail?id=";
-    
+
     public static final String PENDING_RENTALS = "/admin/pending-rentals";
     public static final String ADD_USER = "/admin/adduser";
-    
+
     public static final String USER_DETAIL = "/user/UserDetail";
-    
+
     public static String url(HttpServletRequest request, String path) {
+        return request.getContextPath() + path;
+    }
+    // Remove /user prefix automatically
+
+    public static String publicUrl(HttpServletRequest request, String path) {
+        if (path.startsWith("/user/")) {
+            path = path.substring(5); // remove "/user"
+        }
         return request.getContextPath() + path;
     }
 }

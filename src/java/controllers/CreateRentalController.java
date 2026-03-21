@@ -79,7 +79,7 @@ public class CreateRentalController extends HttpServlet {
             RentalDAO rentalDAO = new RentalDAO();
             boolean created = rentalDAO.createRentalRequest( user.getUserID(), bikeId, sqlStartDate, sqlEndDate, pricePerDay );
             if (created) {
-                session.setAttribute("success", "Yêu cầu thuê xe đã được tạo thành công. Vui lòng chờ quản trị viên phê duyệt.");
+                session.setAttribute("success", "Thanh toán thành công! Yêu cầu thuê xe đã được gửi. Vui lòng chờ quản trị viên phê duyệt.");
             } else {
                 session.setAttribute("error", "Không thể tạo yêu cầu thuê xe.");
             }
