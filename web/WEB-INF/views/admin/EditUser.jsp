@@ -72,7 +72,8 @@
                         <label>Vai trò</label>
                         <select name="roleId">
                             <option value="1" ${user.roleId == 1 ? "selected" : ""}>Quản trị viên</option>
-                            <option value="2" ${user.roleId == 2 ? "selected" : ""}>Customer</option>
+                            <option value="2" ${user.roleId == 2 ? "selected" : ""}>Khách hàng</option>
+
                         </select>
                     </div>
 
