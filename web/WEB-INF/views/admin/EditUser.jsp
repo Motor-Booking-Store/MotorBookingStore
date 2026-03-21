@@ -71,13 +71,8 @@
                     <div class="form-group full-width">
                         <label>Vai trò</label>
                         <select name="roleId">
-<<<<<<< HEAD
-                            <option value="1" ${user.roleId == 1 ? "selected" : ""}>Admin</option>
-                            <option value="3" ${user.roleId == 3 ? "selected" : ""}>Customer</option>
-=======
                             <option value="1" ${user.roleId == 1 ? "selected" : ""}>Quản trị viên</option>
                             <option value="2" ${user.roleId == 2 ? "selected" : ""}>Khách hàng</option>
->>>>>>> 25958f51e912f121d9a17e24fa2cc12b3dfbb5e1
                         </select>
                     </div>
 

@@ -77,7 +77,7 @@
                         <label>Vai trò</label>
                         <select name="roleId">
                             <option value="1">Quản trị viên</option>
-                            <option value="3">Khách hàng</option>
+                            <option value="2">Khách hàng</option>
                         </select>
                     </div>
 

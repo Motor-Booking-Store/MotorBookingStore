@@ -184,7 +184,7 @@ public class SignUp extends HttpServlet {
         user.address = address;
         user.setBankNumber(banknumber);
 
-        user.roleId = 3;
+        user.roleId = 2;
 
         user.createdAt = new Date();
         user.updatedAt = new Date();
