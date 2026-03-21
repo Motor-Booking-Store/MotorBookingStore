@@ -21,7 +21,7 @@
                     <p class="error">${error}</p>
                 </c:if>
 
-                <form action="adduser" method="POST">
+                <form action="adduser" method="POST" class="form">
 
                     <div class="form-group">
                         <label>Username</label>
@@ -63,17 +63,17 @@
                         <input type="text" name="licensenumber" value="${licensenumber}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group full-width">
                         <label>Address</label>
                         <input type="text" name="address" value="${address}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group full-width">
                         <label>Bank Number</label>
                         <input type="text" name="banknumber" value="${banknumber}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group full-width">
                         <label>Role</label>
                         <select name="roleId">
                             <option value="1">Admin</option>
@@ -81,7 +81,9 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn-submit">Add User</button>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">Add User</button>
+                    </div>
                 </form>
             </div>
         </div>

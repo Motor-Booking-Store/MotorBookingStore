@@ -57,31 +57,30 @@
                         <input type="text" name="licensenumber" value="${user.licenseNumber}" readonly>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group full-width">
                         <label>Address</label>
                         <input type="text" name="address" value="${user.address}">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group full-width">
                         <label>Bank</label>
                         <input type="text" name="banknumber" value="${user.bankNumber}" readonly>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group full-width">
                         <label>Role</label>
                         <select name="roleId">
                             <option value="1" ${user.roleId == 1 ? "selected" : ""}>Admin</option>
-                            <option value="3" ${user.roleId == 3 ? "selected" : ""}>Customer</option>
+                            <option value="2" ${user.roleId == 2 ? "selected" : ""}>Customer</option>
                         </select>
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit">Update</button>
-                        <a href="${pageContext.request.contextPath}/admin/UserManagement">
-                            <button type="button">Cancel</button>
+                        <button type="submit"class="btn-submit">Update</button>
+                        <a href="${pageContext.request.contextPath}/admin/UserManagement" class="btn-cancel">
+                            Cancel
                         </a>
                     </div>
-
                 </form>
             </div>
 

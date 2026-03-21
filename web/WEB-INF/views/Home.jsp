@@ -26,7 +26,7 @@
                     Đặt xe nhanh chóng, giá cả hợp lý và dịch vụ đáng tin cậy.
                 </p>
 
-                <a href="MotorbikeList" class="hero-btn">
+                <a href="${pageContext.request.contextPath}/MotorbikeList" class="hero-btn">
                     Xem danh sách xe
                 </a>
 

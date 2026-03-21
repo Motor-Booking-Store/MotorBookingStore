@@ -21,6 +21,7 @@ import utils.ViewPaths;
 
 @WebServlet("/user/rental-history")
 public class UserRentalHistoryController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,11 +45,11 @@ public class UserRentalHistoryController extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        if(user == null) {
+        if (user == null) {
             response.sendRedirect(UrlPaths.url(request, UrlPaths.LOGIN));
             return;
         }
-        
+
         RentalDAO dao = new RentalDAO();
 
         int userId = Integer.parseInt(request.getParameter("userId"));
@@ -63,8 +64,10 @@ public class UserRentalHistoryController extends HttpServlet {
         request.setAttribute("pendingList", list);
         request.setAttribute("currentStatus", status);
 
-        request.getRequestDispatcher(ViewPaths.USER_RENTALS_HISTORY)
-                .forward(request, response);
+        java.util.Date today = new java.util.Date(); // ngày hôm nay
+        request.setAttribute("today", today);
+
+        request.getRequestDispatcher(ViewPaths.USER_RENTALS_HISTORY).forward(request, response);
     }
 
     @Override

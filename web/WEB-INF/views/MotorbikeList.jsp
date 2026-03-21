@@ -50,7 +50,7 @@
 
                             <div class="bike-card">
 
-                                <img class="bike-img" src="${b.image}">
+                                <img class="bike-img" src="${pageContext.request.contextPath}/${b.image}">
 
                                 <div class="bike-info">
                                     <p><b>Tên xe máy:</b> ${b.bikeName}</p>

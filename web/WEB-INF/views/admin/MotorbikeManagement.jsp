@@ -38,7 +38,7 @@
                     <td>${m.bikeId}</td>
                     <td>${m.bikeName}</td>
                     <td>
-                        <img src="${pageContext.request.contextPath}/images/${m.image}" width="100"/>
+                        <img src="${pageContext.request.contextPath}/${m.image}" width="100"/>
                     </td>
                     <td>${m.brand}</td>
                     <td>${m.model}</td>

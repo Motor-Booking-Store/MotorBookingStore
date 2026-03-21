@@ -66,3 +66,24 @@
     background: #00bfff;
     color: white;
 }
+
+.cancel-btn {
+    background-color: #e74c3c;  /* đỏ nổi bật */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #c0392b; /* đỏ đậm khi hover */
+    transform: scale(1.05);    /* hơi to hơn khi hover */
+}
+
+.cancel-btn:disabled {
+    background-color: #bdc3c7; /* xám nhạt nếu disabled */
+    cursor: not-allowed;
+}

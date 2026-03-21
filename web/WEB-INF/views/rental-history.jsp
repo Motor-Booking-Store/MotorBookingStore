@@ -3,7 +3,7 @@
 
 <html>
     <head>
-        <title>My Rental History</title>
+        <title>Lịch Sử Thuê Xe Của Tôi</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/rental-history.css">
     </head>
 
@@ -11,30 +11,30 @@
         <jsp:include page="./component/navbar.jsp"/>
         <div class="layout-wrappe">
             <div class="layout-main">
-                <h2>My Rental History</h2>
-
+                <h2>Lịch Sử Thuê Xe Của Tôi</h2>
 
                 <div class="filter-bar">
-                    <a href="?status=all&userId=${sessionScope.user.userID}">All</a>
-                    <a href="?status=Pending&userId=${sessionScope.user.userID}">Pending</a>
-                    <a href="?status=Approved&userId=${sessionScope.user.userID}">Approved</a>
-                    <a href="?status=Completed&userId=${sessionScope.user.userID}">Completed</a>
-                    <a href="?status=Cancelled&userId=${sessionScope.user.userID}">Cancelled</a>
+                    <a href="?status=all&userId=${sessionScope.user.userID}">Tất cả</a>
+                    <a href="?status=Pending&userId=${sessionScope.user.userID}">Đang chờ</a>
+                    <a href="?status=Approved&userId=${sessionScope.user.userID}">Đã duyệt</a>
+                    <a href="?status=Completed&userId=${sessionScope.user.userID}">Hoàn thành</a>
+                    <a href="?status=Cancelled&userId=${sessionScope.user.userID}">Đã hủy</a>
                 </div>
 
-                <h3>${currentStatus} Rentals</h3>
+                <h3>${currentStatus} đơn thuê</h3>
 
                 <table border="1" class="rental-table">
 
                     <tr>
-                        <th>Rental ID</th>
-                        <th>Motorbike</th>  
-                        <th>image</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Total Amount</th>
-                        <th>Address</th>
-                        <th>Status</th>
+                        <th>ID Đơn Thuê</th>
+                        <th>Xe Máy</th>  
+                        <th>Hình Ảnh</th>
+                        <th>Ngày Bắt Đầu</th>
+                        <th>Ngày Kết Thúc</th>
+                        <th>Tổng Tiền</th>
+                        <th>Địa Chỉ</th>
+                        <th>Trạng Thái</th>
+                        <th>Hành Động</th>
                     </tr>
 
                     <c:forEach var="r" items="${pendingList}">
@@ -57,36 +57,49 @@
 
                             <td>${r.totalAmount}</td>
 
-                            <<td>${r.address}</td>
-                            
+                            <td>${r.address}</td>
+
                             <td>
                                 <c:choose>
 
                                     <c:when test="${r.status == 'Pending'}">
-                                        <span style="color:orange;">Pending</span>
+                                        <span style="color:orange;">Đang chờ</span>
                                     </c:when>
 
                                     <c:when test="${r.status == 'Approved'}">
-                                        <span style="color:blue;">Approved</span>
+                                        <span style="color:blue;">Đã duyệt</span>
                                     </c:when>
 
                                     <c:when test="${r.status == 'Completed'}">
-                                        <span style="color:green;">Completed</span>
+                                        <span style="color:green;">Hoàn thành</span>
                                     </c:when>
 
                                     <c:when test="${r.status == 'Cancelled'}">
-                                        <span style="color:red;">Cancelled</span>
+                                        <span style="color:red;">Đã hủy</span>
                                     </c:when>
 
                                 </c:choose>
 
+                            </td>
+
+                            <td>
+                                <c:if test="${(r.status == 'Pending' || r.status == 'Approved') && today.time <= r.endDate.time}">
+
+                                    <form action="${pageContext.request.contextPath}/user/CancelRental" method="post">
+                                        <input type="hidden" name="rentalId" value="${r.rentalId}" />
+                                        <button type="submit" class="cancel-btn" onclick="return confirm('Bạn có chắc muốn hủy đơn thuê này không?')">
+                                            Hủy Thuê
+                                        </button>
+                                    </form>
+
+                                </c:if>
                             </td>
                         </tr>
                     </c:forEach>
 
                 </table>
                 <c:if test="${empty pendingList}">
-                    <p>No rental history found.</p>
+                    <p>Không tìm thấy lịch sử thuê xe nào.</p>
                 </c:if>
             </div>
         </div>
