@@ -69,9 +69,6 @@
                                               </span>
                                         </p>
                                     </div>
-
-
-
                                 </div>
                             </a>
                         </c:forEach>
