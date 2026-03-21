@@ -8,7 +8,7 @@
     <div class="grid">
         <c:forEach var="b" items="${newBikes}">
 
-            <a href="${pageContext.request.contextPath}/user/MotorbikeDetail?id=${b.bikeId}" class="card-link">
+            <a href="${pageContext.request.contextPath}/MotorbikeDetail?id=${b.bikeId}" class="card-link">
                 <div class="card">
 
                     <!-- LEFT: IMAGE -->
