@@ -80,22 +80,33 @@
                                 </button>
 
                                 <div id="rentFormContainer" style="display:none; margin-top:20px;">
-                                    <form action="${pageContext.request.contextPath}/user/CreateRental" method="post">
+                                    <form action="${pageContext.request.contextPath}/user/CreateRental" 
+                                          method="post" 
+                                          onsubmit="return confirmRental()">
+
                                         <input type="hidden" name="bikeId" value="${bike.bikeId}">
+                                        <input type="hidden" id="totalAmountInput" name="totalAmount" value="0">
 
                                         <div style="margin-bottom:10px;">
                                             <label for="startDate"><b>Ngày thuê:</b></label><br>
-                                            <input type="date" name="startDate" id="startDate" required>
+                                            <input type="date" name="startDate" id="startDate" required onchange="calculateTotal()">
                                         </div>
 
                                         <div style="margin-bottom:10px;">
                                             <label for="endDate"><b>Ngày trả:</b></label><br>
-                                            <input type="date" name="endDate" id="endDate" required>
+                                            <input type="date" name="endDate" id="endDate" required onchange="calculateTotal()">
+                                        </div>
+
+                                        <div id="rentSummary" style="margin-top: 15px; padding: 10px; background: #f5f5f5; border-radius: 8px; display: none;">
+                                            <p><b>Số ngày thuê:</b> <span id="totalDays">0</span> ngày</p>
+                                            <p><b>Giá/ngày:</b> ${bike.pricePerDay} VND</p>
+                                            <p style="color: green; font-size: 18px;">
+                                                <b>Tổng tiền:</b> <span id="totalAmount">0</span> VND
+                                            </p>
                                         </div>
 
                                         <button type="submit" class="rent-btn">Xác nhận thuê</button>
                                     </form>
-                                    <div id="rentSummary" style="margin-top: 20px; display: none;"></div>
                                 </div>
                             </c:if>
 
@@ -163,48 +174,126 @@
 
             <jsp:include page="./component/footer.jsp"/>
 
-            <script> 
-                function toggleRentForm() { 
-                    const form = document.getElementById("rentFormContainer"); 
-                    if (form.style.display === "none" || form.style.display === "") { 
-                        form.style.display = "block"; } 
-                    else { 
-                        form.style.display = "none"; 
-                    } 
-                } 
-                window.addEventListener("DOMContentLoaded", function () { 
-                    const startInput = document.getElementById("startDate"); 
-                    const endInput = document.getElementById("endDate"); 
-                    const today = new Date(); 
-                    const tomorrow = new Date(); 
-                    tomorrow.setDate(today.getDate() + 1); 
-                    
-                    function formatDate(date) {
-                        const year = date.getFullYear(); 
-                        const month = String(date.getMonth() + 1).padStart(2, '0'); 
-                        const day = String(date.getDate()).padStart(2, '0'); 
-                        return year + "-" + month + "-" + day; 
-                    } 
-                    const todayStr = formatDate(today); 
-                    const tomorrowStr = formatDate(tomorrow); 
-                    startInput.min = todayStr; 
-                    endInput.min = todayStr; 
-                    
-                    if (!startInput.value) { 
-                        startInput.value = todayStr; 
-                    } 
-                    
-                    if (!endInput.value) { 
-                        endInput.value = tomorrowStr; 
-                    } 
-                    startInput.addEventListener("change", function () { 
-                        endInput.min = startInput.value; 
-                        if (endInput.value < startInput.value) { 
-                            endInput.value = startInput.value; 
-                        } 
-                    });
-                });
-                        
+            <script>
+               const pricePerDay = ${bike.pricePerDay};
+
+               function toggleRentForm() {
+                   const form = document.getElementById("rentFormContainer");
+                   if (form.style.display === "none" || form.style.display === "") {
+                       form.style.display = "block";
+                       calculateTotal();
+                   } else {
+                       form.style.display = "none";
+                   }
+               }
+
+               function formatDate(date) {
+                   const year = date.getFullYear();
+                   const month = String(date.getMonth() + 1).padStart(2, '0');
+                   const day = String(date.getDate()).padStart(2, '0');
+                   return year + "-" + month + "-" + day;
+               }
+
+               function calculateTotal() {
+                   const startInput = document.getElementById("startDate");
+                   const endInput = document.getElementById("endDate");
+                   const summary = document.getElementById("rentSummary");
+                   const totalDaysEl = document.getElementById("totalDays");
+                   const totalAmountEl = document.getElementById("totalAmount");
+                   const totalAmountInput = document.getElementById("totalAmountInput");
+
+                   if (!startInput.value || !endInput.value) {
+                       summary.style.display = "none";
+                       return;
+                   }
+
+                   const startDate = new Date(startInput.value);
+                   const endDate = new Date(endInput.value);
+
+                   const diffTime = endDate - startDate;
+                   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+                   if (diffDays <= 0) {
+                       summary.style.display = "none";
+                       return;
+                   }
+
+                   const total = diffDays * pricePerDay;
+
+                   totalDaysEl.textContent = diffDays;
+                   totalAmountEl.textContent = total.toLocaleString("vi-VN");
+                   totalAmountInput.value = total;
+                   summary.style.display = "block";
+               }
+
+               function confirmRental() {
+                   const startInput = document.getElementById("startDate");
+                   const endInput = document.getElementById("endDate");
+
+                   if (!startInput.value || !endInput.value) {
+                       alert("Vui lòng chọn ngày thuê và ngày trả.");
+                       return false;
+                   }
+
+                   const startDate = new Date(startInput.value);
+                   const endDate = new Date(endInput.value);
+
+                   const diffTime = endDate - startDate;
+                   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+                   if (diffDays <= 0) {
+                       alert("Ngày trả phải lớn hơn hoặc bằng ngày thuê.");
+                       return false;
+                   }
+
+                   const total = diffDays * pricePerDay;
+
+                   return confirm(
+                           "Xác nhận thuê xe?\n" +
+                           "Số ngày thuê: " + diffDays + " ngày\n" +
+                           "Tổng tiền: " + total.toLocaleString("vi-VN") + " VND"
+                           );
+               }
+
+               window.addEventListener("DOMContentLoaded", function () {
+                   const startInput = document.getElementById("startDate");
+                   const endInput = document.getElementById("endDate");
+
+                   if (!startInput || !endInput)
+                       return;
+
+                   const today = new Date();
+                   const tomorrow = new Date();
+                   tomorrow.setDate(today.getDate() + 1);
+
+                   const todayStr = formatDate(today);
+                   const tomorrowStr = formatDate(tomorrow);
+
+                   startInput.min = todayStr;
+                   endInput.min = todayStr;
+
+                   if (!startInput.value) {
+                       startInput.value = todayStr;
+                   }
+
+                   if (!endInput.value) {
+                       endInput.value = tomorrowStr;
+                   }
+
+                   startInput.addEventListener("change", function () {
+                       endInput.min = startInput.value;
+
+                       if (endInput.value < startInput.value) {
+                           endInput.value = startInput.value;
+                       }
+
+                       calculateTotal();
+                   });
+
+                   endInput.addEventListener("change", calculateTotal);
+
+                   calculateTotal();
+               });
             </script>
         </body>
     </html>

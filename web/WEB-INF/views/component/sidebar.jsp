@@ -7,7 +7,7 @@
 
     <h2 class="sidebar-title">Tìm kiếm xe máy</h2>
 
-    <form action="${pageContext.request.contextPath}/user/MotorbikeList" method="get">
+    <form action="${pageContext.request.contextPath}/MotorbikeList" method="get">
 
         <!-- Brand -->
         <div class="filter-group">
@@ -44,7 +44,7 @@
 
         <button class="filter-btn" type="submit">Tìm kiếm</button>
 
-        <a href="${pageContext.request.contextPath}/user/MotorbikeList" class="reset-btn">
+        <a href="${pageContext.request.contextPath}/MotorbikeList" class="reset-btn">
             Đặt lại
         </a>
 

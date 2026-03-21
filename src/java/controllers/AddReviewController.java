@@ -58,7 +58,7 @@ public class AddReviewController extends HttpServlet {
         ReviewDAO dao = new ReviewDAO();
         dao.addReview(review);
 
-        response.sendRedirect(UrlPaths.url(request, UrlPaths.Id_MotorbikeDetail) + bikeId);
+        response.sendRedirect(UrlPaths.publicUrl(request, UrlPaths.Id_MotorbikeDetail) + bikeId);
     }
 
     @Override
