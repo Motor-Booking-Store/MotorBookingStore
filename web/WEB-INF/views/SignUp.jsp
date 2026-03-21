@@ -12,7 +12,7 @@
         <jsp:include page="./component/navbar.jsp"/>
 
         <div class="content-wrapper">
-            <form action="${pageContext.request.contextPath}/user/SignUp" method="POST" class="signup-form">
+            <form action="${pageContext.request.contextPath}/SignUp" method="POST" class="signup-form">
                 <h2>Đăng Ký</h2>
 
                 <c:if test="${not empty error}">

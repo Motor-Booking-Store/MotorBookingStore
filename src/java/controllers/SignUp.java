@@ -1,6 +1,7 @@
 package controllers;
 
 import dal.AccountDAO;
+import dal.LocationDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.Date;
+import models.Motorbike;
 import models.User;
 import utils.UrlPaths;
 import utils.ViewPaths;
@@ -182,7 +184,7 @@ public class SignUp extends HttpServlet {
         user.address = address;
         user.setBankNumber(banknumber);
 
-        user.roleId = 2;
+        user.roleId = 3;
 
         user.createdAt = new Date();
         user.updatedAt = new Date();

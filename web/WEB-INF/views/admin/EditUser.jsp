@@ -59,7 +59,11 @@
 
                     <div class="form-group full-width">
                         <label>Address</label>
-                        <input type="text" name="address" value="${user.address}">
+                        <select name="locationId">
+                            <c:forEach var="l" items="${locationList}">
+                                <option value="${l.locationId}">${l.locationName}</option>
+                            </c:forEach>
+                        </select>
                     </div>
 
                     <div class="form-group full-width">
@@ -71,7 +75,7 @@
                         <label>Role</label>
                         <select name="roleId">
                             <option value="1" ${user.roleId == 1 ? "selected" : ""}>Admin</option>
-                            <option value="2" ${user.roleId == 2 ? "selected" : ""}>Customer</option>
+                            <option value="3" ${user.roleId == 3 ? "selected" : ""}>Customer</option>
                         </select>
                     </div>
 

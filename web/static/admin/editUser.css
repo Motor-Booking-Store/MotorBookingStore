@@ -114,3 +114,7 @@ input[readonly] {
         grid-column: span 1;
     }
 }
+
+input[readonly] {
+    cursor: default;
+}
