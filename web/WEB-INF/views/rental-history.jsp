@@ -48,7 +48,7 @@
                             </td>
 
                             <td>
-                                <img src="${r.image}" alt="error"/>
+                                <img src="${pageContext.request.contextPath}/${r.image}" alt="error"/>
                             </td>
 
                             <td>${r.startDate}</td>

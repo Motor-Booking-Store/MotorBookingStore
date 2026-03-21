@@ -43,7 +43,7 @@
                             <td class="rental-id">${r.rentalId}</td>
                             <td class="customer">${r.firstName} ${r.lastName}</td>
                             <td class="bike-name">${r.bikeName}</td>
-                            <td class="bike-image"><img src="${r.image}" alt="${r.bikeName}"/></td>
+                            <td class="bike-image"><img src="${pageContext.request.contextPath}/${r.image}" alt="${r.bikeName}"/></td>
                             <td class="start-date">${r.startDate}</td>
                             <td class="end-date">${r.endDate}</td>
                             <td class="total-amount">${r.totalAmount}</td>
