@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Add Motorbike</title>
+        <title>Thêm xe máy</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/addMotorbike.css">
     </head>
     <body>
         <jsp:include page="./component/adminNavbar.jsp"/>
-        <h2>Add Motorbike</h2>
+        <h2>Thêm xe máy</h2>
 
         <!-- Hiển thị lỗi -->
         <c:if test="${not empty error}">
@@ -23,42 +23,42 @@
             <table>
 
                 <tr>
-                    <td>Bike Name:</td>
+                    <td>Tên xe:</td>
                     <td>
                         <input type="text" name="bikeName" value="${bikeName}">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Brand:</td>
+                    <td>Hãng:</td>
                     <td>
                         <input type="text" name="brand" value="${brand}">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Model:</td>
+                    <td>Dòng xe:</td>
                     <td>
                         <input type="text" name="model" value="${model}">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>License Plate:</td>
+                    <td>Biển số:</td>
                     <td>
                         <input type="text" name="licensePlate" value="${licensePlate}">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Price Per Day:</td>
+                    <td>Giá mỗi ngày:</td>
                     <td>
                         <input type="text" name="pricePerDay" value="${pricePerDay}">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Location:</td>
+                    <td>Địa điểm:</td>
                     <td>
                         <select name="locationId">
                             <c:forEach var="l" items="${locationList}">
@@ -69,40 +69,40 @@
                 </tr>
 
                 <tr>
-                    <td>Description:</td>
+                    <td>Mô tả:</td>
                     <td>
                         <textarea name="description">${description}</textarea>
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Image URL:</td>
+                    <td>Hình ảnh:</td>
                     <td>
                         <input type="hidden" name="image" value="${motorbike.image}">
-                        <label for="image">Upload Image</label>
+                        <label for="image">Tải ảnh lên</label>
                         <input type="file" id="image" name="imageUpload" accept="image/*">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Status:</td>
+                    <td>Trạng thái:</td>
                     <td>
                         <select name="status">
-                            <option value="Available" ${status == 'Available' ? 'selected' : ''}>Available</option>
-                            <option value="Rented" ${status == 'Rented' ? 'selected' : ''}>Rented</option>
+                            <option value="Available" ${status == 'Available' ? 'selected' : ''}>Có sẵn</option>
+                            <option value="Rented" ${status == 'Rented' ? 'selected' : ''}>Đang cho thuê</option>
                         </select>
                     </td>
                 </tr>
 
                 <tr>
                     <td colspan="2">
-                        <button type="submit">Add Motorbike</button>
+                        <button type="submit">Thêm xe máy</button>
                     </td>
                 </tr>
 
             </table>
 
         </form>
-    <jsp:include page="../component/footer.jsp"/>
+        <jsp:include page="../component/footer.jsp"/>
     </body>
 </html>

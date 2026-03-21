@@ -19,7 +19,7 @@
     </div>
     <div class="navbar-right">
         <c:if test="${sessionScope.user != null}">
-            <a href="${pageContext.request.contextPath}/Logout" class="nav-action">Logout</a>
+            <a href="${pageContext.request.contextPath}/Logout" class="nav-action">Đăng xuất</a>
         </c:if>
     </div>
 </div>
