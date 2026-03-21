@@ -5,17 +5,16 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>User Management</title>
+        <title>Quản lý người dùng</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/listUser.css">
-
     </head>
 
     <body>
         <jsp:include page="./component/adminNavbar.jsp"/>
         <div>
-            <h2>User Management</h2>
+            <h2>Quản lý người dùng</h2>
 
-            <!-- MESSAGE (nếu có) -->
+            <!-- THÔNG BÁO -->
             <c:if test="${not empty message}">
                 <p style="color: green;">${message}</p>
             </c:if>
@@ -23,25 +22,25 @@
                 <p style="color: red;">${error}</p>
             </c:if>
 
-            <!-- ADD USER -->
+            <!-- THÊM USER -->
             <a href="${pageContext.request.contextPath}/admin/adduser">
-                <button class="btn-add">Add New User</button>
+                <button class="btn-add">Thêm người dùng</button>
             </a>
 
             <br><br>
 
-            <!-- TABLE -->
+            <!-- BẢNG -->
             <table border="1" cellpadding="10" cellspacing="0" width="100%">
 
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Username</th>
+                        <th>Tên đăng nhập</th>
                         <th>Email</th>
-                        <th>Citizen ID</th>
-                        <th>Phone</th>
-                        <th>Role</th>
-                        <th>Action</th>
+                        <th>CCCD</th>
+                        <th>Số điện thoại</th>
+                        <th>Vai trò</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
 
@@ -51,7 +50,7 @@
                     <c:if test="${empty accountList}">
                         <tr>
                             <td colspan="7" style="text-align:center;">
-                                No users found
+                                Không có người dùng nào
                             </td>
                         </tr>
                     </c:if>
@@ -74,10 +73,10 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${u.roleId == 1}">
-                                        Admin
+                                        Quản trị viên
                                     </c:when>
                                     <c:otherwise>
-                                        Customer
+                                        Khách hàng
                                     </c:otherwise>
                                 </c:choose>
                             </td>
@@ -85,22 +84,22 @@
                             <!-- ACTION -->
                             <td>
 
-                                <!-- EDIT -->
+                                <!-- SỬA -->
                                 <a href="${pageContext.request.contextPath}/admin/EditUser?id=${u.userID}">
-                                    <button class="btn-edit">Edit</button>
+                                    <button class="btn-edit">Sửa</button>
                                 </a>
 
-                                <!-- DELETE -->
+                                <!-- XÓA -->
                                 <c:if test="${u.roleId != 1}">
                                     <a href="${pageContext.request.contextPath}/admin/DeleteUser?id=${u.userID}"
-                                       onclick="return confirm('Are you sure to delete this user?');">
-                                        <button class="btn-delete">Delete</button>
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này không?');">
+                                        <button class="btn-delete">Xóa</button>
                                     </a>
                                 </c:if>
 
                                 <!-- nếu là admin thì disable delete -->
                                 <c:if test="${u.roleId == 1}">
-                                    <button disabled>Delete</button>
+                                    <button disabled>Xóa</button>
                                 </c:if>
 
                             </td>

@@ -16,7 +16,7 @@ import java.util.List;
 import models.Motorbike;
 import utils.ViewPaths;
 
-@WebServlet("/user/Home")
+@WebServlet("/Home")
 public class HomeController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

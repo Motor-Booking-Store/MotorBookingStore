@@ -4,16 +4,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Motorbike Management</title>
+        <title>Quản lý xe máy</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/listMotorbike.css">
     </head>
     <body>
         <jsp:include page="./component/adminNavbar.jsp"/>
-        <h2>Motorbike Management</h2>
+        <h2>Quản lý xe máy</h2>
 
-        <!-- Nút Add -->
+        <!-- Nút Thêm -->
         <a href="${pageContext.request.contextPath}/admin/AddMotorbike">
-            <button>Add Motorbike</button>
+            <button>Thêm xe máy</button>
         </a>
 
         <br><br>
@@ -22,15 +22,15 @@
 
             <tr>
                 <th>ID</th>
-                <th>Bike Name</th>
-                <th>Image</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>License Plate</th>
-                <th>Price/Day</th>
-                <th>Location</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th>Tên xe</th>
+                <th>Hình ảnh</th>
+                <th>Hãng</th>
+                <th>Dòng xe</th>
+                <th>Biển số</th>
+                <th>Giá/ngày</th>
+                <th>Địa điểm</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
             </tr>
 
             <c:forEach var="m" items="${motorbikeList}">
@@ -48,15 +48,15 @@
                     <td>${m.status}</td>
 
                     <td>
-                        <!-- Edit -->
+                        <!-- SỬA -->
                         <a href="${pageContext.request.contextPath}/admin/EditMotorbike?id=${m.bikeId}">
-                            <button>Edit</button>
+                            <button>Sửa</button>
                         </a>
 
-                        <!-- Delete -->
+                        <!-- XÓA -->
                         <a href="${pageContext.request.contextPath}/admin/DeleteMotorbike?id=${m.bikeId}"
-                           onclick="return confirm('Are you sure to delete this motorbike?');">
-                            <button>Delete</button>
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa xe này không?');">
+                            <button>Xóa</button>
                         </a>
                     </td>
                 </tr>

@@ -12,7 +12,7 @@
                 <div class="card">
 
                     <!-- LEFT: IMAGE -->
-                    <img src="${b.image}" alt="${b.bikeName}">
+                    <img src="${pageContext.request.contextPath}/${b.image}" alt="${b.bikeName}">
 
                     <!-- RIGHT: INFO -->
                     <div class="card-content">

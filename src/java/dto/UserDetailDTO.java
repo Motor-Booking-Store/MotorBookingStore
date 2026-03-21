@@ -19,8 +19,9 @@ public class UserDetailDTO {
     private String bankNumber;
     private String avatar;
     private String roleName;
+    private String citizen_id;
 
-    public UserDetailDTO(String userName, String email, String firstName, String lastName, String phoneNumber, String licenseNumber, String address, String bankNumber, String avatar, String roleName) {
+    public UserDetailDTO(String userName, String email, String firstName, String lastName, String phoneNumber, String licenseNumber, String address, String bankNumber, String avatar, String roleName, String citizen_id) {
         this.userName = userName;
         this.email = email;
         this.firstName = firstName;
@@ -31,6 +32,7 @@ public class UserDetailDTO {
         this.bankNumber = bankNumber;
         this.avatar = avatar;
         this.roleName = roleName;
+        this.citizen_id = citizen_id;
     }
 
     public String getUserName() {
@@ -111,6 +113,14 @@ public class UserDetailDTO {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public String getCitizen_id() {
+        return citizen_id;
+    }
+
+    public void setCitizen_id(String citizen_id) {
+        this.citizen_id = citizen_id;
     }
     
     

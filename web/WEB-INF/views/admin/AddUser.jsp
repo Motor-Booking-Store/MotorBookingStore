@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Add User</title>
+        <title>Thêm người dùng</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/addUser.css">
     </head>
 
@@ -14,7 +14,7 @@
 
         <div class="container">
             <div class="form-card">
-                <h2>Add New User</h2>
+                <h2>Thêm người dùng mới</h2>
 
                 <!-- HIỂN THỊ LỖI -->
                 <c:if test="${not empty error}">
@@ -24,12 +24,12 @@
                 <form action="adduser" method="POST" class="form">
 
                     <div class="form-group">
-                        <label>Username</label>
+                        <label>Tên đăng nhập</label>
                         <input type="text" name="username" value="${username}">
                     </div>
 
                     <div class="form-group">
-                        <label>Password</label>
+                        <label>Mật khẩu</label>
                         <input type="password" name="password">
                     </div>
 
@@ -39,50 +39,50 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Citizen ID</label>
+                        <label>CCCD</label>
                         <input type="text" name="citizen_id" value="${citizen_id}">
                     </div>
 
                     <div class="form-group">
-                        <label>First Name</label>
+                        <label>Tên</label>
                         <input type="text" name="firstname" value="${firstname}">
                     </div>
 
                     <div class="form-group">
-                        <label>Last Name</label>
+                        <label>Họ</label>
                         <input type="text" name="lastname" value="${lastname}">
                     </div>
 
                     <div class="form-group">
-                        <label>Phone Number</label>
+                        <label>Số điện thoại</label>
                         <input type="text" name="phonenumber" value="${phonenumber}">
                     </div>
 
                     <div class="form-group">
-                        <label>License Number</label>
+                        <label>Bằng lái xe</label>
                         <input type="text" name="licensenumber" value="${licensenumber}">
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Address</label>
+                        <label>Địa chỉ</label>
                         <input type="text" name="address" value="${address}">
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Bank Number</label>
+                        <label>Số tài khoản ngân hàng</label>
                         <input type="text" name="banknumber" value="${banknumber}">
                     </div>
 
                     <div class="form-group full-width">
-                        <label>Role</label>
+                        <label>Vai trò</label>
                         <select name="roleId">
-                            <option value="1">Admin</option>
-                            <option value="3">Customer</option>
+                            <option value="1">Quản trị viên</option>
+                            <option value="3">Khách hàng</option>
                         </select>
                     </div>
 
                     <div class="form-actions">
-                        <button type="submit" class="btn-submit">Add User</button>
+                        <button type="submit" class="btn-submit">Thêm người dùng</button>
                     </div>
                 </form>
             </div>

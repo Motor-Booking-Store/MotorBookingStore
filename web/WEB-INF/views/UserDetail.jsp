@@ -36,6 +36,12 @@
                     <span class="label">Họ & Tên:</span>
                     <span class="value">${userDetail.lastName} ${userDetail.firstName}</span>
                 </div>
+               
+                <div class="info-row">
+                    <span class="label">CCCD:</span>
+                    <span class="value">${userDetail.citizen_id}</span>
+                </div>
+                
                 <div class="info-row">
                     <span class="label">Phone:</span>
                     <span class="value">${userDetail.phoneNumber}</span>

@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Edit Motorbike</title>
+        <title>Chỉnh sửa xe máy</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/admin/editMotorbike.css">
     </head>
     <body>
         <jsp:include page="./component/adminNavbar.jsp"/>
-        <h2>Edit Motorbike</h2>
+        <h2>Chỉnh sửa xe máy</h2>
 
-        <!-- ERROR -->
+        <!-- LỖI -->
         <c:if test="${not empty error}">
             <p class="error">${error}</p>
         </c:if>
@@ -20,49 +20,49 @@
               method="post"
               enctype="multipart/form-data">
 
-            <!-- ID + OLD IMAGE -->
+            <!-- ID + ẢNH CŨ -->
             <input type="hidden" name="bikeId" value="${bike.bikeId}">
             <input type="hidden" name="oldImage" value="${bike.image}">
 
             <table>
 
                 <tr>
-                    <td>Bike Name:</td>
+                    <td>Tên xe:</td>
                     <td>
                         <input type="text" name="bikeName" value="${bike.bikeName}" required>
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Brand:</td>
+                    <td>Hãng:</td>
                     <td>
                         <input type="text" name="brand" value="${bike.brand}" required>
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Model:</td>
+                    <td>Dòng xe:</td>
                     <td>
                         <input type="text" name="model" value="${bike.model}">
                     </td>
                 </tr>
 
                 <tr>
-                    <td>License Plate:</td>
+                    <td>Biển số:</td>
                     <td>
                         <input type="text" name="licensePlate" value="${bike.licensePlate}" required>
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Price Per Day:</td>
+                    <td>Giá mỗi ngày:</td>
                     <td>
                         <input type="number" step="0.01" name="pricePerDay" value="${bike.pricePerDay}" required>
                     </td>
                 </tr>
 
                 <tr>
-                    <td>Location:</td>
+                    <td>Địa điểm:</td>
                     <td>
                         <select name="locationId">
                             <c:forEach var="l" items="${locationList}">
@@ -73,15 +73,15 @@
                 </tr>
 
                 <tr>
-                    <td>Description:</td>
+                    <td>Mô tả:</td>
                     <td>
                         <textarea name="description" rows="4">${bike.description}</textarea>
                     </td>
                 </tr>
 
-                <!-- IMAGE -->
+                <!-- ẢNH -->
                 <tr>
-                    <td>Current Image:</td>
+                    <td>Ảnh hiện tại:</td>
                     <td>
                         <c:if test="${not empty bike.image}">
                             <img src="${pageContext.request.contextPath}${bike.image}" width="150">
@@ -90,22 +90,22 @@
                 </tr>
 
                 <tr>
-                    <td>Upload New Image:</td>
+                    <td>Tải ảnh mới:</td>
                     <td>
                         <input type="file" name="imageUpload" accept="image/*">
                     </td>
                 </tr>
 
-                <!-- STATUS -->
+                <!-- TRẠNG THÁI -->
                 <tr>
-                    <td>Status:</td>
+                    <td>Trạng thái:</td>
                     <td>
                         <select name="status">
                             <option value="Available" ${bike.status eq 'Available' ? 'selected' : ''}>
-                                Available
+                                Có sẵn
                             </option>
                             <option value="Rented" ${bike.status eq 'Rented' ? 'selected' : ''}>
-                                Rented
+                                Đang cho thuê
                             </option>
                         </select>
                     </td>
@@ -113,7 +113,7 @@
 
                 <tr>
                     <td colspan="2">
-                        <button type="submit">Update Motorbike</button>
+                        <button type="submit">Cập nhật xe</button>
                     </td>
                 </tr>
 
